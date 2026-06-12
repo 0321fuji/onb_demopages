@@ -110,4 +110,27 @@
 
   if (sidebarEl) sidebarEl.outerHTML = buildSidebar();
   if (headerEl)  headerEl.outerHTML  = buildHeader();
+
+  // ============================================================
+  // Onboarding JS — ここだけで全ページに適用
+  // ============================================================
+  var userAgent = window.navigator.userAgent.toLowerCase();
+  if ((userAgent.indexOf('msie') === -1 && userAgent.indexOf('trident') === -1) && !document.querySelector("#stands_onbd_point")) {
+    var ONB = ONB || {};
+    ONB.ignition_url = "https://api.onboarding-app.io/v1/onboarding-init?aid=2&pid=393";
+
+    // Custom Area Start=====================
+    ONB._queryparam = {
+      "user_id":        "ユーザID",
+      "user_name":      "ユーザ名",
+      "user_group_id":  "企業ID",
+      "user_group_name":"企業名"
+    };
+    ONB.black_list = [];
+    ONB._custom_functions = {};
+    // Custom Area End======================
+
+    ONB.embed = function(){for(ONB.item in ONB._queryparam){ONB.ignition_url+="&"+ONB.item+"="+ encodeURIComponent(ONB._queryparam[ONB.item])}for(ONB.d=0;ONB.d<ONB.black_list.length;ONB.d++){if(location.href.indexOf(ONB.black_list[ONB.d])!=-1){return}}if(Object.keys(ONB._custom_functions).length>0){ONB.ignition_url+="&custom_functions="+encodeURIComponent(JSON.stringify(ONB._custom_functions))}ONB.b=document.createElement("script"),ONB.c=document.getElementsByTagName("head")[0];ONB.b.src=ONB.ignition_url;ONB.b.id="stands_onbd_point";ONB.b.charset="utf-8";ONB.b.async="async";ONB.c.appendChild(ONB.b);};
+    ONB.embed();
+  }
 })();
