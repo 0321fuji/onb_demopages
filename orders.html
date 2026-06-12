@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PrecisionCMS - 注文管理</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#ffffff",
+                        "background": "#f8fafc",
+                        "primary-fixed": "#e2e8f0",
+                        "surface": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#000000",
+                        "surface-container-high": "#f1f5f9",
+                        "on-primary-fixed-variant": "#475569",
+                        "on-background": "#0f172a",
+                        "primary-container": "#f1f5f9",
+                        "tertiary-container": "#e2e8f0",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#e2e8f0",
+                        "secondary-fixed-dim": "#cbd5e1",
+                        "surface-container": "#f8fafc",
+                        "on-secondary-fixed": "#0f172a",
+                        "surface-variant": "#f1f5f9",
+                        "secondary-container": "#2563eb",
+                        "on-tertiary-fixed": "#0f172a",
+                        "on-secondary-container": "#ffffff",
+                        "primary": "#0f172a",
+                        "tertiary-fixed": "#e2e8f0",
+                        "on-surface-variant": "#64748b",
+                        "surface-container-low": "#f8fafc",
+                        "on-surface": "#0f172a",
+                        "tertiary-fixed-dim": "#cbd5e1",
+                        "on-tertiary-fixed-variant": "#475569",
+                        "error-container": "#fee2e2",
+                        "secondary-fixed": "#dbeafe",
+                        "surface-container-highest": "#e2e8f0",
+                        "inverse-on-surface": "#f8fafc",
+                        "surface-tint": "#64748b",
+                        "on-tertiary-container": "#475569",
+                        "on-secondary-fixed-variant": "#1d4ed8",
+                        "on-primary-container": "#64748b",
+                        "primary-fixed-dim": "#cbd5e1",
+                        "on-primary-fixed": "#0f172a",
+                        "on-error-container": "#7f1d1d",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#b91c1c",
+                        "inverse-primary": "#cbd5e1",
+                        "secondary": "#0f172a",
+                        "outline-variant": "#e2e8f0",
+                        "inverse-surface": "#334155",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "outline": "#94a3b8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-lg": "32px",
+                        "sidebar-width": "260px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Dashboard Card Hover Effect */
+        .dashboard-card {
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .dashboard-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-body-md antialiased overflow-x-hidden min-h-screen flex">
+<!-- SideNavBar (Persistent Desktop) -->
+<aside class="hidden md:flex flex-col bg-slate-100 font-body-md text-body-md w-sidebar-width h-screen fixed left-0 top-0 border-r border-slate-200 z-50 py-container-padding">
+<!-- Header / Brand -->
+<div class="px-container-padding mb-stack-lg flex items-center gap-stack-sm">
+<div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white fill" style="font-size: 20px;">storefront</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-slate-900">PrecisionCMS</h1>
+<p class="font-label-sm text-label-sm text-slate-600">Eコマース管理者</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 overflow-y-auto"><ul class="flex flex-col gap-unit"><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="index.html"><span class="material-symbols-outlined">dashboard</span><span class="">ダッシュボード</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="products.html"><span class="material-symbols-outlined">inventory_2</span><span class="">商品管理</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md border-l-4 border-slate-900 bg-slate-200 text-slate-900 font-semibold transition-colors opacity-90 transition-all duration-200" href="orders.html"><span class="material-symbols-outlined fill">shopping_cart</span><span class="">注文管理</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">group</span><span class="">顧客管理</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">warehouse</span><span class="">在庫管理</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">campaign</span><span class="">マーケティング</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">analytics</span><span class="">分析</span></a></li></ul></nav>
+<!-- Settings (Bottom anchored) -->
+<div class="mt-auto pt-stack-md">
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">settings</span><span class="">設定</span></a>
+<!-- User Profile Snippet in Sidebar -->
+<div class="mt-stack-sm px-gutter py-stack-md flex items-center gap-stack-sm border-t border-slate-200">
+<img alt="Store Manager Avatar" class="w-8 h-8 rounded-full object-cover border border-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_nqWH0-Pz_go0l_jZ2zs-KE6DygzE6XOy3XApZ7rE-fWyobjgBzoCSPobVPhf6t791JyMhMPbRgwQnwJ8ZY26IcYDJZbQvg1vvL1rw7Xev_y93IPnhV7XQWYuOH9yY_Y5ckyiqb9LdeXeeN-1xBoHPnbcRWoO6c9V1m31P57pGqGE71cmtFUwAbTeaD8GNJbH4Ei8y_fpGchVqv4rnLOsurjhbdomdH5hr8jstuSdhdYnjLuF9yXBBMn16dizQ6Tnqe0XWriif4A"/>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md text-slate-900 truncate">Alex Mercer</p>
+<p class="font-label-sm text-label-sm text-slate-600 truncate">alex@precision.cms</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="bg-white font-label-md text-label-md h-16 fixed top-0 right-0 z-40 border-b border-slate-200 flex justify-between items-center w-[calc(100%-260px)] ml-sidebar-width px-container-padding transition-all duration-300 hidden md:flex">
+<!-- Search Bar -->
+<div class="flex-1 max-w-md relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" style="font-size: 20px;">search</span>
+<input class="w-full bg-slate-50 border border-slate-200 rounded text-slate-900 pl-10 pr-4 py-2 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 placeholder-slate-500 transition-colors" placeholder="注文、顧客、または商品を検索..." type="text"/>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-stack-md">
+<button class="text-slate-600 hover:text-slate-900 transition-colors font-label-md px-3 py-1.5 rounded hover:bg-slate-100">
+                サポート
+            </button>
+<div class="flex items-center gap-unit border-l border-slate-200 pl-stack-md">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors relative group">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-blue-600 rounded-full border border-white group-hover:scale-110 transition-transform"></span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-sidebar-width pt-16 min-h-screen bg-slate-50 transition-all duration-300">
+<div class="max-w-[1440px] mx-auto p-container-padding space-y-stack-lg">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline-md text-headline-md text-slate-900">注文管理</h2>
+<p class="text-slate-500 font-body-md mt-1">顧客からの注文を管理・追跡します。</p>
+</div>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-900 rounded font-label-md text-label-md hover:bg-slate-50 transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 16px;">filter_list</span>
+                        フィルター
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-900 rounded font-label-md text-label-md hover:bg-slate-50 transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 16px;">download</span>
+                        書き出し
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded font-label-md text-label-md hover:bg-blue-700 transition-colors shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+                        注文作成
+                    </button>
+</div>
+</div>
+<!-- Bento Stats -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-stack-md">
+<div class="dashboard-card bg-white border border-slate-200 rounded-lg p-5">
+<span class="text-slate-500 font-label-md text-label-md uppercase">総注文数</span>
+<div class="font-display-lg text-display-lg text-slate-900 mt-2">1,248</div>
+<div class="flex items-center gap-1 text-blue-600 font-label-sm text-label-sm mt-2">
+<span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span>
+<span class="">今週比 +12%</span>
+</div>
+</div>
+<div class="dashboard-card bg-white border border-slate-200 rounded-lg p-5">
+<span class="text-slate-500 font-label-md text-label-md uppercase">未出荷</span>
+<div class="font-display-lg text-display-lg text-slate-900 mt-2">42</div>
+<div class="flex items-center gap-1 text-slate-500 font-label-sm text-label-sm mt-2">
+<span class="material-symbols-outlined" style="font-size: 14px;">schedule</span>
+<span class="">要確認</span>
+</div>
+</div>
+<div class="dashboard-card bg-white border border-slate-200 rounded-lg p-5">
+<span class="text-slate-500 font-label-md text-label-md uppercase">売上 (今月)</span>
+<div class="font-display-lg text-display-lg text-slate-900 mt-2">¥84.2k</div>
+<div class="flex items-center gap-1 text-blue-600 font-label-sm text-label-sm mt-2">
+<span class="material-symbols-outlined" style="font-size: 14px;">trending_up</span>
+<span class="">前月比 +8%</span>
+</div>
+</div>
+<div class="dashboard-card bg-white border border-slate-200 rounded-lg p-5 flex items-center justify-center">
+<div class="w-full h-full min-h-[80px] bg-slate-50 rounded border border-slate-200 flex items-center justify-center">
+<span class="text-slate-500 font-label-sm text-label-sm">チャート表示のプレースホルダー</span>
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-white border border-slate-200 rounded-lg overflow-hidden">
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 border-b border-slate-200 font-label-md text-label-md text-slate-500">
+<th class="p-4 font-medium w-16">
+<input class="rounded border-slate-300 text-blue-600 focus:ring-blue-600" type="checkbox"/>
+</th>
+<th class="p-4 font-medium">注文ID</th>
+<th class="p-4 font-medium">注文日</th>
+<th class="p-4 font-medium">顧客名</th>
+<th class="p-4 font-medium">合計金額</th>
+<th class="p-4 font-medium">支払い</th>
+<th class="p-4 font-medium">配送状況</th>
+<th class="p-4 font-medium text-right">アクション</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-slate-900">
+<tr class="border-b border-slate-200 hover:bg-slate-50 transition-colors h-[52px]">
+<td class="p-4">
+<input class="rounded border-slate-300 text-blue-600 focus:ring-blue-600" type="checkbox"/>
+</td>
+<td class="p-4 font-label-md text-label-md font-bold">#ORD-0921</td>
+<td class="p-4 text-slate-500">2023年10月24日</td>
+<td class="p-4">Sarah Jenkins</td>
+<td class="p-4 font-semibold">¥249.99</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-slate-50 border border-slate-200 text-slate-500 font-label-sm text-label-sm uppercase tracking-wider">支払い済み</span>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-slate-50 border border-slate-200 text-slate-500 font-label-sm text-label-sm uppercase tracking-wider">準備中</span>
+</td>
+<td class="p-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="text-slate-500 hover:text-slate-900 transition-colors" title="詳細を見る">
+<span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
+</button>
+<button class="text-slate-500 hover:text-blue-600 transition-colors" title="ステータスを更新">
+<span class="material-symbols-outlined" style="font-size: 20px;">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="border-b border-slate-200 hover:bg-slate-50 transition-colors h-[52px]">
+<td class="p-4">
+<input class="rounded border-slate-300 text-blue-600 focus:ring-blue-600" type="checkbox"/>
+</td>
+<td class="p-4 font-label-md text-label-md font-bold">#ORD-0920</td>
+<td class="p-4 text-slate-500">2023年10月24日</td>
+<td class="p-4">Marcus Reed</td>
+<td class="p-4 font-semibold">¥1,450.00</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-slate-50 border border-slate-200 text-slate-500 font-label-sm text-label-sm uppercase tracking-wider">保留中</span>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-slate-50 border border-slate-200 text-slate-500 font-label-sm text-label-sm uppercase tracking-wider">未出荷</span>
+</td>
+<td class="p-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="text-slate-500 hover:text-slate-900 transition-colors" title="詳細を見る">
+<span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
+</button>
+<button class="text-slate-500 hover:text-blue-600 transition-colors" title="ステータスを更新">
+<span class="material-symbols-outlined" style="font-size: 20px;">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="border-b border-slate-200 hover:bg-slate-50 transition-colors h-[52px]">
+<td class="p-4">
+<input class="rounded border-slate-300 text-blue-600 focus:ring-blue-600" type="checkbox"/>
+</td>
+<td class="p-4 font-label-md text-label-md font-bold">#ORD-0919</td>
+<td class="p-4 text-slate-500">2023年10月23日</td>
+<td class="p-4">Elena Rodriguez</td>
+<td class="p-4 font-semibold">¥89.50</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-slate-50 border border-slate-200 text-slate-500 font-label-sm text-label-sm uppercase tracking-wider">支払い済み</span>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-slate-50 border border-slate-200 text-slate-500 font-label-sm text-label-sm uppercase tracking-wider">出荷済み</span>
+</td>
+<td class="p-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="text-slate-500 hover:text-slate-900 transition-colors" title="詳細を見る">
+<span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
+</button>
+<button class="text-slate-500 hover:text-blue-600 transition-colors" title="ステータスを更新">
+<span class="material-symbols-outlined" style="font-size: 20px;">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="border-b border-slate-200 hover:bg-slate-50 transition-colors h-[52px]">
+<td class="p-4">
+<input class="rounded border-slate-300 text-blue-600 focus:ring-blue-600" type="checkbox"/>
+</td>
+<td class="p-4 font-label-md text-label-md font-bold">#ORD-0918</td>
+<td class="p-4 text-slate-500">2023年10月22日</td>
+<td class="p-4">James Wilson</td>
+<td class="p-4 font-semibold">¥320.00</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-slate-50 border border-slate-200 text-slate-500 font-label-sm text-label-sm uppercase tracking-wider">返金済み</span>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-slate-50 border border-slate-200 text-slate-500 font-label-sm text-label-sm uppercase tracking-wider">キャンセル</span>
+</td>
+<td class="p-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="text-slate-500 hover:text-slate-900 transition-colors" title="詳細を見る">
+<span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
+</button>
+<button class="text-slate-500 hover:text-blue-600 transition-colors" title="ステータスを更新">
+<span class="material-symbols-outlined" style="font-size: 20px;">edit</span>
+</button>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors h-[52px]">
+<td class="p-4">
+<input class="rounded border-slate-300 text-blue-600 focus:ring-blue-600" type="checkbox"/>
+</td>
+<td class="p-4 font-label-md text-label-md font-bold">#ORD-0917</td>
+<td class="p-4 text-slate-500">2023年10月21日</td>
+<td class="p-4">Fiona Gallagher</td>
+<td class="p-4 font-semibold">¥1,200.00</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-slate-50 border border-slate-200 text-slate-500 font-label-sm text-label-sm uppercase tracking-wider">支払い済み</span>
+</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2 py-1 rounded bg-slate-50 border border-slate-200 text-slate-500 font-label-sm text-label-sm uppercase tracking-wider">配送済み</span>
+</td>
+<td class="p-4 text-right">
+<div class="flex justify-end gap-2">
+<button class="text-slate-500 hover:text-slate-900 transition-colors" title="詳細を見る">
+<span class="material-symbols-outlined" style="font-size: 20px;">visibility</span>
+</button>
+<button class="text-slate-500 hover:text-blue-600 transition-colors" title="ステータスを更新">
+<span class="material-symbols-outlined" style="font-size: 20px;">edit</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-slate-200 flex justify-between items-center bg-slate-50">
+<span class="font-body-sm text-body-sm text-slate-500">1,248件の注文のうち1から5件を表示中</span>
+<div class="flex gap-1">
+<button class="px-3 py-1 border border-slate-200 bg-white rounded text-slate-500 hover:bg-slate-50 transition-colors disabled:opacity-50 font-label-sm text-label-sm" disabled="">前へ</button>
+<button class="px-3 py-1 border border-slate-900 bg-slate-900 text-white rounded font-label-sm text-label-sm">1</button>
+<button class="px-3 py-1 border border-slate-200 bg-white rounded text-slate-500 hover:bg-slate-50 transition-colors font-label-sm text-label-sm">2</button>
+<button class="px-3 py-1 border border-slate-200 bg-white rounded text-slate-500 hover:bg-slate-50 transition-colors font-label-sm text-label-sm">3</button>
+<span class="px-2 py-1 text-slate-500">...</span>
+<button class="px-3 py-1 border border-slate-200 bg-white rounded text-slate-500 hover:bg-slate-50 transition-colors font-label-sm text-label-sm">次へ</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

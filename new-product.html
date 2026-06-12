@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PrecisionCMS - 新規商品登録</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#ffffff",
+                        "background": "#f8fafc",
+                        "primary-fixed": "#e2e8f0",
+                        "surface": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#000000",
+                        "surface-container-high": "#f1f5f9",
+                        "on-primary-fixed-variant": "#475569",
+                        "on-background": "#0f172a",
+                        "primary-container": "#f1f5f9",
+                        "tertiary-container": "#e2e8f0",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#e2e8f0",
+                        "secondary-fixed-dim": "#cbd5e1",
+                        "surface-container": "#f8fafc",
+                        "on-secondary-fixed": "#0f172a",
+                        "surface-variant": "#f1f5f9",
+                        "secondary-container": "#2563eb",
+                        "on-tertiary-fixed": "#0f172a",
+                        "on-secondary-container": "#ffffff",
+                        "primary": "#0f172a",
+                        "tertiary-fixed": "#e2e8f0",
+                        "on-surface-variant": "#64748b",
+                        "surface-container-low": "#f8fafc",
+                        "on-surface": "#0f172a",
+                        "tertiary-fixed-dim": "#cbd5e1",
+                        "on-tertiary-fixed-variant": "#475569",
+                        "error-container": "#fee2e2",
+                        "secondary-fixed": "#dbeafe",
+                        "surface-container-highest": "#e2e8f0",
+                        "inverse-on-surface": "#f8fafc",
+                        "surface-tint": "#64748b",
+                        "on-tertiary-container": "#475569",
+                        "on-secondary-fixed-variant": "#1d4ed8",
+                        "on-primary-container": "#64748b",
+                        "primary-fixed-dim": "#cbd5e1",
+                        "on-primary-fixed": "#0f172a",
+                        "on-error-container": "#7f1d1d",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#b91c1c",
+                        "inverse-primary": "#cbd5e1",
+                        "secondary": "#0f172a",
+                        "outline-variant": "#e2e8f0",
+                        "inverse-surface": "#334155",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "outline": "#94a3b8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-lg": "32px",
+                        "sidebar-width": "260px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Dashboard Card Hover Effect */
+        .dashboard-card {
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .dashboard-card:hover {
+            border-color: #cbd5e1;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-body-md antialiased overflow-x-hidden min-h-screen flex">
+<!-- SideNavBar (Persistent Desktop) -->
+<aside class="hidden md:flex flex-col bg-slate-100 font-body-md text-body-md w-sidebar-width h-screen fixed left-0 top-0 border-r border-slate-200 z-50 py-container-padding">
+<!-- Header / Brand -->
+<div class="px-container-padding mb-stack-lg flex items-center gap-stack-sm">
+<div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white fill" style="font-size: 20px;">storefront</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-slate-900">PrecisionCMS</h1>
+<p class="font-label-sm text-label-sm text-slate-600">Eコマース管理者</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 overflow-y-auto"><ul class="flex flex-col gap-unit"><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="index.html"><span class="material-symbols-outlined">dashboard</span><span class="">ダッシュボード</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md border-l-4 border-slate-900 bg-slate-200 text-slate-900 font-semibold transition-colors opacity-90 transition-all duration-200" href="products.html"><span class="material-symbols-outlined fill">inventory_2</span><span class="">商品管理</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="orders.html"><span class="material-symbols-outlined">shopping_cart</span><span class="">注文管理</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">group</span><span class="">顧客管理</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">warehouse</span><span class="">在庫管理</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">campaign</span><span class="">マーケティング</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">analytics</span><span class="">分析</span></a></li></ul></nav>
+<!-- Settings (Bottom anchored) -->
+<div class="mt-auto pt-stack-md">
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">settings</span><span class="">設定</span></a>
+<!-- User Profile Snippet in Sidebar -->
+<div class="mt-stack-sm px-gutter py-stack-md flex items-center gap-stack-sm border-t border-slate-200">
+<img alt="Store Manager Avatar" class="w-8 h-8 rounded-full object-cover border border-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_nqWH0-Pz_go0l_jZ2zs-KE6DygzE6XOy3XApZ7rE-fWyobjgBzoCSPobVPhf6t791JyMhMPbRgwQnwJ8ZY26IcYDJZbQvg1vvL1rw7Xev_y93IPnhV7XQWYuOH9yY_Y5ckyiqb9LdeXeeN-1xBoHPnbcRWoO6c9V1m31P57pGqGE71cmtFUwAbTeaD8GNJbH4Ei8y_fpGchVqv4rnLOsurjhbdomdH5hr8jstuSdhdYnjLuF9yXBBMn16dizQ6Tnqe0XWriif4A"/>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md text-slate-900 truncate">Alex Mercer</p>
+<p class="font-label-sm text-label-sm text-slate-600 truncate">alex@precision.cms</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="bg-white font-label-md text-label-md h-16 fixed top-0 right-0 z-40 border-b border-slate-200 flex justify-between items-center w-[calc(100%-260px)] ml-sidebar-width px-container-padding transition-all duration-300 hidden md:flex">
+<!-- Search Bar -->
+<div class="flex-1 max-w-md relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" style="font-size: 20px;">search</span>
+<input class="w-full bg-slate-50 border border-slate-200 rounded text-slate-900 pl-10 pr-4 py-2 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 placeholder-slate-500 transition-colors" placeholder="注文、顧客、または商品を検索..." type="text"/>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-stack-md">
+<button class="text-slate-600 hover:text-slate-900 transition-colors font-label-md px-3 py-1.5 rounded hover:bg-slate-100">
+                サポート
+            </button>
+<div class="flex items-center gap-unit border-l border-slate-200 pl-stack-md">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors relative group">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-blue-600 rounded-full border border-white group-hover:scale-110 transition-transform"></span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-sidebar-width pt-16 min-h-screen bg-slate-50 transition-all duration-300">
+<!-- Top Action Bar (Sticky) -->
+<div class="sticky top-16 z-30 bg-white/90 backdrop-blur-sm border-b border-slate-200 px-container-padding py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<button aria-label="戻る" class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-100 text-slate-500 transition-colors" onclick="location.href='products.html'">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div>
+<h1 class="font-headline-md text-headline-md text-slate-900 m-0 flex items-center gap-2">
+                        新規商品登録
+                        <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-label-sm text-label-sm uppercase tracking-wider border border-slate-200">下書き</span>
+</h1>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 font-label-md text-label-md text-slate-500 bg-transparent hover:bg-slate-100 rounded border border-transparent transition-colors">
+                    破棄
+                </button>
+<button class="px-4 py-2 font-label-md text-label-md text-slate-900 bg-white border border-slate-200 rounded hover:bg-slate-50 transition-colors shadow-sm">
+                    下書き保存
+                </button>
+<button class="px-4 py-2 font-label-md text-label-md text-white bg-blue-600 hover:bg-blue-700 rounded shadow-sm transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">publish</span>
+                    商品を公開
+                </button>
+</div>
+</div>
+<!-- Content Area -->
+<div class="max-w-[1440px] mx-auto p-container-padding">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Main Column (Forms) -->
+<div class="lg:col-span-8 flex flex-col gap-6">
+<!-- Basic Information Card -->
+<section class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col gap-6">
+<div class="flex items-center gap-2 border-b border-slate-100 pb-4 mb-2">
+<span class="material-symbols-outlined text-blue-600">info</span>
+<h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">基本情報</h2>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider flex items-center gap-1" for="product-name">
+                                商品名 <span class="w-1.5 h-1.5 rounded-full bg-blue-600 inline-block ml-1" title="Required"></span>
+</label>
+<input class="w-full bg-slate-50 border border-slate-200 rounded px-3 py-2.5 font-body-md text-body-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all" id="product-name" placeholder="例：プレミアム人間工学オフィスチェア" type="text"/>
+<p class="font-body-sm text-body-sm text-slate-500 mt-1">サイズ、素材、特定の機能などの重要な要素を含めてください。</p>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider flex items-center gap-1" for="product-desc">
+                                商品説明 <span class="w-1.5 h-1.5 rounded-full bg-blue-600 inline-block ml-1" title="Required"></span>
+</label>
+<!-- Fake Rich Text Toolbar -->
+<div class="border border-slate-200 border-b-0 rounded-t flex items-center gap-1 p-1 bg-slate-50 overflow-x-auto">
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors"><span class="material-symbols-outlined text-[18px]">format_underlined</span></button>
+<div class="w-px h-5 bg-slate-200 mx-1"></div>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors"><span class="material-symbols-outlined text-[18px]">format_list_bulleted</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors"><span class="material-symbols-outlined text-[18px]">format_list_numbered</span></button>
+<div class="w-px h-5 bg-slate-200 mx-1"></div>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors"><span class="material-symbols-outlined text-[18px]">link</span></button>
+<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors"><span class="material-symbols-outlined text-[18px]">image</span></button>
+</div>
+<textarea class="w-full bg-white border border-slate-200 rounded-b px-3 py-2.5 font-body-md text-body-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all resize-y" id="product-desc" placeholder="商品の詳細な説明を入力してください..." rows="6"></textarea>
+</div>
+</section>
+<!-- Media Upload Card -->
+<section class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col gap-6">
+<div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-blue-600">perm_media</span>
+<h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">メディア</h2>
+</div>
+<button class="font-label-sm text-label-sm text-blue-600 hover:underline">URLから追加</button>
+</div>
+<!-- Drag & Drop Zone -->
+<div class="border-2 border-dashed border-slate-200 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer flex flex-col items-center justify-center py-12 px-4 text-center group">
+<div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mb-4 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
+<span class="material-symbols-outlined text-[32px] text-slate-500 group-hover:text-blue-600 transition-colors">cloud_upload</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-slate-900 mb-1">画像をここにドラッグ＆ドロップ</h3>
+<p class="font-body-sm text-body-sm text-slate-500 mb-4">またはPCからファイルを選択</p>
+<button class="px-4 py-2 font-label-md text-label-md text-slate-900 bg-white border border-slate-200 rounded shadow-sm hover:bg-slate-50 transition-colors pointer-events-none">
+                                ファイルを選択
+                            </button>
+<p class="font-label-sm text-label-sm text-slate-400 mt-4 uppercase tracking-wider">受け入れ可能な形式：JPG, PNG, WEBP。最大サイズ 5MB。</p>
+</div>
+<!-- Empty State for uploaded images -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<!-- Placeholder for when an image is added -->
+</div>
+</section>
+<!-- Pricing & Inventory Card -->
+<section class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col gap-6">
+<div class="flex items-center gap-2 border-b border-slate-100 pb-4 mb-2">
+<span class="material-symbols-outlined text-blue-600">sell</span>
+<h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">価格と在庫</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
+<!-- Pricing Fieldset -->
+<fieldset class="flex flex-col gap-4 border border-slate-200 p-4 rounded bg-slate-50">
+<legend class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider px-2 ml-2 bg-white">価格設定</legend>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider flex items-center gap-1" for="price">
+                                        通常価格 <span class="w-1.5 h-1.5 rounded-full bg-blue-600 inline-block ml-1" title="Required"></span>
+</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 font-label-md text-label-md text-slate-500">¥</span>
+<input class="w-full bg-white border border-slate-200 rounded pl-7 pr-3 py-2 font-label-md text-label-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all" id="price" min="0" placeholder="0" step="1" type="number"/>
+</div>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider" for="sale-price">セール価格</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 font-label-md text-label-md text-slate-500">¥</span>
+<input class="w-full bg-white border border-slate-200 rounded pl-7 pr-3 py-2 font-label-md text-label-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all" id="sale-price" min="0" placeholder="0" step="1" type="number"/>
+</div>
+</div>
+</fieldset>
+<!-- Inventory Fieldset -->
+<fieldset class="flex flex-col gap-4 border border-slate-200 p-4 rounded bg-slate-50">
+<legend class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider px-2 ml-2 bg-white">在庫詳細</legend>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider flex items-center gap-1" for="sku">
+                                        SKU <span class="w-1.5 h-1.5 rounded-full bg-blue-600 inline-block ml-1" title="Required"></span>
+</label>
+<input class="w-full bg-white border border-slate-200 rounded px-3 py-2 font-label-md text-label-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all uppercase" id="sku" placeholder="例：FUR-CHR-001" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider" for="barcode">バーコード</label>
+<input class="w-full bg-white border border-slate-200 rounded px-3 py-2 font-label-md text-label-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all" id="barcode" placeholder="バーコードをスキャンまたは入力" type="text"/>
+</div>
+<div class="flex flex-col gap-1.5 mt-2">
+<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider" for="stock-qty">在庫数</label>
+<input class="w-full bg-white border border-slate-200 rounded px-3 py-2 font-label-md text-label-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all max-w-[150px]" id="stock-qty" min="0" placeholder="0" type="number"/>
+</div>
+</fieldset>
+</div>
+</section>
+</div>
+<!-- Right Sidebar (Metadata & Settings) -->
+<div class="lg:col-span-4 flex flex-col gap-6">
+<!-- Publishing Status -->
+<section class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col gap-4">
+<div class="flex items-center gap-2 border-b border-slate-100 pb-3">
+<span class="material-symbols-outlined text-slate-500">visibility</span>
+<h3 class="font-headline-sm text-headline-sm text-slate-900 m-0 text-base">公開設定</h3>
+</div>
+<div class="flex flex-col gap-3">
+<label class="flex items-start gap-3 cursor-pointer group">
+<div class="relative flex items-center justify-center mt-0.5">
+<input checked="" class="w-4 h-4 text-blue-600 bg-white border-slate-300 focus:ring-blue-600 focus:ring-offset-0 transition-all cursor-pointer" name="visibility" type="radio" value="public"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-slate-900 font-medium">公開</span>
+<span class="font-body-sm text-body-sm text-slate-500">すべての訪問者に表示されます。</span>
+</div>
+</label>
+<label class="flex items-start gap-3 cursor-pointer group">
+<div class="relative flex items-center justify-center mt-0.5">
+<input class="w-4 h-4 text-blue-600 bg-white border-slate-300 focus:ring-blue-600 focus:ring-offset-0 transition-all cursor-pointer" name="visibility" type="radio" value="hidden"/>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-slate-900 font-medium">非公開</span>
+<span class="font-body-sm text-body-sm text-slate-500">直接リンクからのみアクセス可能です。</span>
+</div>
+</label>
+</div>
+</section>
+<!-- Organization / Metadata -->
+<section class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col gap-5">
+<div class="flex items-center gap-2 border-b border-slate-100 pb-3">
+<span class="material-symbols-outlined text-slate-500">category</span>
+<h3 class="font-headline-sm text-headline-sm text-slate-900 m-0 text-base">分類</h3>
+</div>
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider" for="category-select">カテゴリー</label>
+<div class="relative">
+<select class="w-full bg-white border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all appearance-none pr-8" id="category-select">
+<option disabled="" selected="" value="">カテゴリーを選択...</option>
+<option value="furniture">Furniture</option>
+<option value="electronics">Electronics</option>
+<option value="apparel">Apparel</option>
+<option value="accessories">Accessories</option>
+</select>
+<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none">expand_more</span>
+</div>
+<button class="text-left font-label-sm text-label-sm text-blue-600 hover:underline mt-1 self-start">+ 新規カテゴリー作成</button>
+</div>
+<div class="flex flex-col gap-1.5 mt-2">
+<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider" for="tags-input">タグ</label>
+<input class="w-full bg-white border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all" id="tags-input" placeholder="入力してEnterを押してください..." type="text"/>
+<!-- Applied Tags Container -->
+<div class="flex flex-wrap gap-2 mt-2">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-slate-100 border border-slate-200 font-label-sm text-label-sm text-slate-900">
+                                    Ergonomic
+                                    <button class="hover:text-red-600 transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-slate-100 border border-slate-200 font-label-sm text-label-sm text-slate-900">
+                                    Office
+                                    <button class="hover:text-red-600 transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer spacing -->
+<div class="h-12 w-full"></div>
+</div>
+</main>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dragZone = document.querySelector('.border-dashed');
+
+            if(dragZone) {
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    dragZone.addEventListener(eventName, preventDefaults, false);
+                });
+
+                function preventDefaults (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+
+                ['dragenter', 'dragover'].forEach(eventName => {
+                    dragZone.addEventListener(eventName, highlight, false);
+                });
+
+                ['dragleave', 'drop'].forEach(eventName => {
+                    dragZone.addEventListener(eventName, unhighlight, false);
+                });
+
+                function highlight(e) {
+                    dragZone.classList.add('border-blue-600', 'bg-blue-50');
+                }
+
+                function unhighlight(e) {
+                    dragZone.classList.remove('border-blue-600', 'bg-blue-50');
+                }
+            }
+        });
+    </script>
+</body></html>

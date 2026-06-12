@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PrecisionCMS - ダッシュボード</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#ffffff",
+                        "background": "#f8fafc",
+                        "primary-fixed": "#e2e8f0",
+                        "surface": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "tertiary": "#000000",
+                        "surface-container-high": "#f1f5f9",
+                        "on-primary-fixed-variant": "#475569",
+                        "on-background": "#0f172a",
+                        "primary-container": "#f1f5f9",
+                        "tertiary-container": "#e2e8f0",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#e2e8f0",
+                        "secondary-fixed-dim": "#cbd5e1",
+                        "surface-container": "#f8fafc",
+                        "on-secondary-fixed": "#0f172a",
+                        "surface-variant": "#f1f5f9",
+                        "secondary-container": "#2563eb",
+                        "on-tertiary-fixed": "#0f172a",
+                        "on-secondary-container": "#ffffff",
+                        "primary": "#0f172a",
+                        "tertiary-fixed": "#e2e8f0",
+                        "on-surface-variant": "#64748b",
+                        "surface-container-low": "#f8fafc",
+                        "on-surface": "#0f172a",
+                        "tertiary-fixed-dim": "#cbd5e1",
+                        "on-tertiary-fixed-variant": "#475569",
+                        "error-container": "#fee2e2",
+                        "secondary-fixed": "#dbeafe",
+                        "surface-container-highest": "#e2e8f0",
+                        "inverse-on-surface": "#f8fafc",
+                        "surface-tint": "#64748b",
+                        "on-tertiary-container": "#475569",
+                        "on-secondary-fixed-variant": "#1d4ed8",
+                        "on-primary-container": "#64748b",
+                        "primary-fixed-dim": "#cbd5e1",
+                        "on-primary-fixed": "#0f172a",
+                        "on-error-container": "#7f1d1d",
+                        "surface-container-lowest": "#ffffff",
+                        "error": "#b91c1c",
+                        "inverse-primary": "#cbd5e1",
+                        "secondary": "#0f172a",
+                        "outline-variant": "#e2e8f0",
+                        "inverse-surface": "#334155",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "outline": "#94a3b8"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack-lg": "32px",
+                        "sidebar-width": "260px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "unit": "4px",
+                        "gutter": "16px",
+                        "container-padding": "24px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["JetBrains Mono"],
+                        "display-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "headline-sm": ["Hanken Grotesk"],
+                        "body-sm": ["Hanken Grotesk"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1;
+        }
+
+        /* Dashboard Card Hover Effect */
+        .dashboard-card {
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        .dashboard-card:hover {
+            border-color: #cbd5e1; /* primary-fixed-dim */
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05); /* slightly tinted shadow */
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-body-md antialiased overflow-x-hidden min-h-screen flex">
+<!-- SideNavBar (Persistent Desktop) -->
+<aside class="hidden md:flex flex-col bg-slate-100 font-body-md text-body-md w-sidebar-width h-screen fixed left-0 top-0 border-r border-slate-200 z-50 py-container-padding">
+<!-- Header / Brand -->
+<div class="px-container-padding mb-stack-lg flex items-center gap-stack-sm">
+<div class="w-8 h-8 rounded-full bg-slate-900 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white fill" style="font-size: 20px;">storefront</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-slate-900">PrecisionCMS</h1>
+<p class="font-label-sm text-label-sm text-slate-600">Eコマース管理者</p>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex-1 overflow-y-auto"><ul class="flex flex-col gap-unit"><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md border-l-4 border-slate-900 bg-slate-200 text-slate-900 font-semibold transition-colors opacity-90 transition-all duration-200" href="index.html"><span class="material-symbols-outlined fill">dashboard</span><span class="">ダッシュボード</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="products.html"><span class="material-symbols-outlined">inventory_2</span><span class="">商品管理</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="orders.html"><span class="material-symbols-outlined">shopping_cart</span><span class="">注文管理</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">group</span><span class="">顧客管理</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">warehouse</span><span class="">在庫管理</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">campaign</span><span class="">マーケティング</span></a></li><li class=""><a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">analytics</span><span class="">分析</span></a></li></ul></nav>
+<!-- Settings (Bottom anchored) -->
+<div class="mt-auto pt-stack-md">
+<a class="flex items-center gap-stack-md px-gutter py-stack-md text-slate-600 hover:text-slate-900 hover:bg-slate-200 transition-colors" href="#"><span class="material-symbols-outlined">settings</span><span class="">設定</span></a>
+<!-- User Profile Snippet in Sidebar -->
+<div class="mt-stack-sm px-gutter py-stack-md flex items-center gap-stack-sm border-t border-slate-200">
+<img alt="Store Manager Avatar" class="w-8 h-8 rounded-full object-cover border border-slate-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_nqWH0-Pz_go0l_jZ2zs-KE6DygzE6XOy3XApZ7rE-fWyobjgBzoCSPobVPhf6t791JyMhMPbRgwQnwJ8ZY26IcYDJZbQvg1vvL1rw7Xev_y93IPnhV7XQWYuOH9yY_Y5ckyiqb9LdeXeeN-1xBoHPnbcRWoO6c9V1m31P57pGqGE71cmtFUwAbTeaD8GNJbH4Ei8y_fpGchVqv4rnLOsurjhbdomdH5hr8jstuSdhdYnjLuF9yXBBMn16dizQ6Tnqe0XWriif4A"/>
+<div class="overflow-hidden">
+<p class="font-label-md text-label-md text-slate-900 truncate">Alex Mercer</p>
+<p class="font-label-sm text-label-sm text-slate-600 truncate">alex@precision.cms</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- TopNavBar -->
+<header class="bg-white font-label-md text-label-md h-16 fixed top-0 right-0 z-40 border-b border-slate-200 flex justify-between items-center w-[calc(100%-260px)] ml-sidebar-width px-container-padding transition-all duration-300 hidden md:flex">
+<!-- Search Bar (on_left) -->
+<div class="flex-1 max-w-md relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" style="font-size: 20px;">search</span>
+<input class="w-full bg-slate-50 border border-slate-200 rounded text-slate-900 pl-10 pr-4 py-2 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 placeholder-slate-500 transition-colors" placeholder="注文、顧客、または商品を検索..." type="text"/>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-stack-md">
+<!-- Secondary Action -->
+<button class="text-slate-600 hover:text-slate-900 transition-colors font-label-md px-3 py-1.5 rounded hover:bg-slate-100">
+                サポート
+            </button>
+<!-- Icons -->
+<div class="flex items-center gap-unit border-l border-slate-200 pl-stack-md">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors relative group">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-blue-600 rounded-full border border-white group-hover:scale-110 transition-transform"></span>
+</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-sidebar-width pt-16 min-h-screen bg-slate-50 transition-all duration-300">
+<!-- Inner Container (Max Width 1440px) -->
+<div class="max-w-[1440px] mx-auto p-container-padding space-y-stack-lg">
+<!-- Page Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-stack-md">
+<div>
+<h2 class="font-display-lg text-display-lg text-slate-900">概要</h2>
+<p class="font-body-md text-body-md text-slate-500 mt-1">本日の指標とトレンド（10月24日）</p>
+</div>
+<div class="flex gap-stack-sm">
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded font-label-md text-label-md text-slate-900 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 18px;">calendar_today</span>
+                        直近30日間
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded font-label-md text-label-md hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" style="font-size: 18px;">download</span>
+                        書き出し
+                    </button>
+</div>
+</div>
+<!-- Bento Grid: High-Level Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-stack-md">
+<!-- Metric 1: Total Revenue -->
+<div class="dashboard-card bg-white border border-slate-200 rounded-lg p-stack-md flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-start mb-stack-md relative z-10">
+<h3 class="font-label-md text-label-md text-slate-500 uppercase tracking-wider">総売上</h3>
+<div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center text-slate-900">
+<span class="material-symbols-outlined" style="font-size: 18px;">payments</span>
+</div>
+</div>
+<div class="relative z-10">
+<div class="font-headline-md text-headline-md text-slate-900">¥124,563.00</div>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-[14px] text-slate-900">trending_up</span>
+<span class="font-label-sm text-label-sm text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded">+12.5%</span>
+<span class="font-body-sm text-body-sm text-slate-500 ml-1">前月比</span>
+</div>
+</div>
+</div>
+<!-- Metric 2: Orders -->
+<div class="dashboard-card bg-white border border-slate-200 rounded-lg p-stack-md flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-start mb-stack-md relative z-10">
+<h3 class="font-label-md text-label-md text-slate-500 uppercase tracking-wider">総注文数</h3>
+<div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center text-slate-900">
+<span class="material-symbols-outlined" style="font-size: 18px;">local_shipping</span>
+</div>
+</div>
+<div class="relative z-10">
+<div class="font-headline-md text-headline-md text-slate-900">1,432</div>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-[14px] text-slate-900">trending_up</span>
+<span class="font-label-sm text-label-sm text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded">+8.2%</span>
+<span class="font-body-sm text-body-sm text-slate-500 ml-1">前月比</span>
+</div>
+</div>
+</div>
+<!-- Metric 3: New Customers -->
+<div class="dashboard-card bg-white border border-slate-200 rounded-lg p-stack-md flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-start mb-stack-md relative z-10">
+<h3 class="font-label-md text-label-md text-slate-500 uppercase tracking-wider">新規顧客数</h3>
+<div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center text-slate-900">
+<span class="material-symbols-outlined" style="font-size: 18px;">person_add</span>
+</div>
+</div>
+<div class="relative z-10">
+<div class="font-headline-md text-headline-md text-slate-900">348</div>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-[14px] text-slate-900">trending_down</span>
+<span class="font-label-sm text-label-sm text-slate-900 bg-slate-100 px-1.5 py-0.5 rounded">-2.4%</span>
+<span class="font-body-sm text-body-sm text-slate-500 ml-1">前月比</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Asymmetric Layout: Chart + Top Products -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-stack-md">
+<!-- Chart Area (Spans 2 columns) -->
+<div class="lg:col-span-2 dashboard-card bg-white border border-slate-200 rounded-lg p-stack-md flex flex-col">
+<div class="flex justify-between items-center mb-stack-lg">
+<h3 class="font-headline-sm text-headline-sm text-slate-900">売上推移</h3>
+<button class="text-slate-500 hover:text-slate-900">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<!-- Chart.js Line Chart -->
+<div class="flex-1 relative min-h-[280px] mt-2">
+  <canvas id="revenueChart"></canvas>
+</div>
+</div>
+<!-- Top Selling Products List -->
+<div class="dashboard-card bg-white border border-slate-200 rounded-lg p-0 flex flex-col overflow-hidden">
+<div class="p-stack-md border-b border-slate-200 flex justify-between items-center bg-white">
+<h3 class="font-headline-sm text-headline-sm text-slate-900">売れ筋商品</h3>
+<a class="font-label-md text-label-md text-slate-900 hover:underline" href="products.html">すべて見る</a>
+</div>
+<ul class="divide-y divide-slate-100 flex-1 overflow-y-auto max-h-[400px]">
+<!-- Product Item 1 -->
+<li class="p-stack-md flex items-center gap-stack-md hover:bg-slate-50 transition-colors group cursor-pointer">
+<div class="w-12 h-12 rounded bg-slate-100 border border-slate-200 overflow-hidden shrink-0">
+<img alt="Smart Watch" class="w-full h-full object-cover group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxKw-WB8rtOxFbRV_zz7TJFGzeS8VHuRypN1FCVWGzhZG4y3QV4kqJ4fK4skMoPsEWppxIshqLfHvKcATHIRR8awrnBFJQfXF35F6MWABlLCXmamyD7iXXrHKlbnqVfvun1dDhagN7zChYVlg5RWfpbMLWoh3O4gxMXbpZz9SnYLbtiz4YxlcBAvsvu7OexXRdWO-b-_46ydiotbbqPbwdT1tHmAytzYLI5YGmFAKKF3EHsTkw3zJ-mdJn2s-l-r-9UFPNRntAW1I"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-body-md text-body-md font-semibold text-slate-900 truncate">ミニマリストスマートウォッチ</h4>
+<p class="font-body-sm text-body-sm text-slate-500 truncate">ウェアラブル</p>
+</div>
+<div class="text-right shrink-0">
+<div class="font-label-md text-label-md text-slate-900">¥299.00</div>
+<div class="font-label-sm text-label-sm text-slate-500">42 売上</div>
+</div>
+</li>
+<!-- Product Item 2 -->
+<li class="p-stack-md flex items-center gap-stack-md hover:bg-slate-50 transition-colors group cursor-pointer">
+<div class="w-12 h-12 rounded bg-slate-100 border border-slate-200 overflow-hidden shrink-0">
+<img alt="Wireless Headphones" class="w-full h-full object-cover group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4ezv2fcXWTtD8ngWpwW1IcB2-LuzY0b7VegYoJX7PXk19YYydkcIXufXQ1qW0okMOyM8UXHcBuxWFNCdbQiSpIR2zTwJ2JsmO_kuuePXkD2YL_3vL1QDoHQN9DnSuuKHFi_V9X7FFrxb83GiXR_44KMIwIXMFI8HycPyQBOajP55-W4-IxDIkAQaTw06O-3l3089CRy6ACdh1Vj7jEegd4K7xzgLzZelIw1fZw8ApjoX1grHeXsnzlv4LcJXKpJ50OfJUbTyVJsY"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-body-md text-body-md font-semibold text-slate-900 truncate">ノイズキャンセリングヘッドホン</h4>
+<p class="font-body-sm text-body-sm text-slate-500 truncate">オーディオ</p>
+</div>
+<div class="text-right shrink-0">
+<div class="font-label-md text-label-md text-slate-900">¥349.00</div>
+<div class="font-label-sm text-label-sm text-slate-500">38 売上</div>
+</div>
+</li>
+<!-- Product Item 3 -->
+<li class="p-stack-md flex items-center gap-stack-md hover:bg-slate-50 transition-colors group cursor-pointer">
+<div class="w-12 h-12 rounded bg-slate-100 border border-slate-200 overflow-hidden shrink-0">
+<img alt="Running Shoes" class="w-full h-full object-cover group-hover:scale-105 transition-transform" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7arLtpsOhLN-zMqNldg3HlrnVXPcY5eP6-oBQqn1SjbhoC2220dk-PtvCv0fL8FNyuH35kHpCfDiq_H5w5SK34GyWd4MQTpM1dqBd2Voo0yp-oTg4FmSpxBH77qE0TFCFLkTH7YnhRaIbpodNO6H1PnQALxrSaQSz9aVJC6g28y0SnNtTJwQOaI1IvlUvz2WwJDCxuw4An56xnugFH6yitINdH_o3fBW4-XTHzcCXFpG3MjY4BUgMXRcJ62nh_jX_hW-zwrl5H5M"/>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-body-md text-body-md font-semibold text-slate-900 truncate">エアログライドランナー</h4>
+<p class="font-body-sm text-body-sm text-slate-500 truncate">フットウェア</p>
+</div>
+<div class="text-right shrink-0">
+<div class="font-label-md text-label-md text-slate-900">¥129.00</div>
+<div class="font-label-sm text-label-sm text-slate-500">29 売上</div>
+</div>
+</li>
+<!-- Product Item 4 -->
+<li class="p-stack-md flex items-center gap-stack-md hover:bg-slate-50 transition-colors group cursor-pointer">
+<div class="w-12 h-12 rounded bg-slate-100 border border-slate-200 overflow-hidden shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400" style="font-size: 24px;">image</span>
+</div>
+<div class="flex-1 min-w-0">
+<h4 class="font-body-md text-body-md font-semibold text-slate-900 truncate">エルゴノミクスオフィスチェア</h4>
+<p class="font-body-sm text-body-sm text-slate-500 truncate">家具</p>
+</div>
+<div class="text-right shrink-0">
+<div class="font-label-md text-label-md text-slate-900">¥499.00</div>
+<div class="font-label-sm text-label-sm text-slate-500">15 売上</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<!-- Recent Orders Table -->
+<div class="dashboard-card bg-white border border-slate-200 rounded-lg overflow-hidden flex flex-col">
+<div class="p-stack-md border-b border-slate-200 flex justify-between items-center bg-white">
+<h3 class="font-headline-sm text-headline-sm text-slate-900">最近の注文</h3>
+<div class="flex gap-2">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-slate-200 text-slate-900 hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined" style="font-size: 18px;">filter_list</span>
+</button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-slate-50 font-label-md text-label-md text-slate-500 border-b border-slate-200">
+<tr>
+<th class="py-3 px-stack-md font-medium w-[120px]">注文ID</th>
+<th class="py-3 px-stack-md font-medium">顧客</th>
+<th class="py-3 px-stack-md font-medium">日時</th>
+<th class="py-3 px-stack-md font-medium text-right">金額</th>
+<th class="py-3 px-stack-md font-medium w-[140px]">ステータス</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-slate-900 divide-y divide-slate-100">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="py-3 px-stack-md font-label-sm text-label-sm">#ORD-0924</td>
+<td class="py-3 px-stack-md">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 text-slate-800 flex items-center justify-center font-label-sm text-[10px]">JD</div>
+<span class="">John Doe</span>
+</div>
+</td>
+<td class="py-3 px-stack-md text-slate-500">今日 10:42 AM</td>
+<td class="py-3 px-stack-md text-right font-medium">¥349.00</td>
+<td class="py-3 px-stack-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-blue-50 text-blue-700 font-label-sm text-label-sm uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                                        処理中
+                                    </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="py-3 px-stack-md font-label-sm text-label-sm">#ORD-0923</td>
+<td class="py-3 px-stack-md">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 text-slate-800 flex items-center justify-center font-label-sm text-[10px]">SW</div>
+<span class="">Sarah Williams</span>
+</div>
+</td>
+<td class="py-3 px-stack-md text-slate-500">今日 09:15 AM</td>
+<td class="py-3 px-stack-md text-right font-medium">¥129.00</td>
+<td class="py-3 px-stack-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-blue-50 text-blue-700 font-label-sm text-label-sm uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+                                        処理中
+                                    </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="py-3 px-stack-md font-label-sm text-label-sm">#ORD-0922</td>
+<td class="py-3 px-stack-md">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 text-slate-800 flex items-center justify-center font-label-sm text-[10px]">MR</div>
+<span class="">Michael Ross</span>
+</div>
+</td>
+<td class="py-3 px-stack-md text-slate-500">昨日 04:30 PM</td>
+<td class="py-3 px-stack-md text-right font-medium">¥899.00</td>
+<td class="py-3 px-stack-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 text-slate-700 font-label-sm text-label-sm uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                                        出荷済み
+                                    </span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="py-3 px-stack-md font-label-sm text-label-sm">#ORD-0921</td>
+<td class="py-3 px-stack-md">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 text-slate-800 flex items-center justify-center font-label-sm text-[10px]">EL</div>
+<span class="">Emma Larson</span>
+</div>
+</td>
+<td class="py-3 px-stack-md text-slate-500">昨日 02:10 PM</td>
+<td class="py-3 px-stack-md text-right font-medium">¥45.00</td>
+<td class="py-3 px-stack-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 text-slate-700 font-label-sm text-label-sm uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                                        失敗
+                                    </span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="py-3 px-stack-md font-label-sm text-label-sm">#ORD-0920</td>
+<td class="py-3 px-stack-md">
+<div class="flex items-center gap-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 text-slate-800 flex items-center justify-center font-label-sm text-[10px]">DJ</div>
+<span class="">David Jones</span>
+</div>
+</td>
+<td class="py-3 px-stack-md text-slate-500">昨日 11:05 AM</td>
+<td class="py-3 px-stack-md text-right font-medium">¥299.00</td>
+<td class="py-3 px-stack-md">
+<span class="inline-flex items-center gap-1 px-2 py-1 rounded bg-slate-100 text-slate-700 font-label-sm text-label-sm uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+                                        完了
+                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-stack-sm border-t border-slate-200 bg-white text-center">
+<a class="font-label-md text-label-md text-slate-900 hover:underline py-2 inline-block" href="orders.html">すべての注文を見る</a>
+</div>
+</div>
+</div> <!-- End Inner Container -->
+</main>
+<script>
+(function() {
+  const ctx = document.getElementById('revenueChart').getContext('2d');
+  const labels = ['月', '火', '水', '木', '金', '土', '日'];
+  const data = [18200, 24500, 21300, 29800, 35600, 32100, 38900];
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '売上',
+        data: data,
+        borderColor: '#2563eb',
+        backgroundColor: 'rgba(37,99,235,0.08)',
+        borderWidth: 2,
+        pointBackgroundColor: '#ffffff',
+        pointBorderColor: '#2563eb',
+        pointBorderWidth: 2,
+        pointRadius: 4,
+        pointHoverRadius: 6,
+        fill: true,
+        tension: 0.4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => '¥' + ctx.parsed.y.toLocaleString()
+          },
+          backgroundColor: '#0f172a',
+          padding: 10,
+          cornerRadius: 4
+        }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          border: { display: false },
+          ticks: {
+            font: { family: 'JetBrains Mono', size: 11 },
+            color: '#64748b'
+          }
+        },
+        y: {
+          grid: {
+            color: '#f1f5f9',
+            drawBorder: false
+          },
+          border: { display: false, dash: [4,4] },
+          ticks: {
+            font: { family: 'JetBrains Mono', size: 11 },
+            color: '#64748b',
+            callback: v => '¥' + (v/1000).toFixed(0) + 'k'
+          }
+        }
+      }
+    }
+  });
+})();
+</script>
+</body></html>
