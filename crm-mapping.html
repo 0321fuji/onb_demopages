@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>HubSpot Data Mapping | PrecisionCMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#fcf8fa",
+                    "primary-container": "#131b2e",
+                    "primary-fixed-dim": "#bec6e0",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#131b2e",
+                    "on-tertiary-fixed-variant": "#574425",
+                    "primary-fixed": "#dae2fd",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "outline": "#76777d",
+                    "on-background": "#1b1b1d",
+                    "on-primary-container": "#7c839b",
+                    "on-primary": "#ffffff",
+                    "background": "#fcf8fa",
+                    "error-container": "#ffdad6",
+                    "surface-container-highest": "#e4e2e4",
+                    "surface-dim": "#dcd9db",
+                    "on-surface": "#1b1b1d",
+                    "secondary-container": "#2170e4",
+                    "inverse-on-surface": "#f3f0f2",
+                    "on-tertiary-fixed": "#271901",
+                    "tertiary-fixed": "#fcdeb5",
+                    "primary": "#000000",
+                    "on-secondary-fixed": "#001a42",
+                    "tertiary-container": "#271901",
+                    "secondary": "#0058be",
+                    "tertiary-fixed-dim": "#dec29a",
+                    "on-secondary-fixed-variant": "#004395",
+                    "inverse-primary": "#bec6e0",
+                    "surface-container-high": "#eae7e9",
+                    "on-tertiary": "#ffffff",
+                    "surface": "#fcf8fa",
+                    "on-tertiary-container": "#98805d",
+                    "inverse-surface": "#303032",
+                    "surface-tint": "#565e74",
+                    "on-secondary-container": "#fefcff",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#e4e2e4",
+                    "on-surface-variant": "#45464d",
+                    "on-error": "#ffffff",
+                    "surface-container": "#f0edef",
+                    "outline-variant": "#c6c6cd",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "secondary-fixed": "#d8e2ff",
+                    "tertiary": "#000000",
+                    "surface-container-low": "#f6f3f5",
+                    "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "stack-lg": "32px",
+                    "sidebar-width": "260px",
+                    "gutter": "16px",
+                    "container-padding": "24px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Hanken Grotesk"],
+                    "body-md": ["Hanken Grotesk"],
+                    "label-md": ["JetBrains Mono"],
+                    "body-lg": ["Hanken Grotesk"],
+                    "headline-sm": ["Hanken Grotesk"],
+                    "label-sm": ["JetBrains Mono"],
+                    "headline-md": ["Hanken Grotesk"],
+                    "body-sm": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-sm": ["18px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #F8FAFC;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-body-md antialiased overflow-x-hidden min-h-screen flex" data-page="crm">
+<div id="app-sidebar"></div>
+<div id="app-header"></div>
+<script src="components.js"></script>
+<!-- Main Content -->
+<main class="flex-1 md:ml-sidebar-width pt-16 min-h-screen bg-slate-50 transition-all duration-300">
+<div class="p-container-padding max-w-[1440px]">
+<!-- Page Header -->
+<div class="mb-stack-lg">
+<h2 class="font-headline-md text-headline-md mb-2">HubSpot データマッピング設定</h2>
+<p class="text-on-surface-variant font-body-md">HubSpotの各オブジェクトとPrecisionCMSの内部フィールドをどのように同期するか定義します。</p>
+</div>
+<!-- Step Indicator -->
+<div class="grid grid-cols-3 gap-4 mb-stack-lg">
+<div class="p-stack-md border-b-4 border-secondary bg-surface-container-low flex items-center gap-3">
+<span class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-[12px]">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</span>
+<div>
+<p class="font-label-sm text-label-sm text-secondary uppercase">Step 1</p>
+<p class="font-headline-sm text-[14px]">認証設定</p>
+</div>
+</div>
+<div class="p-stack-md border-b-4 border-secondary bg-surface-container-highest flex items-center gap-3">
+<span class="w-6 h-6 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-[12px] font-bold">2</span>
+<div>
+<p class="font-label-sm text-label-sm text-secondary uppercase">Step 2</p>
+<p class="font-headline-sm text-[14px]">データマッピング</p>
+</div>
+</div>
+<div class="p-stack-md border-b-4 border-outline-variant bg-surface-container-low flex items-center gap-3 opacity-60">
+<span class="w-6 h-6 rounded-full bg-outline text-on-secondary flex items-center justify-center text-[12px] font-bold">3</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Step 3</p>
+<p class="font-headline-sm text-[14px]">同期設定</p>
+</div>
+</div>
+</div>
+<!-- Mapping Content -->
+<div class="space-y-stack-lg">
+<!-- 1. Customer Mapping -->
+<section class="bg-surface-container-lowest border border-outline-variant p-gutter">
+<div class="flex justify-between items-center mb-stack-md">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-secondary-container/10 rounded">
+<span class="material-symbols-outlined text-secondary" data-icon="group">group</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm">顧客データ同期</h3>
+<p class="text-label-sm text-on-surface-variant">HubSpot: コンタクト ↔ PrecisionCMS: 顧客</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<label class="text-label-sm font-label-sm">同期方向</label>
+<select class="border-outline-variant rounded text-body-sm py-1.5 focus:ring-secondary">
+<option>双方向</option>
+<option>HubSpotからのみ</option>
+<option>CMSからのみ</option>
+</select>
+</div>
+</div>
+<div class="overflow-hidden border border-outline-variant">
+<table class="w-full text-left text-body-sm">
+<thead class="bg-surface-container-low text-label-sm font-label-sm uppercase text-on-surface-variant border-b border-outline-variant">
+<tr>
+<th class="px-4 py-3">PrecisionCMS フィールド</th>
+<th class="px-4 py-3 text-center w-12"><span class="material-symbols-outlined text-[16px]">sync</span></th>
+<th class="px-4 py-3">HubSpot プロパティ</th>
+<th class="px-4 py-3 text-right">状態</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-4 py-4 font-semibold">メールアドレス</td>
+<td class="px-4 py-4 text-center"><span class="material-symbols-outlined text-outline-variant">arrow_forward</span></td>
+<td class="px-4 py-4">
+<select class="w-full border-outline-variant rounded py-1 bg-surface-container-low/30">
+<option>email</option>
+</select>
+</td>
+<td class="px-4 py-4 text-right"><span class="bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase">必須マッピング</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-4 py-4 font-semibold">氏名</td>
+<td class="px-4 py-4 text-center"><span class="material-symbols-outlined text-outline-variant">sync</span></td>
+<td class="px-4 py-4">
+<select class="w-full border-outline-variant rounded py-1 bg-surface-container-low/30">
+<option>firstname + lastname</option>
+</select>
+</td>
+<td class="px-4 py-4 text-right"><span class="text-on-surface-variant text-[10px] uppercase font-bold">カスタム設定</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-4 py-4 font-semibold">電話番号</td>
+<td class="px-4 py-4 text-center"><span class="material-symbols-outlined text-outline-variant">sync</span></td>
+<td class="px-4 py-4">
+<select class="w-full border-outline-variant rounded py-1 bg-surface-container-low/30">
+<option>phone</option>
+<option>mobilephone</option>
+</select>
+</td>
+<td class="px-4 py-4 text-right"><span class="text-on-surface-variant text-[10px] uppercase font-bold">マッピング済</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- 2. Order Mapping -->
+<section class="bg-surface-container-lowest border border-outline-variant p-gutter">
+<div class="flex justify-between items-center mb-stack-md">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-secondary-container/10 rounded">
+<span class="material-symbols-outlined text-secondary" data-icon="shopping_cart">shopping_cart</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm">注文データ同期</h3>
+<p class="text-label-sm text-on-surface-variant">HubSpot: ディール ↔ PrecisionCMS: 注文</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<label class="text-label-sm font-label-sm">同期方向</label>
+<select class="border-outline-variant rounded text-body-sm py-1.5 focus:ring-secondary">
+<option>CMSからのみ</option>
+<option>双方向</option>
+<option>HubSpotからのみ</option>
+</select>
+</div>
+</div>
+<div class="overflow-hidden border border-outline-variant">
+<table class="w-full text-left text-body-sm">
+<thead class="bg-surface-container-low text-label-sm font-label-sm uppercase text-on-surface-variant border-b border-outline-variant">
+<tr>
+<th class="px-4 py-3">PrecisionCMS フィールド</th>
+<th class="px-4 py-3 text-center w-12"><span class="material-symbols-outlined text-[16px]">sync</span></th>
+<th class="px-4 py-3">HubSpot プロパティ</th>
+<th class="px-4 py-3 text-right">状態</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-4 py-4 font-semibold">取引金額</td>
+<td class="px-4 py-4 text-center"><span class="material-symbols-outlined text-outline-variant">arrow_forward</span></td>
+<td class="px-4 py-4">
+<select class="w-full border-outline-variant rounded py-1 bg-surface-container-low/30">
+<option>amount</option>
+</select>
+</td>
+<td class="px-4 py-4 text-right"><span class="text-on-surface-variant text-[10px] uppercase font-bold">マッピング済</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-4 py-4 font-semibold">ステータス</td>
+<td class="px-4 py-4 text-center"><span class="material-symbols-outlined text-outline-variant">sync</span></td>
+<td class="px-4 py-4">
+<select class="w-full border-outline-variant rounded py-1 bg-surface-container-low/30">
+<option>dealstage</option>
+</select>
+</td>
+<td class="px-4 py-4 text-right"><button class="text-secondary text-[11px] underline">変換ルールを設定</button></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-4 py-4 font-semibold">注文日</td>
+<td class="px-4 py-4 text-center"><span class="material-symbols-outlined text-outline-variant">arrow_forward</span></td>
+<td class="px-4 py-4">
+<select class="w-full border-outline-variant rounded py-1 bg-surface-container-low/30">
+<option>closedate</option>
+<option>createdate</option>
+</select>
+</td>
+<td class="px-4 py-4 text-right"><span class="text-on-surface-variant text-[10px] uppercase font-bold">マッピング済</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- 3. Product Mapping -->
+<section class="bg-surface-container-lowest border border-outline-variant p-gutter">
+<div class="flex justify-between items-center mb-stack-md">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-secondary-container/10 rounded">
+<span class="material-symbols-outlined text-secondary" data-icon="inventory_2">inventory_2</span>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm">商品データ同期</h3>
+<p class="text-label-sm text-on-surface-variant">HubSpot: 商品 ↔ PrecisionCMS: 商品</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<label class="text-label-sm font-label-sm">同期方向</label>
+<select class="border-outline-variant rounded text-body-sm py-1.5 focus:ring-secondary">
+<option>HubSpotからのみ</option>
+<option>双方向</option>
+<option>CMSからのみ</option>
+</select>
+</div>
+</div>
+<div class="overflow-hidden border border-outline-variant">
+<table class="w-full text-left text-body-sm">
+<thead class="bg-surface-container-low text-label-sm font-label-sm uppercase text-on-surface-variant border-b border-outline-variant">
+<tr>
+<th class="px-4 py-3">PrecisionCMS フィールド</th>
+<th class="px-4 py-3 text-center w-12"><span class="material-symbols-outlined text-[16px]">sync</span></th>
+<th class="px-4 py-3">HubSpot プロパティ</th>
+<th class="px-4 py-3 text-right">状態</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-4 py-4 font-semibold">SKU</td>
+<td class="px-4 py-4 text-center"><span class="material-symbols-outlined text-outline-variant">sync</span></td>
+<td class="px-4 py-4">
+<select class="w-full border-outline-variant rounded py-1 bg-surface-container-low/30">
+<option>hs_sku</option>
+</select>
+</td>
+<td class="px-4 py-4 text-right"><span class="bg-secondary/10 text-secondary px-2 py-0.5 rounded text-[10px] font-bold uppercase">同期キー</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-4 py-4 font-semibold">価格</td>
+<td class="px-4 py-4 text-center"><span class="material-symbols-outlined text-outline-variant">sync</span></td>
+<td class="px-4 py-4">
+<select class="w-full border-outline-variant rounded py-1 bg-surface-container-low/30">
+<option>price</option>
+</select>
+</td>
+<td class="px-4 py-4 text-right"><span class="text-on-surface-variant text-[10px] uppercase font-bold">マッピング済</span></td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-4 py-4 font-semibold">在庫数</td>
+<td class="px-4 py-4 text-center"><span class="material-symbols-outlined text-outline-variant">sync</span></td>
+<td class="px-4 py-4">
+<select class="w-full border-outline-variant rounded py-1 bg-surface-container-low/30">
+<option>inventory_count</option>
+</select>
+</td>
+<td class="px-4 py-4 text-right"><span class="text-on-surface-variant text-[10px] uppercase font-bold">マッピング済</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</div>
+<!-- Footer Actions -->
+<div class="mt-stack-lg flex justify-between items-center py-stack-lg border-t border-outline-variant">
+<button class="flex items-center gap-2 text-on-surface-variant hover:text-primary transition-colors font-semibold" onclick="location.href='crm-hubspot.html'">
+<span class="material-symbols-outlined">arrow_back</span>
+                前のステップへ戻る
+            </button>
+<div class="flex items-center gap-4">
+<button class="px-6 py-2 border border-outline-variant hover:bg-surface-container-low transition-colors font-semibold">
+                    下書き保存
+                </button>
+<button class="px-8 py-2 bg-secondary text-on-secondary hover:opacity-90 transition-all font-semibold">
+                    次へ進む
+                </button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('select').forEach(select => {
+            select.addEventListener('change', function() {
+                const row = this.closest('tr');
+                if(row) {
+                    row.classList.add('bg-secondary/5');
+                    setTimeout(() => row.classList.remove('bg-secondary/5'), 800);
+                }
+            });
+        });
+    </script>
+</body></html>

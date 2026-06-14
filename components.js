@@ -10,6 +10,7 @@
     { id: 'inventory',   icon: 'warehouse',      label: '在庫管理',       href: '#' },
     { id: 'marketing',   icon: 'campaign',       label: 'マーケティング', href: '#' },
     { id: 'analytics',   icon: 'analytics',      label: '分析',           href: '#' },
+    { id: 'crm',         icon: 'sync_alt',       label: 'CRM連携',        href: 'crm.html' },
   ];
 
   // <body data-page="dashboard"> の値でアクティブ項目を判定
