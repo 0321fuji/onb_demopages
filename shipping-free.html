@@ -90,8 +90,8 @@ tailwind.config = {
               </div>
             </div>
             <label class="relative cursor-pointer">
-              <input type="checkbox" checked class="sr-only peer"/>
-              <div class="w-11 h-6 bg-blue-600 peer-checked:bg-blue-600 rounded-full peer-focus:ring-2 peer-focus:ring-blue-300 transition-colors"></div>
+              <input type="checkbox" class="sr-only peer"/>
+              <div class="w-11 h-6 bg-slate-300 peer-checked:bg-blue-600 rounded-full peer-focus:ring-2 peer-focus:ring-blue-300 transition-colors"></div>
               <div class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-5"></div>
             </label>
           </div>
@@ -100,7 +100,7 @@ tailwind.config = {
           <div class="flex items-center gap-3">
             <div class="relative flex-1 max-w-[200px]">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-body-lg font-semibold">¥</span>
-              <input type="number" value="10000" class="w-full pl-8 pr-3 py-3 border border-slate-300 rounded-lg text-headline-sm font-semibold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200"/>
+              <input type="number" placeholder="0" class="w-full pl-8 pr-3 py-3 border border-slate-300 rounded-lg text-headline-sm font-semibold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200"/>
             </div>
             <p class="text-body-lg text-slate-700">以上の注文で送料無料</p>
           </div>
@@ -133,7 +133,7 @@ tailwind.config = {
 
           <!-- 点数入力 -->
           <div class="flex items-center gap-2">
-            <input type="number" value="5" class="w-20 px-3 py-2 border border-slate-300 rounded-lg text-body-md font-semibold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200 text-center"/>
+            <input type="number" placeholder="0" class="w-20 px-3 py-2 border border-slate-300 rounded-lg text-body-md font-semibold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200 text-center"/>
             <p class="text-body-md text-slate-700">点以上の購入で無料</p>
           </div>
 
@@ -170,46 +170,12 @@ tailwind.config = {
                 </tr>
               </thead>
               <tbody class="divide-y divide-slate-100">
-                <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="px-6 py-4">
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-100 text-blue-800 rounded text-body-sm font-medium">
-                      <span class="material-symbols-outlined" style="font-size:14px;">label</span>
-                      送料無料商品
-                    </span>
-                  </td>
-                  <td class="px-6 py-4 text-body-md text-slate-700">142 アイテム</td>
-                  <td class="px-6 py-4">
-                    <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-green-100 text-green-700 rounded text-body-sm font-medium">
-                      <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                      有効
-                    </span>
-                  </td>
-                  <td class="px-6 py-4">
-                    <button class="flex items-center gap-1.5 text-body-sm text-slate-600 hover:text-slate-900 transition-colors">
-                      <span class="material-symbols-outlined" style="font-size:16px;">edit</span>
-                      編集
-                    </button>
-                  </td>
-                </tr>
-                <tr class="hover:bg-slate-50 transition-colors">
-                  <td class="px-6 py-4">
-                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-100 text-amber-800 rounded text-body-sm font-medium">
-                      <span class="material-symbols-outlined" style="font-size:14px;">label</span>
-                      メーカー直送(無料)
-                    </span>
-                  </td>
-                  <td class="px-6 py-4 text-body-md text-slate-700">12 アイテム</td>
-                  <td class="px-6 py-4">
-                    <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-green-100 text-green-700 rounded text-body-sm font-medium">
-                      <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                      有効
-                    </span>
-                  </td>
-                  <td class="px-6 py-4">
-                    <button class="flex items-center gap-1.5 text-body-sm text-slate-600 hover:text-slate-900 transition-colors">
-                      <span class="material-symbols-outlined" style="font-size:16px;">edit</span>
-                      編集
-                    </button>
+                <tr>
+                  <td colspan="4" class="px-6 py-10 text-center">
+                    <div class="flex flex-col items-center gap-3">
+                      <span class="material-symbols-outlined text-slate-300" style="font-size:40px;">label_off</span>
+                      <p class="text-body-md text-slate-500">ラベル設定がありません</p>
+                    </div>
                   </td>
                 </tr>
               </tbody>
@@ -228,8 +194,8 @@ tailwind.config = {
               <h2 class="text-headline-sm text-slate-900">地域別の除外設定</h2>
             </div>
             <!-- トグル -->
-            <button id="toggleExclusion" class="relative w-14 h-7 bg-blue-600 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-1">
-              <span class="absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full shadow transition-transform translate-x-6"></span>
+            <button id="toggleExclusion" class="relative w-14 h-7 bg-slate-300 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-1">
+              <span class="absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full shadow transition-transform translate-x-1"></span>
               <span class="sr-only">除外設定を適用する</span>
             </button>
           </div>
@@ -237,24 +203,24 @@ tailwind.config = {
           <p class="text-body-sm text-slate-600">以下の地域は、送料無料条件を満たした場合でも除外されます。</p>
 
           <!-- チェックボックスグリッド -->
-          <div id="exclusionDetails" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 transition-opacity">
+          <div id="exclusionDetails" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 transition-opacity opacity-40 pointer-events-none">
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" checked class="accent-red-500 w-4 h-4"/>
+              <input type="checkbox" class="accent-red-500 w-4 h-4"/>
               <span class="text-body-md text-slate-700">沖縄県</span>
             </label>
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" checked class="accent-red-500 w-4 h-4"/>
+              <input type="checkbox" class="accent-red-500 w-4 h-4"/>
               <span class="text-body-md text-slate-700">北海道</span>
             </label>
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" checked class="accent-red-500 w-4 h-4"/>
+              <input type="checkbox" class="accent-red-500 w-4 h-4"/>
               <span class="text-body-md text-slate-700">離島地域</span>
             </label>
-            <label class="flex items-center gap-2 cursor-pointer opacity-40">
+            <label class="flex items-center gap-2 cursor-pointer">
               <input type="checkbox" class="accent-red-500 w-4 h-4"/>
               <span class="text-body-md text-slate-700">東京都</span>
             </label>
-            <label class="flex items-center gap-2 cursor-pointer opacity-40">
+            <label class="flex items-center gap-2 cursor-pointer">
               <input type="checkbox" class="accent-red-500 w-4 h-4"/>
               <span class="text-body-md text-slate-700">大阪府</span>
             </label>
@@ -281,7 +247,7 @@ tailwind.config = {
 <script>
 const toggle = document.getElementById('toggleExclusion');
 const details = document.getElementById('exclusionDetails');
-let active = true;
+let active = false;
 toggle?.addEventListener('click', () => {
   active = !active;
   toggle.classList.toggle('bg-blue-600', active);
