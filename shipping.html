@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>配送設定トップ | PrecisionCMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface-tint":"#565e74","surface-container-low":"#f6f3f5","tertiary-fixed-dim":"#dec29a",
+        "on-secondary-container":"#fefcff","tertiary-fixed":"#fcdeb5","surface-dim":"#dcd9db",
+        "outline":"#76777d","primary-fixed-dim":"#bec6e0","surface-container-highest":"#e4e2e4",
+        "inverse-on-surface":"#f3f0f2","on-secondary-fixed":"#001a42","secondary":"#0058be",
+        "on-error":"#ffffff","tertiary":"#000000","on-tertiary-fixed":"#271901","on-primary":"#ffffff",
+        "surface-variant":"#e4e2e4","primary-container":"#131b2e","on-primary-fixed-variant":"#3f465c",
+        "on-tertiary":"#ffffff","on-error-container":"#93000a","inverse-surface":"#303032",
+        "error":"#ba1a1a","inverse-primary":"#bec6e0","on-primary-fixed":"#131b2e",
+        "surface-container":"#f0edef","surface-container-lowest":"#ffffff","secondary-fixed":"#d8e2ff",
+        "primary":"#000000","background":"#fcf8fa","on-secondary":"#ffffff",
+        "on-surface-variant":"#45464d","outline-variant":"#c6c6cd","on-tertiary-container":"#98805d",
+        "surface-container-high":"#eae7e9","primary-fixed":"#dae2fd","secondary-container":"#2170e4",
+        "on-tertiary-fixed-variant":"#574425","on-surface":"#1b1b1d","error-container":"#ffdad6",
+        "secondary-fixed-dim":"#adc6ff","on-background":"#1b1b1d","surface":"#fcf8fa",
+        "on-secondary-fixed-variant":"#004395","tertiary-container":"#271901",
+        "on-primary-container":"#7c839b","surface-bright":"#fcf8fa"
+      },
+      borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},
+      spacing:{"sidebar-width":"260px","unit":"4px","container-padding":"24px","stack-md":"16px","stack-lg":"32px","stack-sm":"8px","gutter":"16px"},
+      fontFamily:{"label-md":["JetBrains Mono"],"body-sm":["Hanken Grotesk"],"body-lg":["Hanken Grotesk"],"headline-sm":["Hanken Grotesk"],"headline-md":["Hanken Grotesk"],"display-lg":["Hanken Grotesk"],"body-md":["Hanken Grotesk"],"label-sm":["JetBrains Mono"]},
+      fontSize:{
+        "label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],
+        "body-sm":["13px",{"lineHeight":"18px","fontWeight":"400"}],
+        "body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],
+        "headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],
+        "headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],
+        "display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],
+        "body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],
+        "label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"500"}]
+      }
+    }
+  }
+}
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;display:inline-block;vertical-align:middle;}
+  ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#c6c6cd;border-radius:4px;}
+</style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-body-md antialiased overflow-x-hidden min-h-screen flex" data-page="shipping">
+<div id="app-sidebar"></div>
+<div id="app-header"></div>
+<script src="components.js"></script>
+<main class="flex-1 md:ml-sidebar-width pt-16 min-h-screen bg-slate-50 transition-all duration-300">
+  <div class="p-container-padding max-w-[1440px] mx-auto space-y-stack-lg">
+
+    <!-- ページヘッダー -->
+    <div class="flex justify-between items-end">
+      <div>
+        <h2 class="font-display-lg text-display-lg text-primary">配送設定</h2>
+        <p class="text-on-surface-variant font-body-md mt-1">配送方法、配送料、通知などすべての配送関連設定を管理します。</p>
+      </div>
+      <button class="bg-secondary text-on-secondary px-6 py-2 rounded font-label-md hover:opacity-90 flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm">add</span>新規配送方法を追加
+      </button>
+    </div>
+
+    <!-- サマリーカード -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <!-- 通常配送 -->
+      <div class="bg-white border border-slate-200 rounded-lg p-6 relative overflow-hidden group hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer">
+        <span class="material-symbols-outlined absolute right-4 top-4 text-slate-200" style="font-size:60px;">local_shipping</span>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="material-symbols-outlined text-secondary">local_shipping</span>
+          <span class="font-headline-sm text-headline-sm text-on-surface">通常配送</span>
+        </div>
+        <p class="font-body-lg text-body-lg text-on-surface font-semibold mb-2">全国一律 ¥550</p>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="bg-green-100 text-green-700 font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">ACTIVE</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">提携: ヤマト運輸</p>
+      </div>
+
+      <!-- お急ぎ便 -->
+      <div class="bg-white border border-slate-200 rounded-lg p-6 relative overflow-hidden group hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer">
+        <span class="material-symbols-outlined absolute right-4 top-4 text-slate-200" style="font-size:60px;">bolt</span>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="material-symbols-outlined text-secondary">bolt</span>
+          <span class="font-headline-sm text-headline-sm text-on-surface">お急ぎ便</span>
+        </div>
+        <p class="font-body-lg text-body-lg text-on-surface font-semibold mb-2">地域別 ¥880〜</p>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="bg-green-100 text-green-700 font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">ACTIVE</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">当日出荷対応</p>
+      </div>
+
+      <!-- 国際配送 -->
+      <div class="bg-white border border-slate-200 rounded-lg p-6 relative overflow-hidden group hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer">
+        <span class="material-symbols-outlined absolute right-4 top-4 text-slate-200" style="font-size:60px;">public</span>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="material-symbols-outlined text-slate-400">public</span>
+          <span class="font-headline-sm text-headline-sm text-on-surface">国際配送</span>
+        </div>
+        <p class="font-body-lg text-body-lg text-slate-400 font-semibold mb-2">未設定</p>
+        <div class="flex items-center gap-2 mb-3">
+          <span class="bg-slate-100 text-slate-500 font-label-sm text-label-sm px-2 py-0.5 rounded uppercase">INACTIVE</span>
+        </div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">EMS連携が必要</p>
+      </div>
+    </div>
+
+    <!-- 設定グリッド -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <!-- 左側：設定カード -->
+      <div class="lg:col-span-3">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <!-- 1. 基本配送設定 -->
+          <div class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-basic.html'">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary">inventory</span>
+                <span class="font-headline-sm text-headline-sm text-on-surface">基本配送設定</span>
+              </div>
+              <span class="bg-green-100 text-green-700 text-[10px] font-bold font-label-sm px-2 py-0.5 rounded uppercase">設定済み</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant flex-1">配送業者（ヤマト、佐川、日本郵便）の選択と出荷元住所の管理</p>
+            <div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">業者数: 3社</span>
+              <button class="text-secondary font-label-md hover:underline flex items-center gap-1">
+                編集<span class="material-symbols-outlined text-sm">edit</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. 地域別送料設定 -->
+          <div class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-regions.html'">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary">map</span>
+                <span class="font-headline-sm text-headline-sm text-on-surface">地域別送料設定</span>
+              </div>
+              <span class="bg-green-100 text-green-700 text-[10px] font-bold font-label-sm px-2 py-0.5 rounded uppercase">設定済み</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant flex-1">都道府県別・地方ブロック別の配送料金テーブルの管理</p>
+            <div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">パターン数: 2</span>
+              <button class="text-secondary font-label-md hover:underline flex items-center gap-1">
+                編集<span class="material-symbols-outlined text-sm">edit</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 3. 送料無料条件設定 -->
+          <div class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-free.html'">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary">redeem</span>
+                <span class="font-headline-sm text-headline-sm text-on-surface">送料無料条件設定</span>
+              </div>
+              <span class="bg-green-100 text-green-700 text-[10px] font-bold font-label-sm px-2 py-0.5 rounded uppercase">設定済み</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant flex-1">「¥10,000以上で無料」などのプロモーション条件の設定</p>
+            <div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">閾値: ¥15,000</span>
+              <button class="text-secondary font-label-md hover:underline flex items-center gap-1">
+                編集<span class="material-symbols-outlined text-sm">edit</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4. 配送日時指定設定 -->
+          <div class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-schedule.html'">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary">schedule</span>
+                <span class="font-headline-sm text-headline-sm text-on-surface">配送日時指定設定</span>
+              </div>
+              <span class="bg-green-100 text-green-700 text-[10px] font-bold font-label-sm px-2 py-0.5 rounded uppercase">設定済み</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant flex-1">配送希望日の範囲、時間帯区分、当日出荷締切時間の管理</p>
+            <div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">締切: 14:00</span>
+              <button class="text-secondary font-label-md hover:underline flex items-center gap-1">
+                編集<span class="material-symbols-outlined text-sm">edit</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 5. クール便設定 -->
+          <div class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-cool.html'">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-red-500">ac_unit</span>
+                <span class="font-headline-sm text-headline-sm text-on-surface">クール便設定</span>
+              </div>
+              <span class="bg-red-100 text-red-700 text-[10px] font-bold font-label-sm px-2 py-0.5 rounded uppercase">未設定</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant flex-1">冷蔵・冷凍商品の配送手数料や同梱不可設定の管理</p>
+            <div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">オプション無効</span>
+              <button class="text-secondary font-label-md hover:underline flex items-center gap-1">
+                編集<span class="material-symbols-outlined text-sm">edit</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 6. 離島・配送不可地域 -->
+          <div class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='#'">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary">location_off</span>
+                <span class="font-headline-sm text-headline-sm text-on-surface">離島・配送不可地域</span>
+              </div>
+              <span class="bg-green-100 text-green-700 text-[10px] font-bold font-label-sm px-2 py-0.5 rounded uppercase">設定済み</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant flex-1">離島等の中継手数料追加設定と配送不可地域ブラックリストの管理</p>
+            <div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">対象地域: 48</span>
+              <button class="text-secondary font-label-md hover:underline flex items-center gap-1">
+                編集<span class="material-symbols-outlined text-sm">edit</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 7. 配送通知メール設定（幅広） -->
+          <div class="md:col-span-2 bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-email.html'">
+            <div class="flex items-start justify-between mb-3">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary">mail</span>
+                <span class="font-headline-sm text-headline-sm text-on-surface">配送通知メール設定</span>
+              </div>
+              <span class="bg-green-100 text-green-700 text-[10px] font-bold font-label-sm px-2 py-0.5 rounded uppercase">設定済み</span>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant flex-1">出荷完了メール・追跡番号通知のテンプレートと自動送信タイミングの管理</p>
+            <div class="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center">
+              <span class="font-label-sm text-label-sm text-on-surface-variant">テンプレート数: 4 / 自動送信: ON</span>
+              <button class="text-secondary font-label-md hover:underline flex items-center gap-1">
+                編集<span class="material-symbols-outlined text-sm">edit</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 右サイドバー -->
+      <div class="lg:col-span-1 space-y-4">
+
+        <!-- クイックアクション -->
+        <div class="bg-white border border-slate-200 rounded-lg p-5">
+          <h3 class="font-headline-sm text-headline-sm text-on-surface mb-4">クイックアクション</h3>
+
+          <!-- 店舗配送ステータストグル -->
+          <div class="mb-4">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-body-md text-body-md text-on-surface">店舗配送ステータス</span>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input type="checkbox" class="sr-only peer" checked/>
+                <div class="w-11 h-6 bg-slate-200 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
+              </label>
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">スイッチをOFFにすると全商品の配送選択が無効化されます。</p>
+          </div>
+
+          <div class="space-y-2 pt-2 border-t border-slate-100">
+            <button class="w-full border border-slate-200 text-on-surface font-label-md text-label-md px-4 py-2 rounded hover:bg-slate-50 transition-colors flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-sm">backup</span>設定をバックアップ
+            </button>
+            <button class="w-full border border-slate-200 text-on-surface font-label-md text-label-md px-4 py-2 rounded hover:bg-slate-50 transition-colors flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-sm">history</span>更新履歴を表示
+            </button>
+          </div>
+        </div>
+
+        <!-- システム連携ステータス -->
+        <div class="bg-white border border-slate-200 rounded-lg p-5">
+          <h3 class="font-headline-sm text-headline-sm text-on-surface mb-4">システム連携ステータス</h3>
+          <ul class="space-y-3">
+            <li class="flex items-center justify-between">
+              <span class="font-body-sm text-body-sm text-on-surface">ヤマトB2クラウド</span>
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
+                <span class="font-label-sm text-label-sm text-green-700">接続中</span>
+              </div>
+            </li>
+            <li class="flex items-center justify-between">
+              <span class="font-body-sm text-body-sm text-on-surface">佐川e飛伝III</span>
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
+                <span class="font-label-sm text-label-sm text-green-700">接続中</span>
+              </div>
+            </li>
+            <li class="flex items-center justify-between">
+              <span class="font-body-sm text-body-sm text-on-surface">日本郵便ゆうパック</span>
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-slate-300 inline-block"></span>
+                <span class="font-label-sm text-label-sm text-on-surface-variant">未連携</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</main>
+</body></html>

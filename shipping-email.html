@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>配送通知メール設定 | PrecisionCMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface-tint":"#565e74","surface-container-low":"#f6f3f5","secondary":"#0058be",
+        "on-secondary-container":"#fefcff","outline":"#76777d","primary-fixed-dim":"#bec6e0",
+        "surface-container-highest":"#e4e2e4","on-secondary-fixed":"#001a42",
+        "on-error":"#ffffff","tertiary":"#000000","on-primary":"#ffffff",
+        "surface-variant":"#e4e2e4","primary-container":"#131b2e","on-primary-fixed-variant":"#3f465c",
+        "on-tertiary":"#ffffff","on-error-container":"#93000a","inverse-surface":"#303032",
+        "error":"#ba1a1a","inverse-primary":"#bec6e0","on-primary-fixed":"#131b2e",
+        "surface-container":"#f0edef","surface-container-lowest":"#ffffff","secondary-fixed":"#d8e2ff",
+        "primary":"#000000","background":"#fcf8fa","on-secondary":"#ffffff",
+        "on-surface-variant":"#45464d","outline-variant":"#c6c6cd",
+        "surface-container-high":"#eae7e9","primary-fixed":"#dae2fd","secondary-container":"#2170e4",
+        "on-surface":"#1b1b1d","error-container":"#ffdad6","secondary-fixed-dim":"#adc6ff",
+        "on-background":"#1b1b1d","surface":"#fcf8fa","on-secondary-fixed-variant":"#004395",
+        "tertiary-container":"#271901","on-primary-container":"#7c839b","surface-bright":"#fcf8fa",
+        "surface-dim":"#dcd9db","tertiary-fixed":"#fcdeb5","tertiary-fixed-dim":"#dec29a",
+        "on-tertiary-fixed":"#271901","on-tertiary-fixed-variant":"#574425","on-tertiary-container":"#98805d",
+        "inverse-on-surface":"#f3f0f2"
+      },
+      borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},
+      spacing:{"sidebar-width":"260px","unit":"4px","container-padding":"24px","stack-md":"16px","stack-lg":"32px","stack-sm":"8px","gutter":"16px"},
+      fontFamily:{"label-md":["JetBrains Mono"],"body-sm":["Hanken Grotesk"],"body-lg":["Hanken Grotesk"],"headline-sm":["Hanken Grotesk"],"headline-md":["Hanken Grotesk"],"display-lg":["Hanken Grotesk"],"body-md":["Hanken Grotesk"],"label-sm":["JetBrains Mono"]},
+      fontSize:{
+        "label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],
+        "body-sm":["13px",{"lineHeight":"18px","fontWeight":"400"}],
+        "body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],
+        "headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],
+        "headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],
+        "display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],
+        "body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],
+        "label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"500"}]
+      }
+    }
+  }
+}
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;display:inline-block;vertical-align:middle;}
+  ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#c6c6cd;border-radius:4px;}
+</style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-body-md antialiased overflow-x-hidden min-h-screen flex" data-page="shipping">
+<div id="app-sidebar"></div>
+<div id="app-header"></div>
+<script src="components.js"></script>
+<main class="flex-1 md:ml-sidebar-width pt-16 min-h-screen bg-slate-50 transition-all duration-300">
+  <div class="p-container-padding max-w-[1440px] mx-auto space-y-stack-lg">
+
+    <!-- パンくず + ページヘッダー -->
+    <div class="space-y-2">
+      <nav class="flex items-center gap-1 text-body-sm text-slate-500">
+        <button onclick="location.href='shipping.html'" class="hover:text-slate-800 transition-colors">配送設定</button>
+        <span class="material-symbols-outlined text-slate-400" style="font-size:16px;">chevron_right</span>
+        <span class="text-slate-800">配送通知メール設定</span>
+      </nav>
+      <div class="flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <h1 class="text-headline-md font-headline-md text-slate-900">配送通知メール設定</h1>
+          <p class="text-body-sm text-slate-500 mt-1">発送完了時にお客様へ自動送信されるメールの内容をカスタマイズします。</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="flex items-center gap-1.5 px-4 py-2 border border-slate-300 rounded-lg text-body-md text-slate-700 hover:bg-slate-50 transition-colors">
+            <span class="material-symbols-outlined" style="font-size:18px;">visibility</span>
+            プレビュー
+          </button>
+          <button class="px-4 py-2 bg-secondary text-white rounded-lg text-body-md hover:bg-blue-700 transition-colors">設定を保存</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="grid grid-cols-12 gap-gutter">
+
+      <!-- 左カラム: メールエディタ -->
+      <div class="col-span-12 lg:col-span-8">
+        <div class="bg-white border border-slate-200 rounded-lg p-6 space-y-stack-lg">
+
+          <!-- メール件名 -->
+          <div class="space-y-2">
+            <label class="block text-body-sm font-medium text-slate-700">メール件名</label>
+            <input
+              type="text"
+              value="【Precision Store】商品の発送が完了いたしました（注文番号：{{order_number}}）"
+              class="w-full border border-slate-300 rounded-lg px-3 py-2.5 text-body-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+
+          <!-- メール本文エディタ -->
+          <div class="space-y-2">
+            <label class="block text-body-sm font-medium text-slate-700">メール本文</label>
+            <div class="border border-slate-300 rounded-lg overflow-hidden">
+              <!-- ツールバー -->
+              <div class="bg-slate-50 border-b border-slate-200 px-3 py-2 flex items-center gap-1">
+                <button class="p-1.5 rounded hover:bg-slate-200 transition-colors text-slate-600" title="太字">
+                  <span class="material-symbols-outlined" style="font-size:18px;">format_bold</span>
+                </button>
+                <button class="p-1.5 rounded hover:bg-slate-200 transition-colors text-slate-600" title="箇条書き">
+                  <span class="material-symbols-outlined" style="font-size:18px;">format_list_bulleted</span>
+                </button>
+                <button class="p-1.5 rounded hover:bg-slate-200 transition-colors text-slate-600" title="リンク">
+                  <span class="material-symbols-outlined" style="font-size:18px;">link</span>
+                </button>
+                <div class="w-px h-4 bg-slate-300 mx-1"></div>
+                <button class="p-1.5 rounded hover:bg-slate-200 transition-colors text-slate-600" title="元に戻す">
+                  <span class="material-symbols-outlined" style="font-size:18px;">undo</span>
+                </button>
+                <button class="p-1.5 rounded hover:bg-slate-200 transition-colors text-slate-600" title="やり直す">
+                  <span class="material-symbols-outlined" style="font-size:18px;">redo</span>
+                </button>
+              </div>
+              <!-- テキストエリア -->
+              <textarea rows="16" class="w-full px-4 py-3 text-body-md font-label-md text-slate-800 resize-none focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 bg-white leading-relaxed" style="font-family:'JetBrains Mono', monospace; font-size:13px; line-height:1.7;">{{order_name}} 様
+
+この度は「Precision Store」をご利用いただき、誠にありがとうございます。
+ご注文いただきました商品を本日発送いたしました。
+
+━━━━━━━━━━━━━━━━━━━━
+配送情報
+━━━━━━━━━━━━━━━━━━━━
+【注文番号】 {{order_number}}
+【配送業者】 {{carrier_name}}
+【追跡番号】 {{tracking_number}}
+
+▼ 配送状況の確認はこちら
+{{tracking_url}}
+
+━━━━━━━━━━━━━━━━━━━━
+お届け先情報
+━━━━━━━━━━━━━━━━━━━━
+{{shipping_address}}
+
+Precision Store カスタマーサポート</textarea>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- 右カラム -->
+      <div class="col-span-12 lg:col-span-4 space-y-gutter">
+
+        <!-- 送信タイミング -->
+        <div class="bg-white border border-slate-200 rounded-lg p-5 space-y-4">
+          <h2 class="text-headline-sm font-headline-sm text-slate-900">送信タイミング</h2>
+          <div class="space-y-3">
+            <label class="flex items-start gap-3 p-3 border border-blue-500 rounded-lg bg-blue-50 cursor-pointer hover:border-blue-600 transition-colors">
+              <input type="radio" name="timing" checked class="w-4 h-4 mt-0.5 text-blue-600 border-slate-300 focus:ring-blue-500"/>
+              <div>
+                <p class="text-body-md font-medium text-slate-900">追跡番号入力直後</p>
+                <p class="text-body-sm text-slate-500 mt-0.5">伝票番号がシステムに登録された瞬間に自動送信されます。</p>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 p-3 border border-slate-200 rounded-lg cursor-pointer hover:border-blue-400 transition-colors">
+              <input type="radio" name="timing" class="w-4 h-4 mt-0.5 text-blue-600 border-slate-300 focus:ring-blue-500"/>
+              <div>
+                <p class="text-body-md font-medium text-slate-900">一括送信（手動）</p>
+                <p class="text-body-sm text-slate-500 mt-0.5">管理画面からの「一括送信実行」時に送信されます。</p>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- 使用可能な変数 -->
+        <div class="bg-white border border-slate-200 rounded-lg p-5 space-y-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-headline-sm font-headline-sm text-slate-900">使用可能な変数</h2>
+            <span class="material-symbols-outlined text-slate-400" style="font-size:18px;">help_outline</span>
+          </div>
+          <p class="text-body-sm text-slate-500">クリックしてコピーし、本文に貼り付けてください。</p>
+          <div class="space-y-2">
+
+            <button class="w-full flex justify-between items-center p-2 rounded bg-slate-50 hover:bg-slate-100 text-left group transition-colors">
+              <code class="font-label-md text-blue-600 text-label-md" style="font-family:'JetBrains Mono',monospace;">{{order_number}}</code>
+              <span class="text-body-sm text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">注文番号</span>
+            </button>
+
+            <button class="w-full flex justify-between items-center p-2 rounded bg-slate-50 hover:bg-slate-100 text-left group transition-colors">
+              <code class="font-label-md text-blue-600 text-label-md" style="font-family:'JetBrains Mono',monospace;">{{tracking_url}}</code>
+              <span class="text-body-sm text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">追跡URL</span>
+            </button>
+
+            <button class="w-full flex justify-between items-center p-2 rounded bg-slate-50 hover:bg-slate-100 text-left group transition-colors">
+              <code class="font-label-md text-blue-600 text-label-md" style="font-family:'JetBrains Mono',monospace;">{{carrier_name}}</code>
+              <span class="text-body-sm text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">配送業者名</span>
+            </button>
+
+            <button class="w-full flex justify-between items-center p-2 rounded bg-slate-50 hover:bg-slate-100 text-left group transition-colors">
+              <code class="font-label-md text-blue-600 text-label-md" style="font-family:'JetBrains Mono',monospace;">{{order_name}}</code>
+              <span class="text-body-sm text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">顧客氏名</span>
+            </button>
+
+            <button class="w-full flex justify-between items-center p-2 rounded bg-slate-50 hover:bg-slate-100 text-left group transition-colors">
+              <code class="font-label-md text-blue-600 text-label-md" style="font-family:'JetBrains Mono',monospace;">{{shipping_address}}</code>
+              <span class="text-body-sm text-slate-400 opacity-0 group-hover:opacity-100 transition-opacity">お届け先住所</span>
+            </button>
+
+          </div>
+        </div>
+
+        <!-- ヒントカード -->
+        <div class="bg-blue-50 border border-blue-200 rounded-lg p-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-blue-600" style="font-size:20px;">lightbulb</span>
+            <h3 class="text-body-md font-medium text-slate-900">効率化のヒント</h3>
+          </div>
+          <p class="text-body-sm text-slate-600">配送業者ごとに個別のテンプレートを設定することも可能です。高度な設定から切り替えられます。</p>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- フッター -->
+    <div class="border-t border-slate-200 pt-4 flex items-center justify-between flex-wrap gap-3 pb-6">
+      <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+          </span>
+          <span class="text-body-sm text-slate-700">自動送信エンジン: 正常稼働中</span>
+        </div>
+        <span class="text-body-sm text-slate-500">最終更新: 2023/10/24 14:20 (admin)</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="#" class="text-body-sm text-blue-600 hover:text-blue-800 transition-colors">APIドキュメント</a>
+        <a href="#" class="text-body-sm text-blue-600 hover:text-blue-800 transition-colors">サポート</a>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('code').forEach(code => {
+    code.parentElement.addEventListener('click', () => {
+      const original = code.style.color;
+      code.style.color = '#10b981';
+      setTimeout(() => { code.style.color = original; }, 800);
+      if (navigator.clipboard) navigator.clipboard.writeText(code.innerText);
+    });
+  });
+});
+</script>
+</body></html>

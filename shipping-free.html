@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>送料無料条件設定 | PrecisionCMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface-tint":"#565e74","surface-container-low":"#f6f3f5","secondary":"#0058be",
+        "on-secondary-container":"#fefcff","outline":"#76777d","primary-fixed-dim":"#bec6e0",
+        "surface-container-highest":"#e4e2e4","on-secondary-fixed":"#001a42",
+        "on-error":"#ffffff","tertiary":"#000000","on-primary":"#ffffff",
+        "surface-variant":"#e4e2e4","primary-container":"#131b2e","on-primary-fixed-variant":"#3f465c",
+        "on-tertiary":"#ffffff","on-error-container":"#93000a","inverse-surface":"#303032",
+        "error":"#ba1a1a","inverse-primary":"#bec6e0","on-primary-fixed":"#131b2e",
+        "surface-container":"#f0edef","surface-container-lowest":"#ffffff","secondary-fixed":"#d8e2ff",
+        "primary":"#000000","background":"#fcf8fa","on-secondary":"#ffffff",
+        "on-surface-variant":"#45464d","outline-variant":"#c6c6cd",
+        "surface-container-high":"#eae7e9","primary-fixed":"#dae2fd","secondary-container":"#2170e4",
+        "on-surface":"#1b1b1d","error-container":"#ffdad6","secondary-fixed-dim":"#adc6ff",
+        "on-background":"#1b1b1d","surface":"#fcf8fa","on-secondary-fixed-variant":"#004395",
+        "tertiary-container":"#271901","on-primary-container":"#7c839b","surface-bright":"#fcf8fa",
+        "surface-dim":"#dcd9db","tertiary-fixed":"#fcdeb5","tertiary-fixed-dim":"#dec29a",
+        "on-tertiary-fixed":"#271901","on-tertiary-fixed-variant":"#574425","on-tertiary-container":"#98805d",
+        "inverse-on-surface":"#f3f0f2"
+      },
+      borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},
+      spacing:{"sidebar-width":"260px","unit":"4px","container-padding":"24px","stack-md":"16px","stack-lg":"32px","stack-sm":"8px","gutter":"16px"},
+      fontFamily:{"label-md":["JetBrains Mono"],"body-sm":["Hanken Grotesk"],"body-lg":["Hanken Grotesk"],"headline-sm":["Hanken Grotesk"],"headline-md":["Hanken Grotesk"],"display-lg":["Hanken Grotesk"],"body-md":["Hanken Grotesk"],"label-sm":["JetBrains Mono"]},
+      fontSize:{
+        "label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],
+        "body-sm":["13px",{"lineHeight":"18px","fontWeight":"400"}],
+        "body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],
+        "headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],
+        "headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],
+        "display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],
+        "body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],
+        "label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"500"}]
+      }
+    }
+  }
+}
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;display:inline-block;vertical-align:middle;}
+  ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#c6c6cd;border-radius:4px;}
+</style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-body-md antialiased overflow-x-hidden min-h-screen flex" data-page="shipping">
+<div id="app-sidebar"></div>
+<div id="app-header"></div>
+<script src="components.js"></script>
+<main class="flex-1 md:ml-sidebar-width pt-16 min-h-screen bg-slate-50 transition-all duration-300">
+  <div class="p-container-padding max-w-[1440px] mx-auto space-y-stack-lg">
+
+    <!-- パンくず + ページヘッダー -->
+    <div>
+      <nav class="flex items-center gap-1 text-body-sm text-slate-500 mb-4">
+        <button onclick="location.href='shipping.html'" class="hover:text-slate-900 transition-colors">配送設定</button>
+        <span class="material-symbols-outlined text-slate-400" style="font-size:16px;">chevron_right</span>
+        <span class="text-slate-900">送料無料条件設定</span>
+      </nav>
+      <div>
+        <h1 class="text-display-lg text-slate-900">送料無料条件設定</h1>
+        <p class="text-body-lg text-slate-500 mt-1">配送コストと売上のバランスを最適化するための各種送料無料ルールを管理します。</p>
+      </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+
+      <!-- ルール1: 購入金額ベース（col-span-8） -->
+      <div class="md:col-span-8">
+        <div class="bg-white border border-slate-200 rounded-lg p-6 hover:border-blue-400 transition-all space-y-4">
+          <!-- ヘッダー -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="bg-slate-100 p-2 rounded">
+                <span class="material-symbols-outlined text-slate-700">payments</span>
+              </div>
+              <div>
+                <p class="text-label-sm text-slate-500 uppercase tracking-wider mb-0.5">RULE 01: THRESHOLD-BASED</p>
+                <h2 class="text-headline-sm text-slate-900">購入金額ベースの送料無料</h2>
+              </div>
+            </div>
+            <label class="relative cursor-pointer">
+              <input type="checkbox" checked class="sr-only peer"/>
+              <div class="w-11 h-6 bg-blue-600 peer-checked:bg-blue-600 rounded-full peer-focus:ring-2 peer-focus:ring-blue-300 transition-colors"></div>
+              <div class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-5"></div>
+            </label>
+          </div>
+
+          <!-- 金額入力 -->
+          <div class="flex items-center gap-3">
+            <div class="relative flex-1 max-w-[200px]">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-body-lg font-semibold">¥</span>
+              <input type="number" value="10000" class="w-full pl-8 pr-3 py-3 border border-slate-300 rounded-lg text-headline-sm font-semibold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200"/>
+            </div>
+            <p class="text-body-lg text-slate-700">以上の注文で送料無料</p>
+          </div>
+
+          <!-- info注記 -->
+          <div class="flex items-start gap-2 bg-blue-50 border border-blue-200 rounded-lg px-4 py-3">
+            <span class="material-symbols-outlined text-blue-500 shrink-0 mt-0.5" style="font-size:18px;">info</span>
+            <p class="text-body-sm text-blue-700">現在、平均客単価の1.2倍に設定されています。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ルール2: 購入点数ベース（col-span-4） -->
+      <div class="md:col-span-4">
+        <div class="bg-white border border-slate-200 rounded-lg p-6 hover:border-blue-400 transition-all space-y-4 h-full">
+          <!-- ヘッダー -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <div class="bg-slate-100 p-2 rounded">
+                <span class="material-symbols-outlined text-slate-700">inventory</span>
+              </div>
+              <h2 class="text-headline-sm text-slate-900">購入点数ベース</h2>
+            </div>
+            <label class="relative cursor-pointer">
+              <input type="checkbox" class="sr-only peer"/>
+              <div class="w-11 h-6 bg-slate-300 peer-checked:bg-blue-600 rounded-full peer-focus:ring-2 peer-focus:ring-blue-300 transition-colors"></div>
+              <div class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-5"></div>
+            </label>
+          </div>
+
+          <!-- 点数入力 -->
+          <div class="flex items-center gap-2">
+            <input type="number" value="5" class="w-20 px-3 py-2 border border-slate-300 rounded-lg text-body-md font-semibold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200 text-center"/>
+            <p class="text-body-md text-slate-700">点以上の購入で無料</p>
+          </div>
+
+          <p class="text-body-sm text-slate-500">まとめ買いを促進する設定です。</p>
+        </div>
+      </div>
+
+      <!-- ルール3: 特定ラベル商品の個別設定（col-span-12） -->
+      <div class="md:col-span-12">
+        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden">
+          <!-- ヘッダー -->
+          <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+            <div class="flex items-center gap-3">
+              <div class="bg-slate-100 p-2 rounded">
+                <span class="material-symbols-outlined text-slate-700">label</span>
+              </div>
+              <h2 class="text-headline-sm text-slate-900">特定ラベル商品の個別設定</h2>
+            </div>
+            <button class="flex items-center gap-2 px-4 py-2 bg-secondary text-white rounded-lg text-body-sm hover:bg-blue-700 transition-colors">
+              <span class="material-symbols-outlined" style="font-size:16px;">add</span>
+              ラベルを追加
+            </button>
+          </div>
+
+          <!-- テーブル -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead>
+                <tr class="bg-slate-50 border-b border-slate-200">
+                  <th class="px-6 py-3 text-label-md text-slate-500 uppercase tracking-wider">ラベル名称</th>
+                  <th class="px-6 py-3 text-label-md text-slate-500 uppercase tracking-wider">対象商品数</th>
+                  <th class="px-6 py-3 text-label-md text-slate-500 uppercase tracking-wider">ステータス</th>
+                  <th class="px-6 py-3 text-label-md text-slate-500 uppercase tracking-wider">アクション</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50 transition-colors">
+                  <td class="px-6 py-4">
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-blue-100 text-blue-800 rounded text-body-sm font-medium">
+                      <span class="material-symbols-outlined" style="font-size:14px;">label</span>
+                      送料無料商品
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-body-md text-slate-700">142 アイテム</td>
+                  <td class="px-6 py-4">
+                    <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-green-100 text-green-700 rounded text-body-sm font-medium">
+                      <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                      有効
+                    </span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <button class="flex items-center gap-1.5 text-body-sm text-slate-600 hover:text-slate-900 transition-colors">
+                      <span class="material-symbols-outlined" style="font-size:16px;">edit</span>
+                      編集
+                    </button>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50 transition-colors">
+                  <td class="px-6 py-4">
+                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-amber-100 text-amber-800 rounded text-body-sm font-medium">
+                      <span class="material-symbols-outlined" style="font-size:14px;">label</span>
+                      メーカー直送(無料)
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-body-md text-slate-700">12 アイテム</td>
+                  <td class="px-6 py-4">
+                    <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-green-100 text-green-700 rounded text-body-sm font-medium">
+                      <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                      有効
+                    </span>
+                  </td>
+                  <td class="px-6 py-4">
+                    <button class="flex items-center gap-1.5 text-body-sm text-slate-600 hover:text-slate-900 transition-colors">
+                      <span class="material-symbols-outlined" style="font-size:16px;">edit</span>
+                      編集
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- 除外設定（col-span-12） -->
+      <div class="md:col-span-12">
+        <div class="bg-red-50 border border-red-200 rounded-lg p-6 space-y-4">
+          <!-- ヘッダー -->
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-red-600">location_off</span>
+              <h2 class="text-headline-sm text-slate-900">地域別の除外設定</h2>
+            </div>
+            <!-- トグル -->
+            <button id="toggleExclusion" class="relative w-14 h-7 bg-blue-600 rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-1">
+              <span class="absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full shadow transition-transform translate-x-6"></span>
+              <span class="sr-only">除外設定を適用する</span>
+            </button>
+          </div>
+
+          <p class="text-body-sm text-slate-600">以下の地域は、送料無料条件を満たした場合でも除外されます。</p>
+
+          <!-- チェックボックスグリッド -->
+          <div id="exclusionDetails" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 transition-opacity">
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked class="accent-red-500 w-4 h-4"/>
+              <span class="text-body-md text-slate-700">沖縄県</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked class="accent-red-500 w-4 h-4"/>
+              <span class="text-body-md text-slate-700">北海道</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" checked class="accent-red-500 w-4 h-4"/>
+              <span class="text-body-md text-slate-700">離島地域</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer opacity-40">
+              <input type="checkbox" class="accent-red-500 w-4 h-4"/>
+              <span class="text-body-md text-slate-700">東京都</span>
+            </label>
+            <label class="flex items-center gap-2 cursor-pointer opacity-40">
+              <input type="checkbox" class="accent-red-500 w-4 h-4"/>
+              <span class="text-body-md text-slate-700">大阪府</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+
+    <!-- アクションボタン行 -->
+    <div class="border-t border-slate-200 pt-stack-md flex justify-end gap-3">
+      <button class="flex items-center gap-2 px-4 py-2 border border-slate-300 rounded-lg text-body-md text-slate-700 bg-white hover:bg-slate-50 transition-colors">
+        変更を破棄
+      </button>
+      <button class="flex items-center gap-2 px-5 py-2 bg-secondary text-white rounded-lg text-body-md hover:bg-blue-700 transition-colors">
+        <span class="material-symbols-outlined" style="font-size:18px;">save</span>
+        設定を保存する
+      </button>
+    </div>
+
+  </div>
+</main>
+
+<script>
+const toggle = document.getElementById('toggleExclusion');
+const details = document.getElementById('exclusionDetails');
+let active = true;
+toggle?.addEventListener('click', () => {
+  active = !active;
+  toggle.classList.toggle('bg-blue-600', active);
+  toggle.classList.toggle('bg-slate-300', !active);
+  const circle = toggle.querySelector('span');
+  circle?.classList.toggle('translate-x-6', active);
+  circle?.classList.toggle('translate-x-1', !active);
+  if (details) { details.style.opacity = active ? '1' : '0.4'; details.style.pointerEvents = active ? 'auto' : 'none'; }
+});
+</script>
+</body></html>

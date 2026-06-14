@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>地域別送料設定 | PrecisionCMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface-tint":"#565e74","surface-container-low":"#f6f3f5","secondary":"#0058be",
+        "on-secondary-container":"#fefcff","outline":"#76777d","primary-fixed-dim":"#bec6e0",
+        "surface-container-highest":"#e4e2e4","on-secondary-fixed":"#001a42",
+        "on-error":"#ffffff","tertiary":"#000000","on-primary":"#ffffff",
+        "surface-variant":"#e4e2e4","primary-container":"#131b2e","on-primary-fixed-variant":"#3f465c",
+        "on-tertiary":"#ffffff","on-error-container":"#93000a","inverse-surface":"#303032",
+        "error":"#ba1a1a","inverse-primary":"#bec6e0","on-primary-fixed":"#131b2e",
+        "surface-container":"#f0edef","surface-container-lowest":"#ffffff","secondary-fixed":"#d8e2ff",
+        "primary":"#000000","background":"#fcf8fa","on-secondary":"#ffffff",
+        "on-surface-variant":"#45464d","outline-variant":"#c6c6cd",
+        "surface-container-high":"#eae7e9","primary-fixed":"#dae2fd","secondary-container":"#2170e4",
+        "on-surface":"#1b1b1d","error-container":"#ffdad6","secondary-fixed-dim":"#adc6ff",
+        "on-background":"#1b1b1d","surface":"#fcf8fa","on-secondary-fixed-variant":"#004395",
+        "tertiary-container":"#271901","on-primary-container":"#7c839b","surface-bright":"#fcf8fa",
+        "surface-dim":"#dcd9db","tertiary-fixed":"#fcdeb5","tertiary-fixed-dim":"#dec29a",
+        "on-tertiary-fixed":"#271901","on-tertiary-fixed-variant":"#574425","on-tertiary-container":"#98805d",
+        "inverse-on-surface":"#f3f0f2"
+      },
+      borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},
+      spacing:{"sidebar-width":"260px","unit":"4px","container-padding":"24px","stack-md":"16px","stack-lg":"32px","stack-sm":"8px","gutter":"16px"},
+      fontFamily:{"label-md":["JetBrains Mono"],"body-sm":["Hanken Grotesk"],"body-lg":["Hanken Grotesk"],"headline-sm":["Hanken Grotesk"],"headline-md":["Hanken Grotesk"],"display-lg":["Hanken Grotesk"],"body-md":["Hanken Grotesk"],"label-sm":["JetBrains Mono"]},
+      fontSize:{
+        "label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],
+        "body-sm":["13px",{"lineHeight":"18px","fontWeight":"400"}],
+        "body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],
+        "headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],
+        "headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],
+        "display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],
+        "body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],
+        "label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"500"}]
+      }
+    }
+  }
+}
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;display:inline-block;vertical-align:middle;}
+  ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#c6c6cd;border-radius:4px;}
+</style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-body-md antialiased overflow-x-hidden min-h-screen flex" data-page="shipping">
+<div id="app-sidebar"></div>
+<div id="app-header"></div>
+<script src="components.js"></script>
+<main class="flex-1 md:ml-sidebar-width pt-16 min-h-screen bg-slate-50 transition-all duration-300">
+  <div class="p-container-padding max-w-[1440px] mx-auto space-y-stack-lg">
+
+    <!-- パンくず + ページヘッダー -->
+    <div>
+      <nav class="flex items-center gap-1 text-body-sm text-slate-500 mb-4">
+        <button onclick="location.href='shipping.html'" class="hover:text-slate-900 transition-colors">配送設定</button>
+        <span class="material-symbols-outlined text-slate-400" style="font-size:16px;">chevron_right</span>
+        <span class="text-slate-900">地域別送料設定</span>
+      </nav>
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h1 class="text-display-lg text-slate-900">地域別送料設定</h1>
+          <p class="text-body-lg text-slate-500 mt-1">お届け先の地域に応じた配送料金を細かく調整できます。</p>
+        </div>
+        <div class="flex items-center gap-3 shrink-0">
+          <button class="flex items-center gap-2 px-4 py-2 border border-slate-300 rounded-lg text-body-md text-slate-700 bg-white hover:bg-slate-50 transition-colors">
+            <span class="material-symbols-outlined" style="font-size:18px;">upload_file</span>
+            一括CSV更新
+          </button>
+          <button class="flex items-center gap-2 px-4 py-2 bg-secondary text-white rounded-lg text-body-md hover:bg-blue-700 transition-colors">
+            <span class="material-symbols-outlined" style="font-size:18px;">save</span>
+            設定を保存
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="grid grid-cols-12 gap-gutter">
+
+      <!-- 左カード: 配送モード設定 -->
+      <div class="col-span-12 lg:col-span-4">
+        <div class="bg-white border border-slate-200 rounded-lg p-6 space-y-5">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-slate-700">tune</span>
+            <h2 class="text-headline-sm text-slate-900">配送モード設定</h2>
+          </div>
+
+          <!-- ラジオ選択 -->
+          <div class="space-y-3">
+            <!-- 地域別送料 -->
+            <label class="flex items-start gap-3 p-4 border-2 border-secondary rounded-lg cursor-pointer bg-blue-50">
+              <input type="radio" name="shippingMode" value="region" checked class="mt-0.5 accent-blue-600"/>
+              <div>
+                <p class="text-body-md font-semibold text-slate-900">地域別送料</p>
+                <p class="text-body-sm text-slate-500 mt-0.5">都道府県ごとに異なる配送料金を適用します。</p>
+              </div>
+            </label>
+            <!-- 全国一律料金 -->
+            <label class="flex items-start gap-3 p-4 border border-slate-200 rounded-lg cursor-pointer hover:border-slate-300 transition-colors">
+              <input type="radio" name="shippingMode" value="flat" class="mt-0.5 accent-blue-600"/>
+              <div>
+                <p class="text-body-md font-semibold text-slate-900">全国一律料金</p>
+                <p class="text-body-sm text-slate-500 mt-0.5">全地域に同一の固定配送料を適用します。</p>
+              </div>
+            </label>
+          </div>
+
+          <div class="border-t border-slate-100 pt-5 space-y-4">
+            <p class="text-label-md text-slate-500 uppercase tracking-wider">基本設定</p>
+
+            <!-- 配送料無料条件 -->
+            <div>
+              <label class="block text-body-sm text-slate-700 mb-1.5">配送料無料条件（¥以上）</label>
+              <div class="relative">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-body-md">¥</span>
+                <input type="number" value="10000" class="w-full pl-7 pr-3 py-2 border border-slate-300 rounded-lg text-body-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200"/>
+              </div>
+            </div>
+
+            <!-- クール便 -->
+            <label class="flex items-center gap-3 cursor-pointer">
+              <input type="checkbox" class="accent-blue-600 w-4 h-4"/>
+              <span class="text-body-md text-slate-700">クール便追加料金を有効にする</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右カード: 配送料金詳細テーブル -->
+      <div class="col-span-12 lg:col-span-8">
+        <div class="bg-white border border-slate-200 rounded-lg overflow-hidden">
+          <!-- テーブルヘッダー -->
+          <div class="flex items-center justify-between gap-4 p-5 border-b border-slate-100">
+            <h2 class="text-headline-sm text-slate-900">配送料金詳細</h2>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" style="font-size:18px;">search</span>
+              <input type="text" placeholder="地域名で絞り込み..." class="pl-9 pr-4 py-2 border border-slate-300 rounded-lg text-body-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200 w-56"/>
+            </div>
+          </div>
+
+          <!-- テーブル -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left">
+              <thead>
+                <tr class="bg-slate-50 border-b border-slate-200">
+                  <th class="w-10 px-4 py-3">
+                    <input type="checkbox" class="accent-blue-600 w-4 h-4"/>
+                  </th>
+                  <th class="px-4 py-3 text-label-md text-slate-500 uppercase tracking-wider">地方名</th>
+                  <th class="px-4 py-3 text-label-md text-slate-500 uppercase tracking-wider">対象都道府県</th>
+                  <th class="px-4 py-3 text-label-md text-slate-500 uppercase tracking-wider text-right">配送料(¥)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                <tr class="hover:bg-slate-50 transition-colors">
+                  <td class="px-4 py-3"><input type="checkbox" class="accent-blue-600 w-4 h-4"/></td>
+                  <td class="px-4 py-3 text-body-md font-semibold text-slate-900">北海道</td>
+                  <td class="px-4 py-3 text-body-sm text-slate-600">北海道</td>
+                  <td class="px-4 py-3 text-right">
+                    <input type="text" value="1,200" class="w-24 text-right px-2 py-1 border border-slate-200 rounded text-body-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200"/>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50 transition-colors">
+                  <td class="px-4 py-3"><input type="checkbox" class="accent-blue-600 w-4 h-4"/></td>
+                  <td class="px-4 py-3 text-body-md font-semibold text-slate-900">東北</td>
+                  <td class="px-4 py-3 text-body-sm text-slate-600">青森, 岩手, 宮城, 秋田...</td>
+                  <td class="px-4 py-3 text-right">
+                    <input type="text" value="850" class="w-24 text-right px-2 py-1 border border-slate-200 rounded text-body-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200"/>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50 transition-colors">
+                  <td class="px-4 py-3"><input type="checkbox" class="accent-blue-600 w-4 h-4"/></td>
+                  <td class="px-4 py-3 text-body-md font-semibold text-slate-900">関東</td>
+                  <td class="px-4 py-3 text-body-sm text-slate-600">東京, 神奈川, 千葉, 埼玉...</td>
+                  <td class="px-4 py-3 text-right">
+                    <input type="text" value="650" class="w-24 text-right px-2 py-1 border border-slate-200 rounded text-body-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200"/>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50 transition-colors">
+                  <td class="px-4 py-3"><input type="checkbox" class="accent-blue-600 w-4 h-4"/></td>
+                  <td class="px-4 py-3 text-body-md font-semibold text-slate-900">近畿</td>
+                  <td class="px-4 py-3 text-body-sm text-slate-600">大阪, 兵庫, 京都, 滋賀...</td>
+                  <td class="px-4 py-3 text-right">
+                    <input type="text" value="750" class="w-24 text-right px-2 py-1 border border-slate-200 rounded text-body-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200"/>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50 transition-colors">
+                  <td class="px-4 py-3"><input type="checkbox" class="accent-blue-600 w-4 h-4"/></td>
+                  <td class="px-4 py-3 text-body-md font-semibold text-slate-900">九州</td>
+                  <td class="px-4 py-3 text-body-sm text-slate-600">福岡, 佐賀, 長崎, 熊本...</td>
+                  <td class="px-4 py-3 text-right">
+                    <input type="text" value="950" class="w-24 text-right px-2 py-1 border border-slate-200 rounded text-body-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200"/>
+                  </td>
+                </tr>
+                <tr class="hover:bg-slate-50 transition-colors">
+                  <td class="px-4 py-3"><input type="checkbox" class="accent-blue-600 w-4 h-4"/></td>
+                  <td class="px-4 py-3 text-body-md font-semibold text-slate-900">沖縄</td>
+                  <td class="px-4 py-3 text-body-sm text-slate-600">沖縄, 離島</td>
+                  <td class="px-4 py-3 text-right">
+                    <input type="text" value="1,800" class="w-24 text-right px-2 py-1 border border-slate-200 rounded text-body-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200"/>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- テーブルフッター -->
+          <div class="flex items-center justify-between gap-3 px-5 py-4 border-t border-slate-100 bg-slate-50">
+            <button class="flex items-center gap-2 px-3 py-1.5 text-body-sm text-secondary hover:bg-blue-50 rounded transition-colors">
+              <span class="material-symbols-outlined" style="font-size:16px;">add</span>
+              新規配送地域を追加
+            </button>
+            <button class="flex items-center gap-2 px-3 py-1.5 text-body-sm text-slate-600 border border-slate-300 bg-white rounded hover:bg-slate-50 transition-colors">
+              <span class="material-symbols-outlined" style="font-size:16px;">edit</span>
+              選択した項目を一括編集
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 統計ウィジェット -->
+      <div class="col-span-12 grid grid-cols-3 gap-gutter">
+        <!-- 平均配送料 -->
+        <div class="bg-white border border-slate-200 p-6 rounded-lg">
+          <p class="text-label-md text-slate-500 uppercase tracking-wider mb-3">平均配送料</p>
+          <div class="flex items-end justify-between">
+            <p class="text-display-lg text-slate-900">¥820</p>
+            <div class="flex items-center gap-1 text-body-sm text-green-600 mb-1">
+              <span class="material-symbols-outlined" style="font-size:16px;">trending_down</span>
+              前月比 -5%
+            </div>
+          </div>
+        </div>
+        <!-- 送料無料適用率 -->
+        <div class="bg-white border border-slate-200 p-6 rounded-lg">
+          <p class="text-label-md text-slate-500 uppercase tracking-wider mb-3">送料無料適用率</p>
+          <div class="flex items-end justify-between">
+            <p class="text-display-lg text-slate-900">24.5%</p>
+            <p class="text-body-sm text-slate-500 mb-1">直近30日間</p>
+          </div>
+        </div>
+        <!-- 離島・遠隔地設定 -->
+        <div class="bg-white border border-slate-200 p-6 rounded-lg">
+          <p class="text-label-md text-slate-500 uppercase tracking-wider mb-3">離島・遠隔地設定</p>
+          <div class="flex items-end justify-between">
+            <p class="text-display-lg text-slate-900">08</p>
+            <p class="text-body-sm text-slate-500 mb-1">アクティブな個別設定</p>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /grid -->
+  </div>
+</main>
+
+<script>
+const searchInput = document.querySelector('input[placeholder="地域名で絞り込み..."]');
+if (searchInput) {
+  searchInput.addEventListener('input', e => {
+    const term = e.target.value.toLowerCase();
+    document.querySelectorAll('tbody tr').forEach(row => {
+      const region = row.querySelector('td:nth-child(2)')?.textContent.toLowerCase();
+      const prefs = row.querySelector('td:nth-child(3)')?.textContent.toLowerCase();
+      row.style.display = (region?.includes(term) || prefs?.includes(term)) ? '' : 'none';
+    });
+  });
+}
+</script>
+</body></html>

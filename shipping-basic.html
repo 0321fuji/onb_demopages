@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="light" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>基本配送設定 | PrecisionCMS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface-tint":"#565e74","surface-container-low":"#f6f3f5","tertiary-fixed-dim":"#dec29a",
+        "on-secondary-container":"#fefcff","tertiary-fixed":"#fcdeb5","surface-dim":"#dcd9db",
+        "outline":"#76777d","primary-fixed-dim":"#bec6e0","surface-container-highest":"#e4e2e4",
+        "inverse-on-surface":"#f3f0f2","on-secondary-fixed":"#001a42","secondary":"#0058be",
+        "on-error":"#ffffff","tertiary":"#000000","on-tertiary-fixed":"#271901","on-primary":"#ffffff",
+        "surface-variant":"#e4e2e4","primary-container":"#131b2e","on-primary-fixed-variant":"#3f465c",
+        "on-tertiary":"#ffffff","on-error-container":"#93000a","inverse-surface":"#303032",
+        "error":"#ba1a1a","inverse-primary":"#bec6e0","on-primary-fixed":"#131b2e",
+        "surface-container":"#f0edef","surface-container-lowest":"#ffffff","secondary-fixed":"#d8e2ff",
+        "primary":"#000000","background":"#fcf8fa","on-secondary":"#ffffff",
+        "on-surface-variant":"#45464d","outline-variant":"#c6c6cd","on-tertiary-container":"#98805d",
+        "surface-container-high":"#eae7e9","primary-fixed":"#dae2fd","secondary-container":"#2170e4",
+        "on-tertiary-fixed-variant":"#574425","on-surface":"#1b1b1d","error-container":"#ffdad6",
+        "secondary-fixed-dim":"#adc6ff","on-background":"#1b1b1d","surface":"#fcf8fa",
+        "on-secondary-fixed-variant":"#004395","tertiary-container":"#271901",
+        "on-primary-container":"#7c839b","surface-bright":"#fcf8fa"
+      },
+      borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},
+      spacing:{"sidebar-width":"260px","unit":"4px","container-padding":"24px","stack-md":"16px","stack-lg":"32px","stack-sm":"8px","gutter":"16px"},
+      fontFamily:{"label-md":["JetBrains Mono"],"body-sm":["Hanken Grotesk"],"body-lg":["Hanken Grotesk"],"headline-sm":["Hanken Grotesk"],"headline-md":["Hanken Grotesk"],"display-lg":["Hanken Grotesk"],"body-md":["Hanken Grotesk"],"label-sm":["JetBrains Mono"]},
+      fontSize:{
+        "label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.02em","fontWeight":"500"}],
+        "body-sm":["13px",{"lineHeight":"18px","fontWeight":"400"}],
+        "body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],
+        "headline-sm":["18px",{"lineHeight":"24px","fontWeight":"600"}],
+        "headline-md":["24px",{"lineHeight":"32px","letterSpacing":"-0.01em","fontWeight":"600"}],
+        "display-lg":["32px",{"lineHeight":"40px","letterSpacing":"-0.02em","fontWeight":"700"}],
+        "body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}],
+        "label-sm":["11px",{"lineHeight":"14px","letterSpacing":"0.03em","fontWeight":"500"}]
+      }
+    }
+  }
+}
+</script>
+<style>
+  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;display:inline-block;vertical-align:middle;}
+  ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:#c6c6cd;border-radius:4px;}
+</style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-body-md antialiased overflow-x-hidden min-h-screen flex" data-page="shipping">
+<div id="app-sidebar"></div>
+<div id="app-header"></div>
+<script src="components.js"></script>
+<main class="flex-1 md:ml-sidebar-width pt-16 min-h-screen bg-slate-50 transition-all duration-300">
+  <div class="p-container-padding max-w-[1440px] mx-auto space-y-stack-lg">
+
+    <!-- ページヘッダー -->
+    <div>
+      <!-- パンくず -->
+      <nav class="flex items-center gap-1 mb-3 font-body-sm text-body-sm text-on-surface-variant">
+        <button class="hover:text-secondary hover:underline transition-colors" onclick="location.href='shipping.html'">配送設定</button>
+        <span class="material-symbols-outlined" style="font-size:16px;">chevron_right</span>
+        <span class="text-on-surface font-medium">基本配送設定</span>
+      </nav>
+      <h2 class="font-display-lg text-display-lg text-primary">基本配送設定</h2>
+      <p class="text-on-surface-variant font-body-md mt-1">配送業者の選択と出荷元情報、配送方法を管理します。</p>
+    </div>
+
+    <!-- セクション1: 配送業者の選択 -->
+    <div class="bg-white border border-slate-200 rounded-lg p-6">
+      <div class="flex items-center gap-2 mb-5">
+        <span class="material-symbols-outlined text-secondary">local_shipping</span>
+        <h3 class="font-headline-sm text-headline-sm text-on-surface">配送業者の選択</h3>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+
+        <!-- ヤマト運輸（checked） -->
+        <label class="flex items-center p-4 border border-blue-400 bg-blue-50 rounded hover:bg-slate-50 transition-colors cursor-pointer">
+          <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4" checked/>
+          <div>
+            <p class="font-body-md text-body-md text-on-surface font-medium">ヤマト運輸</p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Yamato Transport</p>
+          </div>
+        </label>
+
+        <!-- 佐川急便（checked） -->
+        <label class="flex items-center p-4 border border-blue-400 bg-blue-50 rounded hover:bg-slate-50 transition-colors cursor-pointer">
+          <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4" checked/>
+          <div>
+            <p class="font-body-md text-body-md text-on-surface font-medium">佐川急便</p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Sagawa Express</p>
+          </div>
+        </label>
+
+        <!-- 日本郵便（unchecked） -->
+        <label class="flex items-center p-4 border border-slate-200 rounded hover:bg-slate-50 hover:border-blue-400 transition-colors cursor-pointer">
+          <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4"/>
+          <div>
+            <p class="font-body-md text-body-md text-on-surface font-medium">日本郵便</p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Japan Post</p>
+          </div>
+        </label>
+
+        <!-- 西濃運輸（unchecked） -->
+        <label class="flex items-center p-4 border border-slate-200 rounded hover:bg-slate-50 hover:border-blue-400 transition-colors cursor-pointer">
+          <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4"/>
+          <div>
+            <p class="font-body-md text-body-md text-on-surface font-medium">西濃運輸</p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Seino Transportation</p>
+          </div>
+        </label>
+
+        <!-- 福山通運（unchecked） -->
+        <label class="flex items-center p-4 border border-slate-200 rounded hover:bg-slate-50 hover:border-blue-400 transition-colors cursor-pointer">
+          <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4"/>
+          <div>
+            <p class="font-body-md text-body-md text-on-surface font-medium">福山通運</p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Fukuyama Transporting</p>
+          </div>
+        </label>
+
+      </div>
+    </div>
+
+    <!-- セクション2: デフォルト配送元情報 -->
+    <div class="bg-white border border-slate-200 rounded-lg p-6">
+      <div class="flex items-center gap-2 mb-5">
+        <span class="material-symbols-outlined text-secondary">location_on</span>
+        <h3 class="font-headline-sm text-headline-sm text-on-surface">デフォルト配送元情報</h3>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- 左列 -->
+        <div class="space-y-4">
+          <!-- 配送元名称 -->
+          <div>
+            <label class="block font-label-md text-label-md text-on-surface mb-1">
+              配送元名称 <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              value="Precision CMS 第1倉庫"
+              class="w-full border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
+            />
+          </div>
+          <!-- 郵便番号 -->
+          <div>
+            <label class="block font-label-md text-label-md text-on-surface mb-1">郵便番号</label>
+            <input
+              type="text"
+              value="100-0001"
+              class="w-full border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
+            />
+          </div>
+          <!-- 都道府県 -->
+          <div>
+            <label class="block font-label-md text-label-md text-on-surface mb-1">都道府県</label>
+            <select class="w-full border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors">
+              <option selected>東京都</option>
+              <option>大阪府</option>
+              <option>神奈川県</option>
+            </select>
+          </div>
+        </div>
+        <!-- 右列 -->
+        <div class="space-y-4">
+          <!-- 市区町村・番地 -->
+          <div>
+            <label class="block font-label-md text-label-md text-on-surface mb-1">市区町村・番地</label>
+            <input
+              type="text"
+              value="千代田区千代田1-1-1"
+              class="w-full border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
+            />
+          </div>
+          <!-- 建物名・ビル名 -->
+          <div>
+            <label class="block font-label-md text-label-md text-on-surface mb-1">建物名・ビル名</label>
+            <input
+              type="text"
+              value="ロジスティクスセンター 3F"
+              class="w-full border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
+            />
+          </div>
+          <!-- 電話番号 -->
+          <div>
+            <label class="block font-label-md text-label-md text-on-surface mb-1">電話番号</label>
+            <input
+              type="text"
+              value="03-1234-5678"
+              class="w-full border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- セクション3: 配送方法の設定 -->
+    <div class="bg-white border border-slate-200 rounded-lg p-6">
+      <div class="flex items-center gap-2 mb-5">
+        <span class="material-symbols-outlined text-secondary">tune</span>
+        <h3 class="font-headline-sm text-headline-sm text-on-surface">配送方法の設定</h3>
+      </div>
+
+      <div class="divide-y divide-slate-100">
+        <!-- 通常配送（checked） -->
+        <div class="py-4 flex items-center justify-between">
+          <div>
+            <p class="font-body-md text-body-md text-on-surface font-medium">通常配送</p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">標準的な配送スケジュールを使用します。</p>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" class="sr-only peer" checked/>
+            <div class="w-11 h-6 bg-slate-200 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
+          </label>
+        </div>
+
+        <!-- お急ぎ便（unchecked） -->
+        <div class="py-4 flex items-center justify-between">
+          <div>
+            <p class="font-body-md text-body-md text-on-surface font-medium">お急ぎ便</p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">翌日または当日配送オプションを有効にします。</p>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" class="sr-only peer"/>
+            <div class="w-11 h-6 bg-slate-200 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
+          </label>
+        </div>
+
+        <!-- 配送日時指定（checked） -->
+        <div class="py-4 flex items-center justify-between">
+          <div>
+            <p class="font-body-md text-body-md text-on-surface font-medium">配送日時指定</p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">顧客が配送日および時間帯を選択できるようにします。</p>
+          </div>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" class="sr-only peer" checked/>
+            <div class="w-11 h-6 bg-slate-200 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
+          </label>
+        </div>
+      </div>
+
+      <!-- info注記 -->
+      <div class="mt-5 flex items-start gap-2 bg-blue-50 border border-blue-100 rounded p-4">
+        <span class="material-symbols-outlined text-secondary mt-0.5" style="font-size:18px;">info</span>
+        <p class="font-body-sm text-body-sm text-on-surface-variant">
+          送料無料設定や地域別料金設定は個別配送料設定メニューから設定できます。現在の通貨設定は日本円（¥）です。
+        </p>
+      </div>
+    </div>
+
+    <!-- アクションボタン行 -->
+    <div class="flex justify-end items-center gap-3 pb-8">
+      <button class="border border-slate-200 text-on-surface font-label-md text-label-md px-6 py-2 rounded hover:bg-slate-50 transition-colors">
+        キャンセル
+      </button>
+      <button class="bg-secondary text-on-secondary font-label-md text-label-md px-6 py-2 rounded hover:opacity-90 transition-opacity flex items-center gap-2">
+        <span class="material-symbols-outlined text-sm">save</span>設定を保存する
+      </button>
+    </div>
+
+  </div>
+</main>
+</body></html>
