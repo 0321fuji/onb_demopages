@@ -1,375 +1,1045 @@
 <!DOCTYPE html>
-
 <html class="light" lang="ja"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>PrecisionCMS - 新規商品登録</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "surface-bright": "#ffffff",
-                        "background": "#f8fafc",
-                        "primary-fixed": "#e2e8f0",
-                        "surface": "#ffffff",
-                        "on-tertiary": "#ffffff",
-                        "tertiary": "#000000",
-                        "surface-container-high": "#f1f5f9",
-                        "on-primary-fixed-variant": "#475569",
-                        "on-background": "#0f172a",
-                        "primary-container": "#f1f5f9",
-                        "tertiary-container": "#e2e8f0",
-                        "on-error": "#ffffff",
-                        "surface-dim": "#e2e8f0",
-                        "secondary-fixed-dim": "#cbd5e1",
-                        "surface-container": "#f8fafc",
-                        "on-secondary-fixed": "#0f172a",
-                        "surface-variant": "#f1f5f9",
-                        "secondary-container": "#2563eb",
-                        "on-tertiary-fixed": "#0f172a",
-                        "on-secondary-container": "#ffffff",
-                        "primary": "#0f172a",
-                        "tertiary-fixed": "#e2e8f0",
-                        "on-surface-variant": "#64748b",
-                        "surface-container-low": "#f8fafc",
-                        "on-surface": "#0f172a",
-                        "tertiary-fixed-dim": "#cbd5e1",
-                        "on-tertiary-fixed-variant": "#475569",
-                        "error-container": "#fee2e2",
-                        "secondary-fixed": "#dbeafe",
-                        "surface-container-highest": "#e2e8f0",
-                        "inverse-on-surface": "#f8fafc",
-                        "surface-tint": "#64748b",
-                        "on-tertiary-container": "#475569",
-                        "on-secondary-fixed-variant": "#1d4ed8",
-                        "on-primary-container": "#64748b",
-                        "primary-fixed-dim": "#cbd5e1",
-                        "on-primary-fixed": "#0f172a",
-                        "on-error-container": "#7f1d1d",
-                        "surface-container-lowest": "#ffffff",
-                        "error": "#b91c1c",
-                        "inverse-primary": "#cbd5e1",
-                        "secondary": "#0f172a",
-                        "outline-variant": "#e2e8f0",
-                        "inverse-surface": "#334155",
-                        "on-secondary": "#ffffff",
-                        "on-primary": "#ffffff",
-                        "outline": "#94a3b8"
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.125rem",
-                        "lg": "0.25rem",
-                        "xl": "0.5rem",
-                        "full": "0.75rem"
-                    },
-                    "spacing": {
-                        "stack-lg": "32px",
-                        "sidebar-width": "260px",
-                        "stack-md": "16px",
-                        "stack-sm": "8px",
-                        "unit": "4px",
-                        "gutter": "16px",
-                        "container-padding": "24px"
-                    },
-                    "fontFamily": {
-                        "label-md": ["JetBrains Mono"],
-                        "display-lg": ["Hanken Grotesk"],
-                        "body-md": ["Hanken Grotesk"],
-                        "body-lg": ["Hanken Grotesk"],
-                        "headline-sm": ["Hanken Grotesk"],
-                        "body-sm": ["Hanken Grotesk"],
-                        "label-sm": ["JetBrains Mono"],
-                        "headline-md": ["Hanken Grotesk"]
-                    },
-                    "fontSize": {
-                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
-                        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
-                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
-                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
-                        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
-                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
-                        "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500" }],
-                        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
-                    }
-                }
-            }
-        }
-    </script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "surface-bright": "#ffffff", "background": "#f8fafc", "primary-fixed": "#e2e8f0",
+        "surface": "#ffffff", "on-tertiary": "#ffffff", "tertiary": "#000000",
+        "surface-container-high": "#f1f5f9", "on-primary-fixed-variant": "#475569",
+        "on-background": "#0f172a", "primary-container": "#f1f5f9",
+        "tertiary-container": "#e2e8f0", "on-error": "#ffffff", "surface-dim": "#e2e8f0",
+        "secondary-fixed-dim": "#cbd5e1", "surface-container": "#f8fafc",
+        "on-secondary-fixed": "#0f172a", "surface-variant": "#f1f5f9",
+        "secondary-container": "#2563eb", "on-tertiary-fixed": "#0f172a",
+        "on-secondary-container": "#ffffff", "primary": "#0f172a",
+        "tertiary-fixed": "#e2e8f0", "on-surface-variant": "#64748b",
+        "surface-container-low": "#f8fafc", "on-surface": "#0f172a",
+        "tertiary-fixed-dim": "#cbd5e1", "on-tertiary-fixed-variant": "#475569",
+        "error-container": "#fee2e2", "secondary-fixed": "#dbeafe",
+        "surface-container-highest": "#e2e8f0", "inverse-on-surface": "#f8fafc",
+        "surface-tint": "#64748b", "on-tertiary-container": "#475569",
+        "on-secondary-fixed-variant": "#1d4ed8", "on-primary-container": "#64748b",
+        "primary-fixed-dim": "#cbd5e1", "on-primary-fixed": "#0f172a",
+        "on-error-container": "#7f1d1d", "surface-container-lowest": "#ffffff",
+        "error": "#b91c1c", "inverse-primary": "#cbd5e1", "secondary": "#0f172a",
+        "outline-variant": "#e2e8f0", "inverse-surface": "#334155",
+        "on-secondary": "#ffffff", "on-primary": "#ffffff", "outline": "#94a3b8"
+      },
+      borderRadius: { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" },
+      spacing: {
+        "stack-lg": "32px", "sidebar-width": "260px", "stack-md": "16px",
+        "stack-sm": "8px", "unit": "4px", "gutter": "16px", "container-padding": "24px"
+      },
+      fontFamily: {
+        "label-md": ["JetBrains Mono"], "display-lg": ["Hanken Grotesk"],
+        "body-md": ["Hanken Grotesk"], "body-lg": ["Hanken Grotesk"],
+        "headline-sm": ["Hanken Grotesk"], "body-sm": ["Hanken Grotesk"],
+        "label-sm": ["JetBrains Mono"], "headline-md": ["Hanken Grotesk"]
+      },
+      fontSize: {
+        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "500" }],
+        "display-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+        "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+        "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.03em", "fontWeight": "500" }],
+        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+      }
+    }
+  }
+}
+</script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .material-symbols-outlined.fill {
-            font-variation-settings: 'FILL' 1;
-        }
-
-        /* Dashboard Card Hover Effect */
-        .dashboard-card {
-            transition: border-color 0.2s ease, box-shadow 0.2s ease;
-        }
-        .dashboard-card:hover {
-            border-color: #cbd5e1;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-    </style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; display: inline-block; vertical-align: middle; }
+  .material-symbols-outlined.fill { font-variation-settings: 'FILL' 1; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+  .toggle-checkbox:checked { right: 0; border-color: #2563eb; background-color: #2563eb; }
+  .toggle-checkbox:checked + .toggle-label { background-color: #2563eb; }
+  input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { opacity: 1; }
+  .tag-chip { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 99px; background: #f1f5f9; border: 1px solid #e2e8f0; font-size: 11px; font-family: 'JetBrains Mono', monospace; color: #0f172a; }
+  .section-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+  .section-header { display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 14px; margin-bottom: 4px; }
+  .field-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.03em; font-weight: 500; color: #64748b; text-transform: uppercase; display: block; margin-bottom: 6px; }
+  .field-input { width: 100%; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 3px; padding: 8px 12px; font-size: 14px; line-height: 20px; color: #0f172a; outline: none; transition: border-color .15s, box-shadow .15s; }
+  .field-input:focus { border-color: #0f172a; box-shadow: 0 0 0 1px #0f172a; background: #fff; }
+  .field-hint { font-size: 12px; color: #94a3b8; margin-top: 4px; }
+  .req-dot { width: 6px; height: 6px; border-radius: 50%; background: #2563eb; display: inline-block; margin-left: 4px; flex-shrink: 0; }
+  .variation-table th { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.03em; text-transform: uppercase; color: #64748b; font-weight: 500; padding: 8px 12px; text-align: left; background: #f8fafc; border-bottom: 1px solid #e2e8f0; }
+  .variation-table td { padding: 8px 12px; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+  .variation-table tr:last-child td { border-bottom: none; }
+  .variation-table input { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 3px; padding: 5px 8px; font-size: 13px; font-family: 'JetBrains Mono', monospace; color: #0f172a; width: 100%; outline: none; }
+  .variation-table input:focus { border-color: #0f172a; box-shadow: 0 0 0 1px #0f172a; background: #fff; }
+</style>
 </head>
 <body class="bg-slate-50 text-slate-900 font-body-md antialiased overflow-x-hidden min-h-screen flex" data-page="new-product">
-<!-- SideNavBar (Persistent Desktop) -->
 <div id="app-sidebar"></div>
-<!-- TopNavBar -->
 <div id="app-header"></div>
 <script src="components.js"></script>
-<!-- Main Content Canvas -->
+
 <main class="flex-1 md:ml-sidebar-width pt-16 min-h-screen bg-slate-50 transition-all duration-300">
-<!-- Top Action Bar (Sticky) -->
-<div class="sticky top-16 z-30 bg-white/90 backdrop-blur-sm border-b border-slate-200 px-container-padding py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-<div class="flex items-center gap-3">
-<button aria-label="戻る" class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-100 text-slate-500 transition-colors" onclick="location.href='products.html'">
-<span class="material-symbols-outlined">arrow_back</span>
-</button>
-<div>
-<h1 class="font-headline-md text-headline-md text-slate-900 m-0 flex items-center gap-2">
-                        新規商品登録
-                        <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-label-sm text-label-sm uppercase tracking-wider border border-slate-200">下書き</span>
-</h1>
-</div>
-</div>
-<div class="flex items-center gap-3">
-<button class="px-4 py-2 font-label-md text-label-md text-slate-500 bg-transparent hover:bg-slate-100 rounded border border-transparent transition-colors">
-                    破棄
+
+  <!-- Sticky Top Action Bar -->
+  <div class="sticky top-16 z-30 bg-white/90 backdrop-blur-sm border-b border-slate-200 px-container-padding py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <button aria-label="戻る" class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-100 text-slate-500 transition-colors" onclick="location.href='products.html'">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </button>
+      <div>
+        <h1 class="font-headline-md text-headline-md text-slate-900 m-0 flex items-center gap-2">
+          新規商品登録
+          <span class="inline-flex items-center px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-label-sm text-label-sm uppercase tracking-wider border border-slate-200">下書き</span>
+        </h1>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <button class="px-4 py-2 font-label-md text-label-md text-slate-500 hover:bg-slate-100 rounded border border-transparent transition-colors">破棄</button>
+      <button class="px-4 py-2 font-label-md text-label-md text-slate-900 bg-white border border-slate-200 rounded hover:bg-slate-50 transition-colors shadow-sm">下書き保存</button>
+      <button class="px-4 py-2 font-label-md text-label-md text-white bg-blue-600 hover:bg-blue-700 rounded shadow-sm transition-colors flex items-center gap-2">
+        <span class="material-symbols-outlined text-[18px]">publish</span>商品を公開
+      </button>
+    </div>
+  </div>
+
+  <!-- Content Grid -->
+  <div class="max-w-[1440px] mx-auto p-container-padding">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- ======================================================
+           LEFT MAIN COLUMN
+      ====================================================== -->
+      <div class="lg:col-span-8 flex flex-col gap-6">
+
+        <!-- ────────────────────────────────────────────────────
+             ブロック1：基本情報
+        ──────────────────────────────────────────────────── -->
+        <section class="section-card">
+          <div class="section-header">
+            <span class="material-symbols-outlined text-blue-600">info</span>
+            <h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">基本情報</h2>
+          </div>
+
+          <!-- 商品名 -->
+          <div>
+            <label class="field-label" for="product-name">商品名 <span class="req-dot"></span></label>
+            <input class="field-input" id="product-name" type="text" placeholder="例：プレミアム人間工学オフィスチェア"/>
+            <p class="field-hint">サイズ・素材・特定の機能など重要なキーワードを含めてください。</p>
+          </div>
+
+          <!-- カテゴリ -->
+          <div>
+            <label class="field-label" for="cat-main">カテゴリ <span class="req-dot"></span></label>
+            <div class="relative">
+              <select class="field-input appearance-none pr-8" id="cat-main">
+                <option value="" disabled selected>カテゴリを選択...</option>
+                <option>アパレル</option>
+                <option>食品・飲料</option>
+                <option>家電・AV機器</option>
+                <option>家具・インテリア</option>
+                <option>スポーツ・アウトドア</option>
+                <option>美容・コスメ</option>
+                <option>おもちゃ・ホビー</option>
+              </select>
+              <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[18px]">expand_more</span>
+            </div>
+            <button class="text-left font-label-sm text-label-sm text-blue-600 hover:underline mt-1 self-start">+ 新規カテゴリー作成</button>
+          </div>
+
+          <!-- URL スラッグ / ハンドル -->
+          <div>
+            <label class="field-label" for="slug">URLスラッグ / ハンドル</label>
+            <div class="flex items-center border border-slate-200 rounded overflow-hidden bg-slate-50 focus-within:ring-1 focus-within:ring-slate-900 focus-within:border-slate-900 transition-all">
+              <span class="px-3 py-2 bg-slate-100 border-r border-slate-200 font-label-sm text-label-sm text-slate-500 whitespace-nowrap shrink-0">/products/</span>
+              <input class="flex-1 bg-transparent px-3 py-2 font-label-md text-label-md text-slate-900 outline-none" id="slug" type="text" placeholder="premium-ergonomic-chair" oninput="this.value=this.value.toLowerCase().replace(/[^a-z0-9-]/g,'-')"/>
+            </div>
+            <p class="field-hint">英数字とハイフンのみ使用可。URLに自動反映されます。</p>
+          </div>
+
+          <!-- 商品詳細（リッチテキスト） -->
+          <div>
+            <label class="field-label" for="product-desc">商品詳細 <span class="req-dot"></span></label>
+            <div class="border border-slate-200 rounded overflow-hidden focus-within:ring-1 focus-within:ring-slate-900 focus-within:border-slate-900">
+              <div class="flex items-center flex-wrap gap-0.5 p-1 bg-slate-50 border-b border-slate-200">
+                <button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors" title="太字"><span class="material-symbols-outlined text-[17px]">format_bold</span></button>
+                <button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors" title="斜体"><span class="material-symbols-outlined text-[17px]">format_italic</span></button>
+                <button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors" title="下線"><span class="material-symbols-outlined text-[17px]">format_underlined</span></button>
+                <div class="w-px h-5 bg-slate-200 mx-1"></div>
+                <button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors" title="箇条書き"><span class="material-symbols-outlined text-[17px]">format_list_bulleted</span></button>
+                <button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors" title="番号リスト"><span class="material-symbols-outlined text-[17px]">format_list_numbered</span></button>
+                <div class="w-px h-5 bg-slate-200 mx-1"></div>
+                <button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors" title="リンク"><span class="material-symbols-outlined text-[17px]">link</span></button>
+                <button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors" title="画像挿入"><span class="material-symbols-outlined text-[17px]">image</span></button>
+                <div class="w-px h-5 bg-slate-200 mx-1"></div>
+                <select class="text-[12px] font-label-sm text-slate-500 bg-transparent border-none outline-none px-1 cursor-pointer">
+                  <option>本文</option><option>見出し1</option><option>見出し2</option><option>見出し3</option>
+                </select>
+              </div>
+              <textarea class="w-full bg-white px-4 py-3 font-body-md text-body-md text-slate-900 outline-none resize-y" id="product-desc" rows="7" placeholder="商品の詳細な説明を入力してください...&#10;&#10;特長・素材・使用方法・注意事項など"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- ────────────────────────────────────────────────────
+             メディアアップロード（基本情報に続く独立セクション）
+        ──────────────────────────────────────────────────── -->
+        <section class="section-card">
+          <div class="section-header justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-blue-600">perm_media</span>
+              <h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">メディア</h2>
+            </div>
+            <button class="font-label-sm text-label-sm text-blue-600 hover:underline flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px]">link</span>URLから追加
+            </button>
+          </div>
+
+          <!-- D&D Zone -->
+          <div id="drag-zone" class="border-2 border-dashed border-slate-200 rounded-lg bg-slate-50 hover:bg-blue-50 hover:border-blue-400 transition-all cursor-pointer flex flex-col items-center justify-center py-10 px-4 text-center group">
+            <div class="w-14 h-14 rounded-full bg-white border border-slate-200 flex items-center justify-center mb-3 group-hover:border-blue-300 group-hover:bg-blue-50 transition-colors shadow-sm">
+              <span class="material-symbols-outlined text-[28px] text-slate-400 group-hover:text-blue-500 transition-colors">cloud_upload</span>
+            </div>
+            <p class="font-body-md text-body-md text-slate-700 font-semibold mb-1">画像をドラッグ＆ドロップ</p>
+            <p class="font-body-sm text-body-sm text-slate-400 mb-3">またはPCからファイルを選択</p>
+            <button class="px-4 py-1.5 font-label-md text-label-md text-slate-700 bg-white border border-slate-200 rounded shadow-sm hover:bg-slate-50 transition-colors pointer-events-none">ファイルを選択</button>
+            <p class="font-label-sm text-label-sm text-slate-400 mt-3 uppercase tracking-wider">JPG / PNG / WEBP · 最大 5MB</p>
+          </div>
+
+          <!-- メイン画像 + サブ画像グリッド（アップロード後イメージ） -->
+          <div>
+            <p class="field-label mb-3">アップロード済み画像（例）</p>
+            <div class="flex gap-3 overflow-x-auto pb-2">
+              <!-- メイン画像 -->
+              <div class="shrink-0 w-36">
+                <div class="relative w-36 h-36 rounded-lg border-2 border-blue-500 overflow-hidden bg-slate-100 group cursor-grab">
+                  <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&h=200&fit=crop" class="w-full h-full object-cover" alt="メイン画像"/>
+                  <div class="absolute top-1.5 left-1.5">
+                    <span class="px-1.5 py-0.5 bg-blue-600 text-white font-label-sm text-label-sm rounded">メイン</span>
+                  </div>
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                    <button class="w-7 h-7 rounded-full bg-white flex items-center justify-center" title="移動"><span class="material-symbols-outlined text-slate-700 text-[16px]">drag_indicator</span></button>
+                    <button class="w-7 h-7 rounded-full bg-white flex items-center justify-center" title="削除"><span class="material-symbols-outlined text-red-500 text-[16px]">delete</span></button>
+                  </div>
+                </div>
+                <input class="mt-2 w-full text-[11px] font-label-sm px-2 py-1 border border-slate-200 rounded bg-slate-50 text-slate-700 outline-none focus:border-slate-900" placeholder="Alt属性（代替テキスト）" title="Alt属性"/>
+              </div>
+              <!-- サブ画像1 -->
+              <div class="shrink-0 w-36">
+                <div class="relative w-36 h-36 rounded-lg border border-slate-200 overflow-hidden bg-slate-100 group cursor-grab">
+                  <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&h=200&fit=crop" class="w-full h-full object-cover" alt="サブ画像1"/>
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                    <button class="w-7 h-7 rounded-full bg-white flex items-center justify-center" title="移動"><span class="material-symbols-outlined text-slate-700 text-[16px]">drag_indicator</span></button>
+                    <button class="w-7 h-7 rounded-full bg-white flex items-center justify-center" title="削除"><span class="material-symbols-outlined text-red-500 text-[16px]">delete</span></button>
+                  </div>
+                </div>
+                <input class="mt-2 w-full text-[11px] font-label-sm px-2 py-1 border border-slate-200 rounded bg-slate-50 text-slate-700 outline-none focus:border-slate-900" placeholder="Alt属性（代替テキスト）" title="Alt属性"/>
+              </div>
+              <!-- サブ画像2 -->
+              <div class="shrink-0 w-36">
+                <div class="relative w-36 h-36 rounded-lg border border-slate-200 overflow-hidden bg-slate-100 group cursor-grab">
+                  <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=200&h=200&fit=crop" class="w-full h-full object-cover" alt="サブ画像2"/>
+                  <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                    <button class="w-7 h-7 rounded-full bg-white flex items-center justify-center" title="移動"><span class="material-symbols-outlined text-slate-700 text-[16px]">drag_indicator</span></button>
+                    <button class="w-7 h-7 rounded-full bg-white flex items-center justify-center" title="削除"><span class="material-symbols-outlined text-red-500 text-[16px]">delete</span></button>
+                  </div>
+                </div>
+                <input class="mt-2 w-full text-[11px] font-label-sm px-2 py-1 border border-slate-200 rounded bg-slate-50 text-slate-700 outline-none focus:border-slate-900" placeholder="Alt属性（代替テキスト）" title="Alt属性"/>
+              </div>
+              <!-- 追加ボタン -->
+              <div class="shrink-0 w-36 h-36 rounded-lg border-2 border-dashed border-slate-200 flex flex-col items-center justify-center text-slate-400 cursor-pointer hover:border-blue-400 hover:text-blue-500 hover:bg-blue-50 transition-all">
+                <span class="material-symbols-outlined text-[28px]">add_photo_alternate</span>
+                <span class="font-label-sm text-label-sm mt-1">追加</span>
+              </div>
+            </div>
+            <p class="field-hint mt-2">ドラッグで並び替え可能。一番左がメイン画像として使用されます。</p>
+          </div>
+        </section>
+
+        <!-- ────────────────────────────────────────────────────
+             ブロック2：価格と税金
+        ──────────────────────────────────────────────────── -->
+        <section class="section-card">
+          <div class="section-header">
+            <span class="material-symbols-outlined text-blue-600">sell</span>
+            <h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">価格と税金</h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <!-- 販売価格 -->
+            <div>
+              <label class="field-label" for="price">販売価格 <span class="req-dot"></span></label>
+              <div class="relative">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 font-label-md text-label-md text-slate-400">¥</span>
+                <input class="field-input pl-7" id="price" type="number" min="0" step="1" placeholder="0"/>
+              </div>
+              <p class="field-hint">実際に顧客に請求する価格</p>
+            </div>
+            <!-- 比較価格（定価・元値） -->
+            <div>
+              <label class="field-label" for="compare-price">比較価格（定価・元値）</label>
+              <div class="relative">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 font-label-md text-label-md text-slate-400">¥</span>
+                <input class="field-input pl-7" id="compare-price" type="number" min="0" step="1" placeholder="0"/>
+              </div>
+              <p class="field-hint">定価より安い場合「SALE」バッジを表示</p>
+            </div>
+            <!-- 仕入れ原価 -->
+            <div>
+              <label class="field-label" for="cost-price">仕入れ原価</label>
+              <div class="relative">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 font-label-md text-label-md text-slate-400">¥</span>
+                <input class="field-input pl-7" id="cost-price" type="number" min="0" step="1" placeholder="0"/>
+              </div>
+              <p class="field-hint">顧客には非表示。利益計算に使用</p>
+            </div>
+          </div>
+
+          <!-- 粗利プレビュー -->
+          <div class="flex items-center gap-4 bg-slate-50 border border-slate-200 rounded px-4 py-3">
+            <div class="text-center">
+              <p class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider">粗利益</p>
+              <p class="font-label-md text-label-md text-slate-900 font-bold">—</p>
+            </div>
+            <div class="w-px h-8 bg-slate-200"></div>
+            <div class="text-center">
+              <p class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider">粗利率</p>
+              <p class="font-label-md text-label-md text-slate-900 font-bold">—</p>
+            </div>
+            <div class="w-px h-8 bg-slate-200"></div>
+            <div class="text-center">
+              <p class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider">値引き率</p>
+              <p class="font-label-md text-label-md text-slate-900 font-bold">—</p>
+            </div>
+          </div>
+
+          <!-- 課税 -->
+          <div class="border-t border-slate-100 pt-4">
+            <p class="field-label mb-3">課税設定</p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <!-- 課税フラグ -->
+              <div class="flex items-center justify-between bg-slate-50 border border-slate-200 rounded px-4 py-3 flex-1">
+                <div>
+                  <p class="font-body-md text-body-md text-slate-900 font-medium">この商品に課税する</p>
+                  <p class="font-body-sm text-body-sm text-slate-500">オフにすると非課税商品として扱われます</p>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer ml-4 shrink-0">
+                  <input type="checkbox" id="tax-flag" class="sr-only peer" checked/>
+                  <div class="w-11 h-6 bg-slate-200 peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
+                </label>
+              </div>
+              <!-- 税率区分 -->
+              <div class="flex-1">
+                <label class="field-label" for="tax-class">税率区分</label>
+                <div class="relative">
+                  <select class="field-input appearance-none pr-8" id="tax-class">
+                    <option>標準税率（10%）</option>
+                    <option>軽減税率（8%）</option>
+                    <option>非課税</option>
+                    <option>免税</option>
+                  </select>
+                  <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[18px]">expand_more</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ────────────────────────────────────────────────────
+             ブロック3：在庫・識別コード
+        ──────────────────────────────────────────────────── -->
+        <section class="section-card">
+          <div class="section-header">
+            <span class="material-symbols-outlined text-blue-600">inventory_2</span>
+            <h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">在庫・識別コード</h2>
+          </div>
+
+          <!-- SKU / JAN -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="field-label" for="sku">SKU（在庫管理コード）<span class="req-dot"></span></label>
+              <input class="field-input font-label-md text-label-md uppercase" id="sku" type="text" placeholder="例：APR-TSH-RED-M"/>
+              <p class="field-hint">社内で商品を一意に識別するコード</p>
+            </div>
+            <div>
+              <label class="field-label" for="barcode">JANコード / EAN / UPC</label>
+              <div class="relative">
+                <input class="field-input font-label-md text-label-md pr-10" id="barcode" type="text" placeholder="0000000000000"/>
+                <button class="absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 transition-colors" title="バーコードスキャン">
+                  <span class="material-symbols-outlined text-[20px]">barcode_scanner</span>
                 </button>
-<button class="px-4 py-2 font-label-md text-label-md text-slate-900 bg-white border border-slate-200 rounded hover:bg-slate-50 transition-colors shadow-sm">
-                    下書き保存
+              </div>
+              <p class="field-hint">13桁（JAN/EAN）または12桁（UPC）</p>
+            </div>
+          </div>
+
+          <!-- 在庫追跡フラグ -->
+          <div class="border-t border-slate-100 pt-4">
+            <p class="field-label mb-3">在庫数の追跡</p>
+            <div class="flex flex-col gap-2">
+              <label class="flex items-start gap-3 cursor-pointer p-3 rounded border border-slate-200 hover:bg-slate-50 transition-colors" id="track-label-on">
+                <input type="radio" name="inventory-mode" value="track" class="mt-0.5 w-4 h-4 text-blue-600 border-slate-300" checked onchange="toggleInventoryMode(this)"/>
+                <div>
+                  <p class="font-body-md text-body-md text-slate-900 font-medium">在庫数を追跡する</p>
+                  <p class="font-body-sm text-body-sm text-slate-500">売上に合わせて在庫数が自動的に減少します。</p>
+                </div>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer p-3 rounded border border-slate-200 hover:bg-slate-50 transition-colors" id="track-label-off">
+                <input type="radio" name="inventory-mode" value="infinite" class="mt-0.5 w-4 h-4 text-blue-600 border-slate-300" onchange="toggleInventoryMode(this)"/>
+                <div>
+                  <p class="font-body-md text-body-md text-slate-900 font-medium">常に在庫あり（無制限に販売）</p>
+                  <p class="font-body-sm text-body-sm text-slate-500">在庫数を管理せず、常に購入可能な状態にします。</p>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- ロケーション別在庫 -->
+          <div id="warehouse-section">
+            <p class="field-label mb-3">倉庫・ロケーション別在庫数</p>
+            <div class="border border-slate-200 rounded overflow-hidden">
+              <table class="w-full text-sm variation-table">
+                <thead>
+                  <tr>
+                    <th>倉庫 / ロケーション</th>
+                    <th class="text-right w-32">在庫数</th>
+                    <th class="w-10"></th>
+                  </tr>
+                </thead>
+                <tbody id="warehouse-rows">
+                  <tr>
+                    <td>
+                      <input type="text" value="東京倉庫（A）" class="font-body-md" style="font-family: 'Hanken Grotesk', sans-serif;"/>
+                    </td>
+                    <td class="text-right">
+                      <input type="number" value="10" min="0" class="text-right w-24"/>
+                    </td>
+                    <td>
+                      <button class="text-slate-400 hover:text-red-500 transition-colors" onclick="removeRow(this)">
+                        <span class="material-symbols-outlined text-[18px]">remove_circle_outline</span>
+                      </button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="text" value="大阪倉庫（B）" class="font-body-md" style="font-family: 'Hanken Grotesk', sans-serif;"/>
+                    </td>
+                    <td class="text-right">
+                      <input type="number" value="5" min="0" class="text-right w-24"/>
+                    </td>
+                    <td>
+                      <button class="text-slate-400 hover:text-red-500 transition-colors" onclick="removeRow(this)">
+                        <span class="material-symbols-outlined text-[18px]">remove_circle_outline</span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td colspan="3" class="pt-2 px-3 pb-2">
+                      <button onclick="addWarehouseRow()" class="flex items-center gap-1 font-label-sm text-label-sm text-blue-600 hover:underline">
+                        <span class="material-symbols-outlined text-[16px]">add_circle_outline</span>倉庫を追加
+                      </button>
+                    </td>
+                  </tr>
+                  <tr class="bg-slate-50 border-t border-slate-200">
+                    <td class="px-3 py-2 font-label-sm text-label-sm text-slate-500 uppercase tracking-wider">合計在庫数</td>
+                    <td class="px-3 py-2 text-right font-label-md text-label-md text-slate-900 font-bold" id="total-stock">15</td>
+                    <td></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+
+          <!-- 在庫切れ時の挙動 -->
+          <div id="stockout-section">
+            <p class="field-label mb-3">在庫切れ時の挙動</p>
+            <div class="flex flex-col gap-2">
+              <label class="flex items-start gap-3 cursor-pointer p-3 rounded border border-slate-200 hover:bg-slate-50 transition-colors">
+                <input type="radio" name="stockout" value="stop" class="mt-0.5 w-4 h-4 text-blue-600 border-slate-300" checked/>
+                <div>
+                  <p class="font-body-md text-body-md text-slate-900 font-medium">在庫切れで販売停止</p>
+                  <p class="font-body-sm text-body-sm text-slate-500">在庫ゼロになると「売り切れ」表示になり購入不可になります。</p>
+                </div>
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer p-3 rounded border border-slate-200 hover:bg-slate-50 transition-colors">
+                <input type="radio" name="stockout" value="backorder" class="mt-0.5 w-4 h-4 text-blue-600 border-slate-300"/>
+                <div>
+                  <p class="font-body-md text-body-md text-slate-900 font-medium">バックオーダー・予約販売を受け付ける</p>
+                  <p class="font-body-sm text-body-sm text-slate-500">在庫ゼロでも購入可能。入荷後に発送します。</p>
+                </div>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- ────────────────────────────────────────────────────
+             ブロック4：バリエーション
+        ──────────────────────────────────────────────────── -->
+        <section class="section-card">
+          <div class="section-header justify-between">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-blue-600">tune</span>
+              <h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">バリエーション</h2>
+            </div>
+            <!-- バリエーション有効フラグ -->
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" id="variation-toggle" class="sr-only peer" onchange="toggleVariations(this)"/>
+              <div class="w-11 h-6 bg-slate-200 peer-focus:ring-2 peer-focus:ring-blue-300 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
+              <span class="ml-2 font-label-md text-label-md text-slate-500 peer-checked:text-blue-600">バリエーションあり</span>
+            </label>
+          </div>
+
+          <!-- OFF 状態 -->
+          <div id="variation-off" class="flex flex-col items-center py-8 text-center text-slate-400">
+            <span class="material-symbols-outlined text-[40px] mb-2">view_module</span>
+            <p class="font-body-md text-body-md">バリエーションがない場合はオフのままでOKです。</p>
+            <p class="font-body-sm text-body-sm mt-1">サイズ・カラーなど複数の種類がある場合は右上のトグルをオンにしてください。</p>
+          </div>
+
+          <!-- ON 状態（初期非表示） -->
+          <div id="variation-on" class="hidden flex-col gap-6">
+
+            <!-- オプション定義 -->
+            <div>
+              <p class="field-label mb-3">オプション選択肢の定義</p>
+              <div class="flex flex-col gap-3" id="option-defs">
+                <!-- オプション1 -->
+                <div class="flex gap-3 items-start option-row">
+                  <div class="flex-1 grid grid-cols-1 sm:grid-cols-5 gap-2">
+                    <div class="sm:col-span-2">
+                      <label class="field-label">オプション名</label>
+                      <div class="relative">
+                        <select class="field-input appearance-none pr-8 text-sm">
+                          <option>サイズ</option><option>カラー</option><option>素材</option><option>スタイル</option><option>カスタム</option>
+                        </select>
+                        <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[16px]">expand_more</span>
+                      </div>
+                    </div>
+                    <div class="sm:col-span-3">
+                      <label class="field-label">値（カンマ区切り）</label>
+                      <input class="field-input text-sm" type="text" placeholder="例：S, M, L, XL" value="S, M, L, XL"/>
+                    </div>
+                  </div>
+                  <button onclick="removeOptionRow(this)" class="mt-6 text-slate-400 hover:text-red-500 transition-colors shrink-0">
+                    <span class="material-symbols-outlined text-[20px]">delete_outline</span>
+                  </button>
+                </div>
+                <!-- オプション2 -->
+                <div class="flex gap-3 items-start option-row">
+                  <div class="flex-1 grid grid-cols-1 sm:grid-cols-5 gap-2">
+                    <div class="sm:col-span-2">
+                      <label class="field-label">オプション名</label>
+                      <div class="relative">
+                        <select class="field-input appearance-none pr-8 text-sm">
+                          <option>サイズ</option><option selected>カラー</option><option>素材</option><option>スタイル</option><option>カスタム</option>
+                        </select>
+                        <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[16px]">expand_more</span>
+                      </div>
+                    </div>
+                    <div class="sm:col-span-3">
+                      <label class="field-label">値（カンマ区切り）</label>
+                      <input class="field-input text-sm" type="text" placeholder="例：レッド, ブルー, ブラック" value="レッド, ブルー, ブラック"/>
+                    </div>
+                  </div>
+                  <button onclick="removeOptionRow(this)" class="mt-6 text-slate-400 hover:text-red-500 transition-colors shrink-0">
+                    <span class="material-symbols-outlined text-[20px]">delete_outline</span>
+                  </button>
+                </div>
+              </div>
+              <button onclick="addOptionRow()" class="mt-3 flex items-center gap-1 font-label-sm text-label-sm text-blue-600 hover:underline">
+                <span class="material-symbols-outlined text-[16px]">add</span>オプションを追加（最大3つ）
+              </button>
+            </div>
+
+            <!-- バリエーション一覧テーブル（バルク編集） -->
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <p class="field-label">バリエーション一覧（バルク編集）</p>
+                <button class="font-label-sm text-label-sm text-blue-600 hover:underline flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[16px]">auto_fix_high</span>一括設定
                 </button>
-<button class="px-4 py-2 font-label-md text-label-md text-white bg-blue-600 hover:bg-blue-700 rounded shadow-sm transition-colors flex items-center gap-2">
-<span class="material-symbols-outlined text-[18px]">publish</span>
-                    商品を公開
+              </div>
+              <div class="border border-slate-200 rounded overflow-x-auto">
+                <table class="w-full variation-table text-sm min-w-[700px]">
+                  <thead>
+                    <tr>
+                      <th class="w-8"><input type="checkbox" class="w-4 h-4 text-blue-600 rounded border-slate-300"/></th>
+                      <th>バリエーション</th>
+                      <th class="w-28">価格（¥）</th>
+                      <th class="w-24">在庫数</th>
+                      <th class="w-36">JANコード</th>
+                      <th class="w-28">画像</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="hover:bg-slate-50">
+                      <td><input type="checkbox" class="w-4 h-4 text-blue-600 rounded border-slate-300"/></td>
+                      <td>
+                        <div class="flex items-center gap-2">
+                          <span class="px-2 py-0.5 bg-slate-100 rounded font-label-sm text-label-sm text-slate-700">S</span>
+                          <span class="px-2 py-0.5 bg-red-100 rounded font-label-sm text-label-sm text-red-700">レッド</span>
+                        </div>
+                      </td>
+                      <td><input type="number" placeholder="—" min="0"/></td>
+                      <td><input type="number" value="8" min="0"/></td>
+                      <td><input type="text" placeholder="0000000000000"/></td>
+                      <td>
+                        <button class="flex items-center gap-1 text-slate-400 hover:text-blue-600 transition-colors text-[12px] font-label-sm">
+                          <span class="material-symbols-outlined text-[16px]">add_photo_alternate</span>画像を選択
+                        </button>
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                      <td><input type="checkbox" class="w-4 h-4 text-blue-600 rounded border-slate-300"/></td>
+                      <td>
+                        <div class="flex items-center gap-2">
+                          <span class="px-2 py-0.5 bg-slate-100 rounded font-label-sm text-label-sm text-slate-700">S</span>
+                          <span class="px-2 py-0.5 bg-blue-100 rounded font-label-sm text-label-sm text-blue-700">ブルー</span>
+                        </div>
+                      </td>
+                      <td><input type="number" placeholder="—" min="0"/></td>
+                      <td><input type="number" value="3" min="0"/></td>
+                      <td><input type="text" placeholder="0000000000000"/></td>
+                      <td>
+                        <button class="flex items-center gap-1 text-slate-400 hover:text-blue-600 transition-colors text-[12px] font-label-sm">
+                          <span class="material-symbols-outlined text-[16px]">add_photo_alternate</span>画像を選択
+                        </button>
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                      <td><input type="checkbox" class="w-4 h-4 text-blue-600 rounded border-slate-300"/></td>
+                      <td>
+                        <div class="flex items-center gap-2">
+                          <span class="px-2 py-0.5 bg-slate-100 rounded font-label-sm text-label-sm text-slate-700">M</span>
+                          <span class="px-2 py-0.5 bg-red-100 rounded font-label-sm text-label-sm text-red-700">レッド</span>
+                        </div>
+                      </td>
+                      <td><input type="number" placeholder="—" min="0"/></td>
+                      <td><input type="number" value="12" min="0"/></td>
+                      <td><input type="text" placeholder="0000000000000"/></td>
+                      <td>
+                        <button class="flex items-center gap-1 text-slate-400 hover:text-blue-600 transition-colors text-[12px] font-label-sm">
+                          <span class="material-symbols-outlined text-[16px]">add_photo_alternate</span>画像を選択
+                        </button>
+                      </td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                      <td><input type="checkbox" class="w-4 h-4 text-blue-600 rounded border-slate-300"/></td>
+                      <td>
+                        <div class="flex items-center gap-2">
+                          <span class="px-2 py-0.5 bg-slate-100 rounded font-label-sm text-label-sm text-slate-700">L</span>
+                          <span class="px-2 py-0.5 bg-slate-900 rounded font-label-sm text-label-sm text-white">ブラック</span>
+                        </div>
+                      </td>
+                      <td><input type="number" value="500" min="0"/></td>
+                      <td><input type="number" value="6" min="0"/></td>
+                      <td><input type="text" placeholder="0000000000000"/></td>
+                      <td>
+                        <button class="flex items-center gap-1 text-slate-400 hover:text-blue-600 transition-colors text-[12px] font-label-sm">
+                          <span class="material-symbols-outlined text-[16px]">add_photo_alternate</span>画像を選択
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="field-hint mt-2">価格・JANは空白でも保存可能。空の場合は親商品の設定を引き継ぎます。</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ────────────────────────────────────────────────────
+             ブロック5：組織・分類・マーケティング
+        ──────────────────────────────────────────────────── -->
+        <section class="section-card">
+          <div class="section-header">
+            <span class="material-symbols-outlined text-blue-600">label</span>
+            <h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">組織・分類・マーケティング</h2>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- 商品タイプ（大分類） -->
+            <div>
+              <label class="field-label" for="product-type">商品タイプ（大分類）</label>
+              <div class="relative">
+                <select class="field-input appearance-none pr-8" id="product-type">
+                  <option value="" disabled selected>タイプを選択...</option>
+                  <option>アパレル</option>
+                  <option>食品・飲料</option>
+                  <option>家電・AV機器</option>
+                  <option>家具・インテリア</option>
+                  <option>コスメ・美容</option>
+                  <option>スポーツ・アウトドア</option>
+                  <option>おもちゃ・ホビー</option>
+                  <option>デジタルコンテンツ</option>
+                </select>
+                <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[18px]">expand_more</span>
+              </div>
+            </div>
+
+            <!-- 販売元 / ブランド / メーカー名 -->
+            <div>
+              <label class="field-label" for="brand">販売元 / ブランド / メーカー名</label>
+              <input class="field-input" id="brand" type="text" placeholder="例：Nike, 無印良品, 自社ブランド"/>
+            </div>
+          </div>
+
+          <!-- コレクション紐付け -->
+          <div>
+            <label class="field-label" for="collection-input">コレクション紐付け</label>
+            <div class="relative">
+              <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[18px]">folder</span>
+              <input class="field-input pl-9" id="collection-input" type="text" placeholder="コレクション名を検索または作成..." list="collection-list"/>
+              <datalist id="collection-list">
+                <option>新着</option><option>セール</option><option>トップス</option>
+                <option>ボトムス</option><option>アウター</option><option>限定商品</option><option>人気ランキング</option>
+              </datalist>
+            </div>
+            <!-- 適用済みコレクション -->
+            <div class="flex flex-wrap gap-2 mt-2" id="collection-chips">
+              <span class="tag-chip">
+                新着
+                <button class="text-slate-400 hover:text-red-500 transition-colors" onclick="this.parentElement.remove()">
+                  <span class="material-symbols-outlined text-[13px]">close</span>
                 </button>
-</div>
-</div>
-<!-- Content Area -->
-<div class="max-w-[1440px] mx-auto p-container-padding">
-<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-<!-- Main Column (Forms) -->
-<div class="lg:col-span-8 flex flex-col gap-6">
-<!-- Basic Information Card -->
-<section class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col gap-6">
-<div class="flex items-center gap-2 border-b border-slate-100 pb-4 mb-2">
-<span class="material-symbols-outlined text-blue-600">info</span>
-<h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">基本情報</h2>
-</div>
-<div class="flex flex-col gap-1.5">
-<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider flex items-center gap-1" for="product-name">
-                                商品名 <span class="w-1.5 h-1.5 rounded-full bg-blue-600 inline-block ml-1" title="Required"></span>
-</label>
-<input class="w-full bg-slate-50 border border-slate-200 rounded px-3 py-2.5 font-body-md text-body-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all" id="product-name" placeholder="例：プレミアム人間工学オフィスチェア" type="text"/>
-<p class="font-body-sm text-body-sm text-slate-500 mt-1">サイズ、素材、特定の機能などの重要な要素を含めてください。</p>
-</div>
-<div class="flex flex-col gap-1.5">
-<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider flex items-center gap-1" for="product-desc">
-                                商品説明 <span class="w-1.5 h-1.5 rounded-full bg-blue-600 inline-block ml-1" title="Required"></span>
-</label>
-<!-- Fake Rich Text Toolbar -->
-<div class="border border-slate-200 border-b-0 rounded-t flex items-center gap-1 p-1 bg-slate-50 overflow-x-auto">
-<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors"><span class="material-symbols-outlined text-[18px]">format_bold</span></button>
-<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors"><span class="material-symbols-outlined text-[18px]">format_italic</span></button>
-<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors"><span class="material-symbols-outlined text-[18px]">format_underlined</span></button>
-<div class="w-px h-5 bg-slate-200 mx-1"></div>
-<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors"><span class="material-symbols-outlined text-[18px]">format_list_bulleted</span></button>
-<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors"><span class="material-symbols-outlined text-[18px]">format_list_numbered</span></button>
-<div class="w-px h-5 bg-slate-200 mx-1"></div>
-<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors"><span class="material-symbols-outlined text-[18px]">link</span></button>
-<button class="w-8 h-8 flex items-center justify-center rounded hover:bg-slate-200 text-slate-500 transition-colors"><span class="material-symbols-outlined text-[18px]">image</span></button>
-</div>
-<textarea class="w-full bg-white border border-slate-200 rounded-b px-3 py-2.5 font-body-md text-body-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all resize-y" id="product-desc" placeholder="商品の詳細な説明を入力してください..." rows="6"></textarea>
-</div>
-</section>
-<!-- Media Upload Card -->
-<section class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col gap-6">
-<div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-2">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-blue-600">perm_media</span>
-<h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">メディア</h2>
-</div>
-<button class="font-label-sm text-label-sm text-blue-600 hover:underline">URLから追加</button>
-</div>
-<!-- Drag & Drop Zone -->
-<div class="border-2 border-dashed border-slate-200 rounded-lg bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer flex flex-col items-center justify-center py-12 px-4 text-center group">
-<div class="w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mb-4 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
-<span class="material-symbols-outlined text-[32px] text-slate-500 group-hover:text-blue-600 transition-colors">cloud_upload</span>
-</div>
-<h3 class="font-headline-sm text-headline-sm text-slate-900 mb-1">画像をここにドラッグ＆ドロップ</h3>
-<p class="font-body-sm text-body-sm text-slate-500 mb-4">またはPCからファイルを選択</p>
-<button class="px-4 py-2 font-label-md text-label-md text-slate-900 bg-white border border-slate-200 rounded shadow-sm hover:bg-slate-50 transition-colors pointer-events-none">
-                                ファイルを選択
-                            </button>
-<p class="font-label-sm text-label-sm text-slate-400 mt-4 uppercase tracking-wider">受け入れ可能な形式：JPG, PNG, WEBP。最大サイズ 5MB。</p>
-</div>
-<!-- Empty State for uploaded images -->
-<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-<!-- Placeholder for when an image is added -->
-</div>
-</section>
-<!-- Pricing & Inventory Card -->
-<section class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col gap-6">
-<div class="flex items-center gap-2 border-b border-slate-100 pb-4 mb-2">
-<span class="material-symbols-outlined text-blue-600">sell</span>
-<h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">価格と在庫</h2>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-6">
-<!-- Pricing Fieldset -->
-<fieldset class="flex flex-col gap-4 border border-slate-200 p-4 rounded bg-slate-50">
-<legend class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider px-2 ml-2 bg-white">価格設定</legend>
-<div class="flex flex-col gap-1.5">
-<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider flex items-center gap-1" for="price">
-                                        通常価格 <span class="w-1.5 h-1.5 rounded-full bg-blue-600 inline-block ml-1" title="Required"></span>
-</label>
-<div class="relative">
-<span class="absolute left-3 top-1/2 -translate-y-1/2 font-label-md text-label-md text-slate-500">¥</span>
-<input class="w-full bg-white border border-slate-200 rounded pl-7 pr-3 py-2 font-label-md text-label-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all" id="price" min="0" placeholder="0" step="1" type="number"/>
-</div>
-</div>
-<div class="flex flex-col gap-1.5">
-<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider" for="sale-price">セール価格</label>
-<div class="relative">
-<span class="absolute left-3 top-1/2 -translate-y-1/2 font-label-md text-label-md text-slate-500">¥</span>
-<input class="w-full bg-white border border-slate-200 rounded pl-7 pr-3 py-2 font-label-md text-label-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all" id="sale-price" min="0" placeholder="0" step="1" type="number"/>
-</div>
-</div>
-</fieldset>
-<!-- Inventory Fieldset -->
-<fieldset class="flex flex-col gap-4 border border-slate-200 p-4 rounded bg-slate-50">
-<legend class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider px-2 ml-2 bg-white">在庫詳細</legend>
-<div class="flex flex-col gap-1.5">
-<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider flex items-center gap-1" for="sku">
-                                        SKU <span class="w-1.5 h-1.5 rounded-full bg-blue-600 inline-block ml-1" title="Required"></span>
-</label>
-<input class="w-full bg-white border border-slate-200 rounded px-3 py-2 font-label-md text-label-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all uppercase" id="sku" placeholder="例：FUR-CHR-001" type="text"/>
-</div>
-<div class="flex flex-col gap-1.5">
-<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider" for="barcode">バーコード</label>
-<input class="w-full bg-white border border-slate-200 rounded px-3 py-2 font-label-md text-label-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all" id="barcode" placeholder="バーコードをスキャンまたは入力" type="text"/>
-</div>
-<div class="flex flex-col gap-1.5 mt-2">
-<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider" for="stock-qty">在庫数</label>
-<input class="w-full bg-white border border-slate-200 rounded px-3 py-2 font-label-md text-label-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all max-w-[150px]" id="stock-qty" min="0" placeholder="0" type="number"/>
-</div>
-</fieldset>
-</div>
-</section>
-</div>
-<!-- Right Sidebar (Metadata & Settings) -->
-<div class="lg:col-span-4 flex flex-col gap-6">
-<!-- Publishing Status -->
-<section class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col gap-4">
-<div class="flex items-center gap-2 border-b border-slate-100 pb-3">
-<span class="material-symbols-outlined text-slate-500">visibility</span>
-<h3 class="font-headline-sm text-headline-sm text-slate-900 m-0 text-base">公開設定</h3>
-</div>
-<div class="flex flex-col gap-3">
-<label class="flex items-start gap-3 cursor-pointer group">
-<div class="relative flex items-center justify-center mt-0.5">
-<input checked="" class="w-4 h-4 text-blue-600 bg-white border-slate-300 focus:ring-blue-600 focus:ring-offset-0 transition-all cursor-pointer" name="visibility" type="radio" value="public"/>
-</div>
-<div class="flex flex-col">
-<span class="font-body-md text-body-md text-slate-900 font-medium">公開</span>
-<span class="font-body-sm text-body-sm text-slate-500">すべての訪問者に表示されます。</span>
-</div>
-</label>
-<label class="flex items-start gap-3 cursor-pointer group">
-<div class="relative flex items-center justify-center mt-0.5">
-<input class="w-4 h-4 text-blue-600 bg-white border-slate-300 focus:ring-blue-600 focus:ring-offset-0 transition-all cursor-pointer" name="visibility" type="radio" value="hidden"/>
-</div>
-<div class="flex flex-col">
-<span class="font-body-md text-body-md text-slate-900 font-medium">非公開</span>
-<span class="font-body-sm text-body-sm text-slate-500">直接リンクからのみアクセス可能です。</span>
-</div>
-</label>
-</div>
-</section>
-<!-- Organization / Metadata -->
-<section class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col gap-5">
-<div class="flex items-center gap-2 border-b border-slate-100 pb-3">
-<span class="material-symbols-outlined text-slate-500">category</span>
-<h3 class="font-headline-sm text-headline-sm text-slate-900 m-0 text-base">分類</h3>
-</div>
-<div class="flex flex-col gap-1.5">
-<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider" for="category-select">カテゴリー</label>
-<div class="relative">
-<select class="w-full bg-white border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all appearance-none pr-8" id="category-select">
-<option disabled="" selected="" value="">カテゴリーを選択...</option>
-<option value="furniture">Furniture</option>
-<option value="electronics">Electronics</option>
-<option value="apparel">Apparel</option>
-<option value="accessories">Accessories</option>
-</select>
-<span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none">expand_more</span>
-</div>
-<button class="text-left font-label-sm text-label-sm text-blue-600 hover:underline mt-1 self-start">+ 新規カテゴリー作成</button>
-</div>
-<div class="flex flex-col gap-1.5 mt-2">
-<label class="font-label-sm text-label-sm text-slate-500 uppercase tracking-wider" for="tags-input">タグ</label>
-<input class="w-full bg-white border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-slate-900 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all" id="tags-input" placeholder="入力してEnterを押してください..." type="text"/>
-<!-- Applied Tags Container -->
-<div class="flex flex-wrap gap-2 mt-2">
-<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-slate-100 border border-slate-200 font-label-sm text-label-sm text-slate-900">
-                                    Ergonomic
-                                    <button class="hover:text-red-600 transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[14px]">close</span></button>
-</span>
-<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-slate-100 border border-slate-200 font-label-sm text-label-sm text-slate-900">
-                                    Office
-                                    <button class="hover:text-red-600 transition-colors flex items-center justify-center"><span class="material-symbols-outlined text-[14px]">close</span></button>
-</span>
-</div>
-</div>
-</section>
-</div>
-</div>
-<!-- Footer spacing -->
-<div class="h-12 w-full"></div>
-</div>
+              </span>
+              <span class="tag-chip">
+                セール
+                <button class="text-slate-400 hover:text-red-500 transition-colors" onclick="this.parentElement.remove()">
+                  <span class="material-symbols-outlined text-[13px]">close</span>
+                </button>
+              </span>
+              <span class="tag-chip">
+                トップス
+                <button class="text-slate-400 hover:text-red-500 transition-colors" onclick="this.parentElement.remove()">
+                  <span class="material-symbols-outlined text-[13px]">close</span>
+                </button>
+              </span>
+            </div>
+            <p class="field-hint">「新着」「セール」「トップス」などのフォルダに商品を分類します。</p>
+          </div>
+
+          <!-- タグ -->
+          <div>
+            <label class="field-label" for="tag-input">商品タグ</label>
+            <div class="relative">
+              <input class="field-input pr-24" id="tag-input" type="text" placeholder="タグを入力してEnterまたはカンマで追加" onkeydown="handleTagInput(event)"/>
+              <button onclick="addTagFromInput()" class="absolute right-2 top-1/2 -translate-y-1/2 px-2 py-1 font-label-sm text-label-sm text-blue-600 hover:bg-blue-50 rounded transition-colors">追加</button>
+            </div>
+            <!-- タグチップ -->
+            <div class="flex flex-wrap gap-2 mt-3" id="tag-chips">
+              <span class="tag-chip">防水<button class="text-slate-400 hover:text-red-500" onclick="this.parentElement.remove()"><span class="material-symbols-outlined text-[13px]">close</span></button></span>
+              <span class="tag-chip">限定<button class="text-slate-400 hover:text-red-500" onclick="this.parentElement.remove()"><span class="material-symbols-outlined text-[13px]">close</span></button></span>
+              <span class="tag-chip">ユニセックス<button class="text-slate-400 hover:text-red-500" onclick="this.parentElement.remove()"><span class="material-symbols-outlined text-[13px]">close</span></button></span>
+              <span class="tag-chip">UVカット<button class="text-slate-400 hover:text-red-500" onclick="this.parentElement.remove()"><span class="material-symbols-outlined text-[13px]">close</span></button></span>
+              <span class="tag-chip">速乾<button class="text-slate-400 hover:text-red-500" onclick="this.parentElement.remove()"><span class="material-symbols-outlined text-[13px]">close</span></button></span>
+            </div>
+            <p class="field-hint">カンマ区切りで複数のタグを一度に入力できます。検索・フィルタリングに活用されます。</p>
+          </div>
+        </section>
+
+        <div class="h-8"></div>
+      </div><!-- /main col -->
+
+      <!-- ======================================================
+           RIGHT SIDEBAR
+      ====================================================== -->
+      <div class="lg:col-span-4 flex flex-col gap-5">
+
+        <!-- 公開設定 -->
+        <section class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col gap-4">
+          <div class="flex items-center gap-2 border-b border-slate-100 pb-3">
+            <span class="material-symbols-outlined text-slate-500 text-[20px]">visibility</span>
+            <h3 class="font-headline-sm text-headline-sm text-slate-900 m-0 text-base">公開設定</h3>
+          </div>
+          <div class="flex flex-col gap-3">
+            <label class="flex items-start gap-3 cursor-pointer group">
+              <input checked class="mt-0.5 w-4 h-4 text-blue-600 bg-white border-slate-300 focus:ring-blue-600" name="visibility" type="radio" value="public"/>
+              <div>
+                <span class="font-body-md text-body-md text-slate-900 font-medium block">公開</span>
+                <span class="font-body-sm text-body-sm text-slate-500">すべての訪問者に表示されます。</span>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer group">
+              <input class="mt-0.5 w-4 h-4 text-blue-600 bg-white border-slate-300 focus:ring-blue-600" name="visibility" type="radio" value="hidden"/>
+              <div>
+                <span class="font-body-md text-body-md text-slate-900 font-medium block">非公開</span>
+                <span class="font-body-sm text-body-sm text-slate-500">直接リンクからのみアクセス可能です。</span>
+              </div>
+            </label>
+            <label class="flex items-start gap-3 cursor-pointer group">
+              <input class="mt-0.5 w-4 h-4 text-blue-600 bg-white border-slate-300 focus:ring-blue-600" name="visibility" type="radio" value="scheduled"/>
+              <div>
+                <span class="font-body-md text-body-md text-slate-900 font-medium block">公開日時を予約</span>
+                <span class="font-body-sm text-body-sm text-slate-500">指定した日時に自動公開されます。</span>
+              </div>
+            </label>
+          </div>
+          <div id="schedule-picker" class="hidden flex flex-col gap-1.5 pt-2 border-t border-slate-100">
+            <label class="field-label" for="schedule-date">公開日時</label>
+            <input class="field-input" type="datetime-local" id="schedule-date"/>
+          </div>
+          <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
+            <button class="w-full px-4 py-2 font-label-md text-label-md text-white bg-blue-600 hover:bg-blue-700 rounded shadow-sm transition-colors flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-[18px]">publish</span>商品を公開
+            </button>
+            <button class="w-full px-4 py-2 font-label-md text-label-md text-slate-900 bg-white border border-slate-200 rounded hover:bg-slate-50 transition-colors">下書き保存</button>
+          </div>
+        </section>
+
+        <!-- SEO / URLプレビュー -->
+        <section class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col gap-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-slate-500 text-[20px]">search</span>
+              <h3 class="font-headline-sm text-headline-sm text-slate-900 m-0 text-base">SEOプレビュー</h3>
+            </div>
+            <button class="font-label-sm text-label-sm text-blue-600 hover:underline">編集</button>
+          </div>
+          <div class="p-3 border border-slate-200 rounded bg-slate-50">
+            <p class="text-[13px] text-green-700 font-label-sm truncate">yourstore.com/products/<span id="seo-slug">premium-ergonomic-chair</span></p>
+            <p class="text-[16px] text-blue-700 font-medium mt-1 leading-snug" id="seo-title">商品名がここに表示されます</p>
+            <p class="text-[13px] text-slate-500 mt-1 leading-snug line-clamp-2" id="seo-desc">商品説明の最初の160文字がここに表示されます...</p>
+          </div>
+          <div class="flex flex-col gap-3">
+            <div>
+              <label class="field-label" for="meta-title">メタタイトル</label>
+              <input class="field-input text-sm" id="meta-title" type="text" placeholder="SEO用タイトル（省略時は商品名を使用）"/>
+            </div>
+            <div>
+              <label class="field-label" for="meta-desc">メタディスクリプション</label>
+              <textarea class="field-input text-sm resize-none" id="meta-desc" rows="3" placeholder="検索結果に表示される説明文（160文字以内）"></textarea>
+            </div>
+          </div>
+        </section>
+
+        <!-- 商品サマリー -->
+        <section class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col gap-3">
+          <div class="flex items-center gap-2 border-b border-slate-100 pb-3">
+            <span class="material-symbols-outlined text-slate-500 text-[20px]">fact_check</span>
+            <h3 class="font-headline-sm text-headline-sm text-slate-900 m-0 text-base">入力チェック</h3>
+          </div>
+          <ul class="flex flex-col gap-2">
+            <li class="flex items-center gap-2 font-body-sm text-body-sm text-slate-500">
+              <span class="material-symbols-outlined text-slate-300 text-[18px]" id="check-name">radio_button_unchecked</span>
+              <span>商品名</span>
+            </li>
+            <li class="flex items-center gap-2 font-body-sm text-body-sm text-slate-500">
+              <span class="material-symbols-outlined text-slate-300 text-[18px]" id="check-price">radio_button_unchecked</span>
+              <span>販売価格</span>
+            </li>
+            <li class="flex items-center gap-2 font-body-sm text-body-sm text-slate-500">
+              <span class="material-symbols-outlined text-slate-300 text-[18px]" id="check-sku">radio_button_unchecked</span>
+              <span>SKU</span>
+            </li>
+            <li class="flex items-center gap-2 font-body-sm text-body-sm text-slate-500">
+              <span class="material-symbols-outlined text-slate-300 text-[18px]" id="check-media">radio_button_unchecked</span>
+              <span>メイン画像</span>
+            </li>
+            <li class="flex items-center gap-2 font-body-sm text-body-sm text-slate-500">
+              <span class="material-symbols-outlined text-green-500 text-[18px]">check_circle</span>
+              <span>メイン画像（サンプル）</span>
+            </li>
+          </ul>
+        </section>
+
+      </div><!-- /sidebar -->
+    </div><!-- /grid -->
+  </div><!-- /content -->
 </main>
+
 <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const dragZone = document.querySelector('.border-dashed');
+// ============================================================
+// バリエーション表示切り替え
+// ============================================================
+function toggleVariations(cb) {
+  const on  = document.getElementById('variation-on');
+  const off = document.getElementById('variation-off');
+  if (cb.checked) {
+    on.classList.remove('hidden');
+    on.classList.add('flex');
+    off.classList.add('hidden');
+  } else {
+    on.classList.add('hidden');
+    on.classList.remove('flex');
+    off.classList.remove('hidden');
+  }
+}
 
-            if(dragZone) {
-                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                    dragZone.addEventListener(eventName, preventDefaults, false);
-                });
+// ============================================================
+// 在庫モード切り替え
+// ============================================================
+function toggleInventoryMode(radio) {
+  const warehouseSection  = document.getElementById('warehouse-section');
+  const stockoutSection   = document.getElementById('stockout-section');
+  if (radio.value === 'track') {
+    warehouseSection.style.opacity = '1';
+    warehouseSection.style.pointerEvents = 'auto';
+    stockoutSection.style.opacity = '1';
+    stockoutSection.style.pointerEvents = 'auto';
+  } else {
+    warehouseSection.style.opacity = '0.4';
+    warehouseSection.style.pointerEvents = 'none';
+    stockoutSection.style.opacity = '0.4';
+    stockoutSection.style.pointerEvents = 'none';
+  }
+}
 
-                function preventDefaults (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                }
+// ============================================================
+// 倉庫行追加 / 削除
+// ============================================================
+function addWarehouseRow() {
+  const tbody = document.getElementById('warehouse-rows');
+  const row   = document.createElement('tr');
+  row.innerHTML = `
+    <td><input type="text" placeholder="倉庫名" class="font-body-md" style="font-family:'Hanken Grotesk',sans-serif;"/></td>
+    <td class="text-right"><input type="number" value="0" min="0" class="text-right w-24"/></td>
+    <td><button class="text-slate-400 hover:text-red-500 transition-colors" onclick="removeRow(this)">
+      <span class="material-symbols-outlined text-[18px]">remove_circle_outline</span></button></td>`;
+  tbody.appendChild(row);
+  updateTotalStock();
+}
+function removeRow(btn) {
+  btn.closest('tr').remove();
+  updateTotalStock();
+}
+function updateTotalStock() {
+  const inputs = document.querySelectorAll('#warehouse-rows input[type=number]');
+  const total  = Array.from(inputs).reduce((s, i) => s + (parseInt(i.value) || 0), 0);
+  document.getElementById('total-stock').textContent = total;
+}
+document.addEventListener('input', e => {
+  if (e.target.closest('#warehouse-rows')) updateTotalStock();
+});
 
-                ['dragenter', 'dragover'].forEach(eventName => {
-                    dragZone.addEventListener(eventName, highlight, false);
-                });
+// ============================================================
+// オプション行追加 / 削除
+// ============================================================
+function addOptionRow() {
+  const container = document.getElementById('option-defs');
+  if (container.querySelectorAll('.option-row').length >= 3) {
+    alert('オプションは最大3つまでです。'); return;
+  }
+  const row = document.createElement('div');
+  row.className = 'flex gap-3 items-start option-row';
+  row.innerHTML = `
+    <div class="flex-1 grid grid-cols-1 sm:grid-cols-5 gap-2">
+      <div class="sm:col-span-2">
+        <label class="field-label">オプション名</label>
+        <div class="relative">
+          <select class="field-input appearance-none pr-8 text-sm">
+            <option>サイズ</option><option>カラー</option><option>素材</option><option>スタイル</option><option>カスタム</option>
+          </select>
+          <span class="material-symbols-outlined absolute right-2 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none text-[16px]">expand_more</span>
+        </div>
+      </div>
+      <div class="sm:col-span-3">
+        <label class="field-label">値（カンマ区切り）</label>
+        <input class="field-input text-sm" type="text" placeholder="例：A, B, C"/>
+      </div>
+    </div>
+    <button onclick="removeOptionRow(this)" class="mt-6 text-slate-400 hover:text-red-500 transition-colors shrink-0">
+      <span class="material-symbols-outlined text-[20px]">delete_outline</span>
+    </button>`;
+  container.appendChild(row);
+}
+function removeOptionRow(btn) {
+  btn.closest('.option-row').remove();
+}
 
-                ['dragleave', 'drop'].forEach(eventName => {
-                    dragZone.addEventListener(eventName, unhighlight, false);
-                });
+// ============================================================
+// タグ入力
+// ============================================================
+function handleTagInput(e) {
+  if (e.key === 'Enter' || e.key === ',') {
+    e.preventDefault();
+    addTagFromInput();
+  }
+}
+function addTagFromInput() {
+  const input = document.getElementById('tag-input');
+  const raw   = input.value.split(',').map(t => t.trim()).filter(Boolean);
+  const chips = document.getElementById('tag-chips');
+  raw.forEach(tag => {
+    const span = document.createElement('span');
+    span.className = 'tag-chip';
+    span.innerHTML = `${tag}<button class="text-slate-400 hover:text-red-500" onclick="this.parentElement.remove()"><span class="material-symbols-outlined text-[13px]">close</span></button>`;
+    chips.appendChild(span);
+  });
+  input.value = '';
+}
 
-                function highlight(e) {
-                    dragZone.classList.add('border-blue-600', 'bg-blue-50');
-                }
+// ============================================================
+// SEO リアルタイムプレビュー
+// ============================================================
+document.addEventListener('input', e => {
+  const nameEl  = document.getElementById('product-name');
+  const slugEl  = document.getElementById('slug');
+  const descEl  = document.getElementById('product-desc');
+  if (e.target === nameEl)
+    document.getElementById('seo-title').textContent = nameEl.value || '商品名がここに表示されます';
+  if (e.target === slugEl)
+    document.getElementById('seo-slug').textContent = slugEl.value || 'your-product';
+  if (e.target === descEl)
+    document.getElementById('seo-desc').textContent = (descEl.value || '商品説明の最初の160文字がここに表示されます...').slice(0, 160);
+});
 
-                function unhighlight(e) {
-                    dragZone.classList.remove('border-blue-600', 'bg-blue-50');
-                }
-            }
-        });
-    </script>
+// ============================================================
+// 入力チェック（必須項目ハイライト）
+// ============================================================
+function updateChecks() {
+  const checkMap = {
+    'check-name':  () => !!document.getElementById('product-name').value.trim(),
+    'check-price': () => !!document.getElementById('price').value,
+    'check-sku':   () => !!document.getElementById('sku').value.trim(),
+    'check-media': () => false,
+  };
+  for (const [id, fn] of Object.entries(checkMap)) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+    if (fn()) {
+      el.textContent = 'check_circle';
+      el.className = 'material-symbols-outlined text-green-500 text-[18px]';
+    } else {
+      el.textContent = 'radio_button_unchecked';
+      el.className = 'material-symbols-outlined text-slate-300 text-[18px]';
+    }
+  }
+}
+document.addEventListener('input', updateChecks);
+
+// ============================================================
+// 公開日時予約ラジオ
+// ============================================================
+document.querySelectorAll('input[name=visibility]').forEach(r => {
+  r.addEventListener('change', () => {
+    const picker = document.getElementById('schedule-picker');
+    if (r.value === 'scheduled') picker.classList.remove('hidden');
+    else picker.classList.add('hidden');
+  });
+});
+
+// ============================================================
+// Drag & Drop ゾーン
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const zone = document.getElementById('drag-zone');
+  if (!zone) return;
+  ['dragenter','dragover','dragleave','drop'].forEach(ev => zone.addEventListener(ev, e => { e.preventDefault(); e.stopPropagation(); }));
+  ['dragenter','dragover'].forEach(ev => zone.addEventListener(ev, () => zone.classList.add('border-blue-500','bg-blue-50')));
+  ['dragleave','drop'].forEach(ev => zone.addEventListener(ev, () => zone.classList.remove('border-blue-500','bg-blue-50')));
+});
+</script>
 </body></html>
