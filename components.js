@@ -89,7 +89,7 @@
         </div>
         <div class="flex items-center gap-stack-md">
           <button class="text-slate-600 hover:text-slate-900 transition-colors font-label-md px-3 py-1.5 rounded hover:bg-slate-100">
-            サポート
+            AIアシスタント
           </button>
           <div class="flex items-center gap-unit border-l border-slate-200 pl-stack-md">
             <button class="w-10 h-10 rounded-full flex items-center justify-center text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors relative group">
