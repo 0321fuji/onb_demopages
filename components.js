@@ -46,7 +46,7 @@
             <span class="material-symbols-outlined text-white fill" style="font-size:20px;">storefront</span>
           </div>
           <div>
-            <h1 class="font-headline-sm text-headline-sm font-bold text-slate-900">PrecisionCMS</h1>
+            <h1 class="font-headline-sm text-headline-sm font-bold text-slate-900">EC CMS</h1>
             <p class="font-label-sm text-label-sm text-slate-600">Eコマース管理者</p>
           </div>
         </div>
