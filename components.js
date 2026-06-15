@@ -88,7 +88,7 @@
             type="text"/>
         </div>
         <div class="flex items-center gap-stack-md">
-          <button onclick="ONB.showIntro()" class="text-slate-600 hover:text-slate-900 transition-colors font-label-md px-3 py-1.5 rounded hover:bg-slate-100">
+          <button onclick="STANDSMotion.showIntro()" class="text-slate-600 hover:text-slate-900 transition-colors font-label-md px-3 py-1.5 rounded hover:bg-slate-100">
             AIアシスタント
           </button>
           <div class="flex items-center gap-unit border-l border-slate-200 pl-stack-md">
