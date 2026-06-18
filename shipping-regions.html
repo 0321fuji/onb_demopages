@@ -99,7 +99,7 @@ tailwind.config = {
           <div class="space-y-3">
             <!-- 地域別送料 -->
             <label class="flex items-start gap-3 p-4 border-2 border-secondary rounded-lg cursor-pointer bg-blue-50">
-              <input type="radio" name="shippingMode" value="region" checked class="mt-0.5 accent-blue-600"/>
+              <input type="radio" id="region-mode-radio" name="shippingMode" value="region" checked class="mt-0.5 accent-blue-600"/>
               <div>
                 <p class="text-body-md font-semibold text-slate-900">地域別送料</p>
                 <p class="text-body-sm text-slate-500 mt-0.5">都道府県ごとに異なる配送料金を適用します。</p>
@@ -107,7 +107,7 @@ tailwind.config = {
             </label>
             <!-- 全国一律料金 -->
             <label class="flex items-start gap-3 p-4 border border-slate-200 rounded-lg cursor-pointer hover:border-slate-300 transition-colors">
-              <input type="radio" name="shippingMode" value="flat" class="mt-0.5 accent-blue-600"/>
+              <input type="radio" id="flat-mode-radio" name="shippingMode" value="flat" class="mt-0.5 accent-blue-600"/>
               <div>
                 <p class="text-body-md font-semibold text-slate-900">全国一律料金</p>
                 <p class="text-body-sm text-slate-500 mt-0.5">全地域に同一の固定配送料を適用します。</p>
@@ -123,7 +123,7 @@ tailwind.config = {
               <label class="block text-body-sm text-slate-700 mb-1.5">配送料無料条件（¥以上）</label>
               <div class="relative">
                 <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-body-md">¥</span>
-                <input type="number" placeholder="0" class="w-full pl-7 pr-3 py-2 border border-slate-300 rounded-lg text-body-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200"/>
+                <input type="number" id="free-shipping-threshold" placeholder="0" class="w-full pl-7 pr-3 py-2 border border-slate-300 rounded-lg text-body-md focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200"/>
               </div>
             </div>
 
@@ -150,7 +150,7 @@ tailwind.config = {
 
           <!-- テーブル -->
           <div class="overflow-x-auto">
-            <table class="w-full text-left">
+            <table id="regions-table" class="w-full text-left">
               <thead>
                 <tr class="bg-slate-50 border-b border-slate-200">
                   <th class="w-10 px-4 py-3">
@@ -161,7 +161,7 @@ tailwind.config = {
                   <th class="px-4 py-3 text-label-md text-slate-500 uppercase tracking-wider text-right">配送料(¥)</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-slate-100">
+              <tbody id="regions-tbody" class="divide-y divide-slate-100">
                 <tr>
                   <td colspan="4" class="px-4 py-10 text-center">
                     <div class="flex flex-col items-center gap-3">
@@ -195,7 +195,7 @@ tailwind.config = {
       <!-- 統計ウィジェット -->
       <div class="col-span-12 grid grid-cols-3 gap-gutter">
         <!-- 平均配送料 -->
-        <div class="bg-white border border-slate-200 p-6 rounded-lg">
+        <div id="avg-shipping-cost-card" class="bg-white border border-slate-200 p-6 rounded-lg">
           <p class="text-label-md text-slate-500 uppercase tracking-wider mb-3">平均配送料</p>
           <div class="flex items-end justify-between">
             <p class="text-display-lg text-slate-400">—</p>
@@ -203,7 +203,7 @@ tailwind.config = {
           </div>
         </div>
         <!-- 送料無料適用率 -->
-        <div class="bg-white border border-slate-200 p-6 rounded-lg">
+        <div id="free-shipping-rate-card" class="bg-white border border-slate-200 p-6 rounded-lg">
           <p class="text-label-md text-slate-500 uppercase tracking-wider mb-3">送料無料適用率</p>
           <div class="flex items-end justify-between">
             <p class="text-display-lg text-slate-400">—</p>
@@ -211,7 +211,7 @@ tailwind.config = {
           </div>
         </div>
         <!-- 離島・遠隔地設定 -->
-        <div class="bg-white border border-slate-200 p-6 rounded-lg">
+        <div id="remote-area-card" class="bg-white border border-slate-200 p-6 rounded-lg">
           <p class="text-label-md text-slate-500 uppercase tracking-wider mb-3">離島・遠隔地設定</p>
           <div class="flex items-end justify-between">
             <p class="text-display-lg text-slate-400">—</p>

@@ -80,7 +80,7 @@ tailwind.config = {
 
         <!-- ヤマト運輸（unchecked） -->
         <label class="flex items-center p-4 border border-slate-200 rounded hover:bg-slate-50 hover:border-blue-400 transition-colors cursor-pointer">
-          <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4"/>
+          <input type="checkbox" id="yamato-checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4"/>
           <div>
             <p class="font-body-md text-body-md text-on-surface font-medium">ヤマト運輸</p>
             <p class="font-body-sm text-body-sm text-on-surface-variant">Yamato Transport</p>
@@ -89,7 +89,7 @@ tailwind.config = {
 
         <!-- 佐川急便（unchecked） -->
         <label class="flex items-center p-4 border border-slate-200 rounded hover:bg-slate-50 hover:border-blue-400 transition-colors cursor-pointer">
-          <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4"/>
+          <input type="checkbox" id="sagawa-checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4"/>
           <div>
             <p class="font-body-md text-body-md text-on-surface font-medium">佐川急便</p>
             <p class="font-body-sm text-body-sm text-on-surface-variant">Sagawa Express</p>
@@ -98,7 +98,7 @@ tailwind.config = {
 
         <!-- 日本郵便（unchecked） -->
         <label class="flex items-center p-4 border border-slate-200 rounded hover:bg-slate-50 hover:border-blue-400 transition-colors cursor-pointer">
-          <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4"/>
+          <input type="checkbox" id="japanpost-checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4"/>
           <div>
             <p class="font-body-md text-body-md text-on-surface font-medium">日本郵便</p>
             <p class="font-body-sm text-body-sm text-on-surface-variant">Japan Post</p>
@@ -107,7 +107,7 @@ tailwind.config = {
 
         <!-- 西濃運輸（unchecked） -->
         <label class="flex items-center p-4 border border-slate-200 rounded hover:bg-slate-50 hover:border-blue-400 transition-colors cursor-pointer">
-          <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4"/>
+          <input type="checkbox" id="seino-checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4"/>
           <div>
             <p class="font-body-md text-body-md text-on-surface font-medium">西濃運輸</p>
             <p class="font-body-sm text-body-sm text-on-surface-variant">Seino Transportation</p>
@@ -116,7 +116,7 @@ tailwind.config = {
 
         <!-- 福山通運（unchecked） -->
         <label class="flex items-center p-4 border border-slate-200 rounded hover:bg-slate-50 hover:border-blue-400 transition-colors cursor-pointer">
-          <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4"/>
+          <input type="checkbox" id="fukuyama-checkbox" class="w-5 h-5 rounded border-slate-300 text-blue-600 mr-4"/>
           <div>
             <p class="font-body-md text-body-md text-on-surface font-medium">福山通運</p>
             <p class="font-body-sm text-body-sm text-on-surface-variant">Fukuyama Transporting</p>
@@ -142,6 +142,7 @@ tailwind.config = {
             </label>
             <input
               type="text"
+              id="sender-name"
               placeholder="例：本社倉庫"
               class="w-full border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
             />
@@ -151,6 +152,7 @@ tailwind.config = {
             <label class="block font-label-md text-label-md text-on-surface mb-1">郵便番号</label>
             <input
               type="text"
+              id="postal-code"
               placeholder="000-0000"
               class="w-full border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
             />
@@ -158,7 +160,7 @@ tailwind.config = {
           <!-- 都道府県 -->
           <div>
             <label class="block font-label-md text-label-md text-on-surface mb-1">都道府県</label>
-            <select class="w-full border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors">
+            <select id="prefecture" class="w-full border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors">
               <option value="">都道府県を選択</option>
               <option>北海道</option>
               <option>青森県</option>
@@ -217,6 +219,7 @@ tailwind.config = {
             <label class="block font-label-md text-label-md text-on-surface mb-1">市区町村・番地</label>
             <input
               type="text"
+              id="address"
               placeholder="例：〇〇区△△1-1-1"
               class="w-full border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
             />
@@ -226,6 +229,7 @@ tailwind.config = {
             <label class="block font-label-md text-label-md text-on-surface mb-1">建物名・ビル名</label>
             <input
               type="text"
+              id="building"
               placeholder="例：〇〇ビル 2F"
               class="w-full border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
             />
@@ -235,6 +239,7 @@ tailwind.config = {
             <label class="block font-label-md text-label-md text-on-surface mb-1">電話番号</label>
             <input
               type="text"
+              id="phone"
               placeholder="例：03-0000-0000"
               class="w-full border border-slate-200 rounded px-3 py-2 font-body-md text-body-md text-on-surface bg-white focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-colors"
             />
@@ -258,7 +263,7 @@ tailwind.config = {
             <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">標準的な配送スケジュールを使用します。</p>
           </div>
           <label class="relative inline-flex items-center cursor-pointer">
-            <input type="checkbox" class="sr-only peer"/>
+            <input type="checkbox" id="standard-toggle" class="sr-only peer"/>
             <div class="w-11 h-6 bg-slate-200 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
           </label>
         </div>
@@ -270,7 +275,7 @@ tailwind.config = {
             <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">翌日または当日配送オプションを有効にします。</p>
           </div>
           <label class="relative inline-flex items-center cursor-pointer">
-            <input type="checkbox" class="sr-only peer"/>
+            <input type="checkbox" id="express-toggle" class="sr-only peer"/>
             <div class="w-11 h-6 bg-slate-200 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
           </label>
         </div>
@@ -282,7 +287,7 @@ tailwind.config = {
             <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">顧客が配送日および時間帯を選択できるようにします。</p>
           </div>
           <label class="relative inline-flex items-center cursor-pointer">
-            <input type="checkbox" class="sr-only peer"/>
+            <input type="checkbox" id="schedule-toggle" class="sr-only peer"/>
             <div class="w-11 h-6 bg-slate-200 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
           </label>
         </div>

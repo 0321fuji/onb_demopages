@@ -72,7 +72,7 @@ tailwind.config = {
     <!-- サマリーカード -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       <!-- 通常配送 -->
-      <div class="bg-white border border-slate-200 rounded-lg p-6 relative overflow-hidden group hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer">
+      <div id="standard-shipping-card" class="bg-white border border-slate-200 rounded-lg p-6 relative overflow-hidden group hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer">
         <span class="material-symbols-outlined absolute right-4 top-4 text-slate-200" style="font-size:60px;">local_shipping</span>
         <div class="flex items-center gap-2 mb-3">
           <span class="material-symbols-outlined text-slate-400">local_shipping</span>
@@ -86,7 +86,7 @@ tailwind.config = {
       </div>
 
       <!-- お急ぎ便 -->
-      <div class="bg-white border border-slate-200 rounded-lg p-6 relative overflow-hidden group hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer">
+      <div id="express-card" class="bg-white border border-slate-200 rounded-lg p-6 relative overflow-hidden group hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer">
         <span class="material-symbols-outlined absolute right-4 top-4 text-slate-200" style="font-size:60px;">bolt</span>
         <div class="flex items-center gap-2 mb-3">
           <span class="material-symbols-outlined text-slate-400">bolt</span>
@@ -100,7 +100,7 @@ tailwind.config = {
       </div>
 
       <!-- 国際配送 -->
-      <div class="bg-white border border-slate-200 rounded-lg p-6 relative overflow-hidden group hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer">
+      <div id="international-card" class="bg-white border border-slate-200 rounded-lg p-6 relative overflow-hidden group hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer">
         <span class="material-symbols-outlined absolute right-4 top-4 text-slate-200" style="font-size:60px;">public</span>
         <div class="flex items-center gap-2 mb-3">
           <span class="material-symbols-outlined text-slate-400">public</span>
@@ -121,7 +121,7 @@ tailwind.config = {
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
           <!-- 1. 基本配送設定 -->
-          <div class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-basic.html'">
+          <div id="basic-settings-card" class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-basic.html'">
             <div class="flex items-start justify-between mb-3">
               <div class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-secondary">inventory</span>
@@ -139,7 +139,7 @@ tailwind.config = {
           </div>
 
           <!-- 2. 地域別送料設定 -->
-          <div class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-regions.html'">
+          <div id="regions-card" class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-regions.html'">
             <div class="flex items-start justify-between mb-3">
               <div class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-secondary">map</span>
@@ -157,7 +157,7 @@ tailwind.config = {
           </div>
 
           <!-- 3. 送料無料条件設定 -->
-          <div class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-free.html'">
+          <div id="free-shipping-card" class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-free.html'">
             <div class="flex items-start justify-between mb-3">
               <div class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-secondary">redeem</span>
@@ -175,7 +175,7 @@ tailwind.config = {
           </div>
 
           <!-- 4. 配送日時指定設定 -->
-          <div class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-schedule.html'">
+          <div id="schedule-card" class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-schedule.html'">
             <div class="flex items-start justify-between mb-3">
               <div class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-secondary">schedule</span>
@@ -193,7 +193,7 @@ tailwind.config = {
           </div>
 
           <!-- 5. クール便設定 -->
-          <div class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-cool.html'">
+          <div id="cool-card" class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-cool.html'">
             <div class="flex items-start justify-between mb-3">
               <div class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-slate-400">ac_unit</span>
@@ -211,7 +211,7 @@ tailwind.config = {
           </div>
 
           <!-- 6. 離島・配送不可地域 -->
-          <div class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='#'">
+          <div id="remote-areas-card" class="bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='#'">
             <div class="flex items-start justify-between mb-3">
               <div class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-secondary">location_off</span>
@@ -229,7 +229,7 @@ tailwind.config = {
           </div>
 
           <!-- 7. 配送通知メール設定（幅広） -->
-          <div class="md:col-span-2 bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-email.html'">
+          <div id="email-settings-card" class="md:col-span-2 bg-white border border-slate-200 rounded-lg p-6 flex flex-col hover:border-blue-400 hover:shadow-sm transition-all cursor-pointer group" onclick="location.href='shipping-email.html'">
             <div class="flex items-start justify-between mb-3">
               <div class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-secondary">mail</span>
@@ -261,7 +261,7 @@ tailwind.config = {
             <div class="flex items-center justify-between mb-1">
               <span class="font-body-md text-body-md text-on-surface">店舗配送ステータス</span>
               <label class="relative inline-flex items-center cursor-pointer">
-                <input type="checkbox" class="sr-only peer"/>
+                <input type="checkbox" id="store-status-toggle" class="sr-only peer"/>
                 <div class="w-11 h-6 bg-slate-200 rounded-full peer peer-checked:bg-blue-600 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-5"></div>
               </label>
             </div>
@@ -282,21 +282,21 @@ tailwind.config = {
         <div class="bg-white border border-slate-200 rounded-lg p-5">
           <h3 class="font-headline-sm text-headline-sm text-on-surface mb-4">システム連携ステータス</h3>
           <ul class="space-y-3">
-            <li class="flex items-center justify-between">
+            <li id="yamato-status" class="flex items-center justify-between">
               <span class="font-body-sm text-body-sm text-on-surface">ヤマトB2クラウド</span>
               <div class="flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-slate-300 inline-block"></span>
                 <span class="font-label-sm text-label-sm text-on-surface-variant">未連携</span>
               </div>
             </li>
-            <li class="flex items-center justify-between">
+            <li id="sagawa-status" class="flex items-center justify-between">
               <span class="font-body-sm text-body-sm text-on-surface">佐川e飛伝III</span>
               <div class="flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-slate-300 inline-block"></span>
                 <span class="font-label-sm text-label-sm text-on-surface-variant">未連携</span>
               </div>
             </li>
-            <li class="flex items-center justify-between">
+            <li id="yupack-status" class="flex items-center justify-between">
               <span class="font-body-sm text-body-sm text-on-surface">日本郵便ゆうパック</span>
               <div class="flex items-center gap-1.5">
                 <span class="w-2 h-2 rounded-full bg-slate-300 inline-block"></span>

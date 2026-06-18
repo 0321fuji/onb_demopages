@@ -133,26 +133,26 @@
 <h1 class="font-headline-md text-headline-md text-slate-900">商品一覧</h1>
 <p class="font-body-sm text-body-sm text-slate-500 mt-1">在庫、価格、および商品の公開設定を管理します。</p>
 </div>
-<button class="bg-slate-900 text-white px-4 py-2 rounded font-label-sm text-label-sm uppercase flex items-center gap-2 hover:opacity-90 transition-opacity shadow-sm" onclick="location.href='new-product.html'">
+<button id="new-product-btn" class="bg-slate-900 text-white px-4 py-2 rounded font-label-sm text-label-sm uppercase flex items-center gap-2 hover:opacity-90 transition-opacity shadow-sm" onclick="location.href='new-product.html'">
 <span class="material-symbols-outlined text-[18px]">add</span>
                 新規商品登録
             </button>
 </div>
 <!-- Filter Bar -->
-<div class="bg-white border border-slate-200 rounded p-stack-sm flex flex-col lg:flex-row gap-stack-sm items-center justify-between">
+<div id="filter-bar" class="bg-white border border-slate-200 rounded p-stack-sm flex flex-col lg:flex-row gap-stack-sm items-center justify-between">
 <div class="flex flex-col sm:flex-row gap-stack-sm w-full lg:w-auto">
 <div class="relative w-full sm:w-64">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-[18px]">search</span>
-<input class="w-full h-9 pl-9 pr-3 rounded bg-slate-100 border border-slate-200 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 text-slate-900 placeholder:text-slate-500 font-body-sm text-body-sm" placeholder="商品を検索..." type="text"/>
+<input id="product-search" class="w-full h-9 pl-9 pr-3 rounded bg-slate-100 border border-slate-200 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 text-slate-900 placeholder:text-slate-500 font-body-sm text-body-sm" placeholder="商品を検索..." type="text"/>
 </div>
-<select class="h-9 px-3 rounded bg-slate-100 border border-slate-200 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 text-slate-900 font-body-sm text-body-sm w-full sm:w-40 appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:16px_16px] bg-[right_8px_center] bg-no-repeat pr-8">
+<select id="category-filter" class="h-9 px-3 rounded bg-slate-100 border border-slate-200 focus:border-slate-900 focus:ring-1 focus:ring-slate-900 text-slate-900 font-body-sm text-body-sm w-full sm:w-40 appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%2364748b%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-[length:16px_16px] bg-[right_8px_center] bg-no-repeat pr-8">
 <option value="">全カテゴリー</option>
 <option value="electronics">エレクトロニクス</option>
 <option value="clothing">衣類</option>
 <option value="home">ホーム＆ガーデン</option>
 </select>
 </div>
-<div class="flex items-center gap-unit w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0">
+<div id="status-filter-tabs" class="flex items-center gap-unit w-full lg:w-auto overflow-x-auto pb-2 lg:pb-0">
 <button class="px-3 py-1.5 rounded-full border border-slate-900 bg-slate-900 text-white font-label-sm text-label-sm whitespace-nowrap">すべて</button>
 <button class="px-3 py-1.5 rounded-full border border-slate-200 text-slate-600 hover:bg-slate-100 font-label-sm text-label-sm whitespace-nowrap">公開中</button>
 <button class="px-3 py-1.5 rounded-full border border-slate-200 text-slate-600 hover:bg-slate-100 font-label-sm text-label-sm whitespace-nowrap">下書き</button>
@@ -168,9 +168,9 @@
 </div>
 </div>
 <!-- Data Table Container -->
-<div class="bg-white border border-slate-200 rounded overflow-hidden flex flex-col">
+<div id="products-table-container" class="bg-white border border-slate-200 rounded overflow-hidden flex flex-col">
 <div class="overflow-x-auto">
-<table class="w-full text-left border-collapse min-w-[800px]">
+<table id="products-table" class="w-full text-left border-collapse min-w-[800px]">
 <thead>
 <tr class="bg-slate-50 border-b border-slate-200 h-[52px]">
 <th class="px-4 py-2 w-12 text-center">
@@ -185,7 +185,7 @@
 <th class="px-4 py-2 font-label-md text-label-md text-slate-500 font-medium uppercase tracking-wider text-right">操作</th>
 </tr>
 </thead>
-<tbody class="divide-y divide-slate-200">
+<tbody id="products-tbody" class="divide-y divide-slate-200">
 <!-- Row 1 -->
 <tr class="h-[52px] hover:bg-slate-50 transition-colors group">
 <td class="px-4 py-2 text-center">
@@ -318,7 +318,7 @@
 </table>
 </div>
 <!-- Pagination Footer -->
-<div class="border-t border-slate-200 bg-slate-50 p-4 flex items-center justify-between mt-auto">
+<div id="products-pagination" class="border-t border-slate-200 bg-slate-50 p-4 flex items-center justify-between mt-auto">
 <span class="font-body-sm text-body-sm text-slate-500">128件中 1〜4件を表示中</span>
 <div class="flex items-center gap-1">
 <button class="p-1 rounded border border-slate-200 text-slate-400 hover:bg-slate-100 disabled:opacity-50" disabled="">

@@ -158,14 +158,14 @@
 <h2 class="font-headline-sm text-headline-sm">HubSpot 認証</h2>
 <p class="font-body-sm text-body-sm text-on-surface-variant">HubSpotアカウントを認証し、データの同期を開始します。</p>
 </div>
-<form class="space-y-stack-md">
+<form id="auth-form" class="space-y-stack-md">
 <div class="space-y-1">
 <label class="block font-label-md text-label-md text-on-surface-variant">Hub ID (ポータルID)</label>
-<input class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-secondary/20 outline-none transition-all font-label-md" placeholder="1234567" type="text"/>
+<input id="hub-id-input" class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-secondary/20 outline-none transition-all font-label-md" placeholder="1234567" type="text"/>
 </div>
 <div class="space-y-1">
 <label class="block font-label-md text-label-md text-on-surface-variant">APIキー / プライベートアプリトークン</label>
-<input class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-secondary/20 outline-none transition-all font-label-md" placeholder="pat-na1-xxxx-xxxx-xxxx" type="password"/>
+<input id="api-key-input" class="w-full px-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-secondary/20 outline-none transition-all font-label-md" placeholder="pat-na1-xxxx-xxxx-xxxx" type="password"/>
 </div>
 </form>
 </section>
@@ -178,33 +178,33 @@
 <span>PrecisionCMS フィールド</span>
 <span>Salesforce 項目名</span>
 </div>
-<div class="divide-y divide-outline-variant/30">
-<div class="grid grid-cols-2 p-4 items-center">
+<div id="mapping-rows" class="divide-y divide-outline-variant/30">
+<div id="mapping-row-name" class="grid grid-cols-2 p-4 items-center">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="person">person</span>
 <span class="font-body-md text-body-md">顧客名</span>
 </div>
-<select class="bg-transparent border-none font-label-md text-label-md focus:ring-0">
+<select id="mapping-name-field" class="bg-transparent border-none font-label-md text-label-md focus:ring-0">
 <option>Full_Name__c</option>
 <option>Name</option>
 </select>
 </div>
-<div class="grid grid-cols-2 p-4 items-center">
+<div id="mapping-row-email" class="grid grid-cols-2 p-4 items-center">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="mail">mail</span>
 <span class="font-body-md text-body-md">メールアドレス</span>
 </div>
-<select class="bg-transparent border-none font-label-md text-label-md focus:ring-0">
+<select id="mapping-email-field" class="bg-transparent border-none font-label-md text-label-md focus:ring-0">
 <option>Email</option>
 <option>Primary_Email__c</option>
 </select>
 </div>
-<div class="grid grid-cols-2 p-4 items-center">
+<div id="mapping-row-last-purchase" class="grid grid-cols-2 p-4 items-center">
 <div class="flex items-center gap-2">
 <span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="shopping_bag">shopping_bag</span>
 <span class="font-body-md text-body-md">最終購入日</span>
 </div>
-<select class="bg-transparent border-none font-label-md text-label-md focus:ring-0">
+<select id="mapping-last-purchase-field" class="bg-transparent border-none font-label-md text-label-md focus:ring-0">
 <option>Last_Order_Date__c</option>
 <option>Purchase_History</option>
 </select>
@@ -219,34 +219,34 @@
 <div class="space-y-stack-lg">
 <div class="space-y-stack-sm">
 <label class="block font-label-md text-label-md text-on-surface-variant">同期頻度</label>
-<div class="grid grid-cols-3 gap-stack-md">
-<label class="cursor-pointer border border-outline-variant rounded-lg p-4 flex flex-col items-center gap-2 hover:bg-secondary-container/5 hover:border-secondary transition-all">
-<input checked="" class="hidden peer" name="freq" type="radio"/>
+<div id="sync-freq-options" class="grid grid-cols-3 gap-stack-md">
+<label id="sync-freq-realtime" class="cursor-pointer border border-outline-variant rounded-lg p-4 flex flex-col items-center gap-2 hover:bg-secondary-container/5 hover:border-secondary transition-all">
+<input checked="" class="hidden peer" name="freq" type="radio" value="realtime"/>
 <span class="material-symbols-outlined text-on-surface-variant peer-checked:text-secondary" data-icon="bolt">bolt</span>
 <span class="font-label-md text-label-md">リアルタイム</span>
 </label>
-<label class="cursor-pointer border border-outline-variant rounded-lg p-4 flex flex-col items-center gap-2 hover:bg-secondary-container/5 hover:border-secondary transition-all">
-<input class="hidden peer" name="freq" type="radio"/>
+<label id="sync-freq-hourly" class="cursor-pointer border border-outline-variant rounded-lg p-4 flex flex-col items-center gap-2 hover:bg-secondary-container/5 hover:border-secondary transition-all">
+<input class="hidden peer" name="freq" type="radio" value="hourly"/>
 <span class="material-symbols-outlined text-on-surface-variant peer-checked:text-secondary" data-icon="schedule">schedule</span>
 <span class="font-label-md text-label-md">1時間ごと</span>
 </label>
-<label class="cursor-pointer border border-outline-variant rounded-lg p-4 flex flex-col items-center gap-2 hover:bg-secondary-container/5 hover:border-secondary transition-all">
-<input class="hidden peer" name="freq" type="radio"/>
+<label id="sync-freq-daily" class="cursor-pointer border border-outline-variant rounded-lg p-4 flex flex-col items-center gap-2 hover:bg-secondary-container/5 hover:border-secondary transition-all">
+<input class="hidden peer" name="freq" type="radio" value="daily"/>
 <span class="material-symbols-outlined text-on-surface-variant peer-checked:text-secondary" data-icon="update">update</span>
 <span class="font-label-md text-label-md">毎日 (夜間)</span>
 </label>
 </div>
 </div>
-<div class="space-y-stack-sm">
+<div id="sync-direction-section" class="space-y-stack-sm">
 <label class="block font-label-md text-label-md text-on-surface-variant">同期の方向</label>
-<div class="p-4 border border-outline-variant rounded-lg flex items-center justify-between">
+<div id="sync-direction-row" class="p-4 border border-outline-variant rounded-lg flex items-center justify-between">
 <div class="flex items-center gap-3">
 <div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center text-white text-[12px]">CMS</div>
 <span class="material-symbols-outlined text-outline" data-icon="sync_alt">sync_alt</span>
 <div class="w-8 h-8 rounded bg-[#00A1E0] flex items-center justify-center text-white text-[12px]" style="background-color: #ff7a59;">HS</div>
 </div>
 <span class="font-body-md text-body-md">双方向同期 (推奨)</span>
-<div class="w-12 h-6 bg-secondary rounded-full relative">
+<div id="sync-direction-toggle" class="w-12 h-6 bg-secondary rounded-full relative">
 <div class="absolute right-1 top-1 w-4 h-4 bg-white rounded-full"></div>
 </div>
 </div>

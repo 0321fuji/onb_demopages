@@ -90,7 +90,7 @@ tailwind.config = {
               </div>
             </div>
             <label class="relative cursor-pointer">
-              <input type="checkbox" class="sr-only peer"/>
+              <input id="free-amount-toggle" type="checkbox" class="sr-only peer"/>
               <div class="w-11 h-6 bg-slate-300 peer-checked:bg-blue-600 rounded-full peer-focus:ring-2 peer-focus:ring-blue-300 transition-colors"></div>
               <div class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-5"></div>
             </label>
@@ -100,7 +100,7 @@ tailwind.config = {
           <div class="flex items-center gap-3">
             <div class="relative flex-1 max-w-[200px]">
               <span class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-body-lg font-semibold">¥</span>
-              <input type="number" placeholder="0" class="w-full pl-8 pr-3 py-3 border border-slate-300 rounded-lg text-headline-sm font-semibold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200"/>
+              <input id="free-amount-input" type="number" placeholder="0" class="w-full pl-8 pr-3 py-3 border border-slate-300 rounded-lg text-headline-sm font-semibold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200"/>
             </div>
             <p class="text-body-lg text-slate-700">以上の注文で送料無料</p>
           </div>
@@ -125,7 +125,7 @@ tailwind.config = {
               <h2 class="text-headline-sm text-slate-900">購入点数ベース</h2>
             </div>
             <label class="relative cursor-pointer">
-              <input type="checkbox" class="sr-only peer"/>
+              <input id="free-qty-toggle" type="checkbox" class="sr-only peer"/>
               <div class="w-11 h-6 bg-slate-300 peer-checked:bg-blue-600 rounded-full peer-focus:ring-2 peer-focus:ring-blue-300 transition-colors"></div>
               <div class="absolute top-0.5 left-0.5 w-5 h-5 bg-white rounded-full shadow transition-transform peer-checked:translate-x-5"></div>
             </label>
@@ -133,7 +133,7 @@ tailwind.config = {
 
           <!-- 点数入力 -->
           <div class="flex items-center gap-2">
-            <input type="number" placeholder="0" class="w-20 px-3 py-2 border border-slate-300 rounded-lg text-body-md font-semibold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200 text-center"/>
+            <input id="free-qty-input" type="number" placeholder="0" class="w-20 px-3 py-2 border border-slate-300 rounded-lg text-body-md font-semibold focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-200 text-center"/>
             <p class="text-body-md text-slate-700">点以上の購入で無料</p>
           </div>
 
@@ -169,7 +169,7 @@ tailwind.config = {
                   <th class="px-6 py-3 text-label-md text-slate-500 uppercase tracking-wider">アクション</th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-slate-100">
+              <tbody id="label-table-body" class="divide-y divide-slate-100">
                 <tr>
                   <td colspan="4" class="px-6 py-10 text-center">
                     <div class="flex flex-col items-center gap-3">
@@ -205,23 +205,23 @@ tailwind.config = {
           <!-- チェックボックスグリッド -->
           <div id="exclusionDetails" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 transition-opacity opacity-40 pointer-events-none">
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" class="accent-red-500 w-4 h-4"/>
+              <input id="excl-okinawa" type="checkbox" class="accent-red-500 w-4 h-4"/>
               <span class="text-body-md text-slate-700">沖縄県</span>
             </label>
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" class="accent-red-500 w-4 h-4"/>
+              <input id="excl-hokkaido" type="checkbox" class="accent-red-500 w-4 h-4"/>
               <span class="text-body-md text-slate-700">北海道</span>
             </label>
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" class="accent-red-500 w-4 h-4"/>
+              <input id="excl-remote-islands" type="checkbox" class="accent-red-500 w-4 h-4"/>
               <span class="text-body-md text-slate-700">離島地域</span>
             </label>
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" class="accent-red-500 w-4 h-4"/>
+              <input id="excl-tokyo" type="checkbox" class="accent-red-500 w-4 h-4"/>
               <span class="text-body-md text-slate-700">東京都</span>
             </label>
             <label class="flex items-center gap-2 cursor-pointer">
-              <input type="checkbox" class="accent-red-500 w-4 h-4"/>
+              <input id="excl-osaka" type="checkbox" class="accent-red-500 w-4 h-4"/>
               <span class="text-body-md text-slate-700">大阪府</span>
             </label>
           </div>

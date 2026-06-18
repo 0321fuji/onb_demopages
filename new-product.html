@@ -105,12 +105,12 @@ tailwind.config = {
       </div>
     </div>
     <div class="flex items-center gap-3">
-      <button class="px-4 py-2 font-label-md text-label-md text-slate-500 hover:bg-slate-100 rounded border border-transparent transition-colors">破棄</button>
-      <button class="px-4 py-2 font-label-md text-label-md text-slate-900 bg-white border border-slate-200 rounded hover:bg-slate-50 transition-colors shadow-sm flex items-center gap-2">
+      <button id="btn-discard" class="px-4 py-2 font-label-md text-label-md text-slate-500 hover:bg-slate-100 rounded border border-transparent transition-colors">破棄</button>
+      <button id="btn-bulk-register" class="px-4 py-2 font-label-md text-label-md text-slate-900 bg-white border border-slate-200 rounded hover:bg-slate-50 transition-colors shadow-sm flex items-center gap-2">
         <span class="material-symbols-outlined text-[18px]">upload_file</span>一括登録
       </button>
-      <button class="px-4 py-2 font-label-md text-label-md text-slate-900 bg-white border border-slate-200 rounded hover:bg-slate-50 transition-colors shadow-sm">下書き保存</button>
-      <button class="px-4 py-2 font-label-md text-label-md text-white bg-blue-600 hover:bg-blue-700 rounded shadow-sm transition-colors flex items-center gap-2">
+      <button id="btn-save-draft" class="px-4 py-2 font-label-md text-label-md text-slate-900 bg-white border border-slate-200 rounded hover:bg-slate-50 transition-colors shadow-sm">下書き保存</button>
+      <button id="btn-publish" class="px-4 py-2 font-label-md text-label-md text-white bg-blue-600 hover:bg-blue-700 rounded shadow-sm transition-colors flex items-center gap-2">
         <span class="material-symbols-outlined text-[18px]">publish</span>商品を公開
       </button>
     </div>
@@ -128,7 +128,7 @@ tailwind.config = {
         <!-- ────────────────────────────────────────────────────
              ブロック1：基本情報
         ──────────────────────────────────────────────────── -->
-        <section class="section-card">
+        <section id="section-basic-info" class="section-card">
           <div class="section-header">
             <span class="material-symbols-outlined text-blue-600">info</span>
             <h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">基本情報</h2>
@@ -197,7 +197,7 @@ tailwind.config = {
         <!-- ────────────────────────────────────────────────────
              メディアアップロード（基本情報に続く独立セクション）
         ──────────────────────────────────────────────────── -->
-        <section class="section-card">
+        <section id="section-media" class="section-card">
           <div class="section-header justify-between">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-blue-600">perm_media</span>
@@ -272,7 +272,7 @@ tailwind.config = {
         <!-- ────────────────────────────────────────────────────
              ブロック2：価格と税金
         ──────────────────────────────────────────────────── -->
-        <section class="section-card">
+        <section id="section-pricing" class="section-card">
           <div class="section-header">
             <span class="material-symbols-outlined text-blue-600">sell</span>
             <h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">価格と税金</h2>
@@ -361,7 +361,7 @@ tailwind.config = {
         <!-- ────────────────────────────────────────────────────
              ブロック3：在庫・識別コード
         ──────────────────────────────────────────────────── -->
-        <section class="section-card">
+        <section id="section-inventory" class="section-card">
           <div class="section-header">
             <span class="material-symbols-outlined text-blue-600">inventory_2</span>
             <h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">在庫・識別コード</h2>
@@ -391,14 +391,14 @@ tailwind.config = {
             <p class="field-label mb-3">在庫数の追跡</p>
             <div class="flex flex-col gap-2">
               <label class="flex items-start gap-3 cursor-pointer p-3 rounded border border-slate-200 hover:bg-slate-50 transition-colors" id="track-label-on">
-                <input type="radio" name="inventory-mode" value="track" class="mt-0.5 w-4 h-4 text-blue-600 border-slate-300" checked onchange="toggleInventoryMode(this)"/>
+                <input id="inventory-track" type="radio" name="inventory-mode" value="track" class="mt-0.5 w-4 h-4 text-blue-600 border-slate-300" checked onchange="toggleInventoryMode(this)"/>
                 <div>
                   <p class="font-body-md text-body-md text-slate-900 font-medium">在庫数を追跡する</p>
                   <p class="font-body-sm text-body-sm text-slate-500">売上に合わせて在庫数が自動的に減少します。</p>
                 </div>
               </label>
               <label class="flex items-start gap-3 cursor-pointer p-3 rounded border border-slate-200 hover:bg-slate-50 transition-colors" id="track-label-off">
-                <input type="radio" name="inventory-mode" value="infinite" class="mt-0.5 w-4 h-4 text-blue-600 border-slate-300" onchange="toggleInventoryMode(this)"/>
+                <input id="inventory-infinite" type="radio" name="inventory-mode" value="infinite" class="mt-0.5 w-4 h-4 text-blue-600 border-slate-300" onchange="toggleInventoryMode(this)"/>
                 <div>
                   <p class="font-body-md text-body-md text-slate-900 font-medium">常に在庫あり（無制限に販売）</p>
                   <p class="font-body-sm text-body-sm text-slate-500">在庫数を管理せず、常に購入可能な状態にします。</p>
@@ -411,7 +411,7 @@ tailwind.config = {
           <div id="warehouse-section">
             <p class="field-label mb-3">倉庫・ロケーション別在庫数</p>
             <div class="border border-slate-200 rounded overflow-hidden">
-              <table class="w-full text-sm variation-table">
+              <table id="warehouse-table" class="w-full text-sm variation-table">
                 <thead>
                   <tr>
                     <th>倉庫 / ロケーション</th>
@@ -450,7 +450,7 @@ tailwind.config = {
                 <tfoot>
                   <tr>
                     <td colspan="3" class="pt-2 px-3 pb-2">
-                      <button onclick="addWarehouseRow()" class="flex items-center gap-1 font-label-sm text-label-sm text-blue-600 hover:underline">
+                      <button id="btn-add-warehouse" onclick="addWarehouseRow()" class="flex items-center gap-1 font-label-sm text-label-sm text-blue-600 hover:underline">
                         <span class="material-symbols-outlined text-[16px]">add_circle_outline</span>倉庫を追加
                       </button>
                     </td>
@@ -470,14 +470,14 @@ tailwind.config = {
             <p class="field-label mb-3">在庫切れ時の挙動</p>
             <div class="flex flex-col gap-2">
               <label class="flex items-start gap-3 cursor-pointer p-3 rounded border border-slate-200 hover:bg-slate-50 transition-colors">
-                <input type="radio" name="stockout" value="stop" class="mt-0.5 w-4 h-4 text-blue-600 border-slate-300" checked/>
+                <input id="stockout-stop" type="radio" name="stockout" value="stop" class="mt-0.5 w-4 h-4 text-blue-600 border-slate-300" checked/>
                 <div>
                   <p class="font-body-md text-body-md text-slate-900 font-medium">在庫切れで販売停止</p>
                   <p class="font-body-sm text-body-sm text-slate-500">在庫ゼロになると「売り切れ」表示になり購入不可になります。</p>
                 </div>
               </label>
               <label class="flex items-start gap-3 cursor-pointer p-3 rounded border border-slate-200 hover:bg-slate-50 transition-colors">
-                <input type="radio" name="stockout" value="backorder" class="mt-0.5 w-4 h-4 text-blue-600 border-slate-300"/>
+                <input id="stockout-backorder" type="radio" name="stockout" value="backorder" class="mt-0.5 w-4 h-4 text-blue-600 border-slate-300"/>
                 <div>
                   <p class="font-body-md text-body-md text-slate-900 font-medium">バックオーダー・予約販売を受け付ける</p>
                   <p class="font-body-sm text-body-sm text-slate-500">在庫ゼロでも購入可能。入荷後に発送します。</p>
@@ -490,7 +490,7 @@ tailwind.config = {
         <!-- ────────────────────────────────────────────────────
              ブロック4：バリエーション
         ──────────────────────────────────────────────────── -->
-        <section class="section-card">
+        <section id="section-variations" class="section-card">
           <div class="section-header justify-between">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-blue-600">tune</span>
@@ -575,7 +575,7 @@ tailwind.config = {
                 </button>
               </div>
               <div class="border border-slate-200 rounded overflow-x-auto">
-                <table class="w-full variation-table text-sm min-w-[700px]">
+                <table id="variation-table" class="w-full variation-table text-sm min-w-[700px]">
                   <thead>
                     <tr>
                       <th class="w-8"><input type="checkbox" class="w-4 h-4 text-blue-600 rounded border-slate-300"/></th>
@@ -666,7 +666,7 @@ tailwind.config = {
         <!-- ────────────────────────────────────────────────────
              ブロック5：組織・分類・マーケティング
         ──────────────────────────────────────────────────── -->
-        <section class="section-card">
+        <section id="section-organization" class="section-card">
           <div class="section-header">
             <span class="material-symbols-outlined text-blue-600">label</span>
             <h2 class="font-headline-sm text-headline-sm text-slate-900 m-0">組織・分類・マーケティング</h2>
@@ -762,28 +762,28 @@ tailwind.config = {
       <div class="lg:col-span-4 flex flex-col gap-5">
 
         <!-- 公開設定 -->
-        <section class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col gap-4">
+        <section id="section-publish" class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col gap-4">
           <div class="flex items-center gap-2 border-b border-slate-100 pb-3">
             <span class="material-symbols-outlined text-slate-500 text-[20px]">visibility</span>
             <h3 class="font-headline-sm text-headline-sm text-slate-900 m-0 text-base">公開設定</h3>
           </div>
           <div class="flex flex-col gap-3">
             <label class="flex items-start gap-3 cursor-pointer group">
-              <input checked class="mt-0.5 w-4 h-4 text-blue-600 bg-white border-slate-300 focus:ring-blue-600" name="visibility" type="radio" value="public"/>
+              <input id="visibility-public" checked class="mt-0.5 w-4 h-4 text-blue-600 bg-white border-slate-300 focus:ring-blue-600" name="visibility" type="radio" value="public"/>
               <div>
                 <span class="font-body-md text-body-md text-slate-900 font-medium block">公開</span>
                 <span class="font-body-sm text-body-sm text-slate-500">すべての訪問者に表示されます。</span>
               </div>
             </label>
             <label class="flex items-start gap-3 cursor-pointer group">
-              <input class="mt-0.5 w-4 h-4 text-blue-600 bg-white border-slate-300 focus:ring-blue-600" name="visibility" type="radio" value="hidden"/>
+              <input id="visibility-hidden" class="mt-0.5 w-4 h-4 text-blue-600 bg-white border-slate-300 focus:ring-blue-600" name="visibility" type="radio" value="hidden"/>
               <div>
                 <span class="font-body-md text-body-md text-slate-900 font-medium block">非公開</span>
                 <span class="font-body-sm text-body-sm text-slate-500">直接リンクからのみアクセス可能です。</span>
               </div>
             </label>
             <label class="flex items-start gap-3 cursor-pointer group">
-              <input class="mt-0.5 w-4 h-4 text-blue-600 bg-white border-slate-300 focus:ring-blue-600" name="visibility" type="radio" value="scheduled"/>
+              <input id="visibility-scheduled" class="mt-0.5 w-4 h-4 text-blue-600 bg-white border-slate-300 focus:ring-blue-600" name="visibility" type="radio" value="scheduled"/>
               <div>
                 <span class="font-body-md text-body-md text-slate-900 font-medium block">公開日時を予約</span>
                 <span class="font-body-sm text-body-sm text-slate-500">指定した日時に自動公開されます。</span>
@@ -795,15 +795,15 @@ tailwind.config = {
             <input class="field-input" type="datetime-local" id="schedule-date"/>
           </div>
           <div class="pt-2 border-t border-slate-100 flex flex-col gap-2">
-            <button class="w-full px-4 py-2 font-label-md text-label-md text-white bg-blue-600 hover:bg-blue-700 rounded shadow-sm transition-colors flex items-center justify-center gap-2">
+            <button id="sidebar-btn-publish" class="w-full px-4 py-2 font-label-md text-label-md text-white bg-blue-600 hover:bg-blue-700 rounded shadow-sm transition-colors flex items-center justify-center gap-2">
               <span class="material-symbols-outlined text-[18px]">publish</span>商品を公開
             </button>
-            <button class="w-full px-4 py-2 font-label-md text-label-md text-slate-900 bg-white border border-slate-200 rounded hover:bg-slate-50 transition-colors">下書き保存</button>
+            <button id="sidebar-btn-save-draft" class="w-full px-4 py-2 font-label-md text-label-md text-slate-900 bg-white border border-slate-200 rounded hover:bg-slate-50 transition-colors">下書き保存</button>
           </div>
         </section>
 
         <!-- SEO / URLプレビュー -->
-        <section class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col gap-4">
+        <section id="section-seo" class="bg-white border border-slate-200 rounded-lg p-5 flex flex-col gap-4">
           <div class="flex items-center justify-between border-b border-slate-100 pb-3">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-slate-500 text-[20px]">search</span>
